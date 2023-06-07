@@ -12,7 +12,8 @@ export default function Bola({ bola }: BolaProps): JSX.Element {
         left: bola[0].x,
         top: bola[0].y,
     };
-    //console.log('sdsdsd', bola)
+        //console.log('mix1', bola)
+   
     return <Fragment>
 
         {/* {bola.map((segment: any, index: number) => {

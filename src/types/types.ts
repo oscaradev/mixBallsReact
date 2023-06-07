@@ -1,7 +1,13 @@
 
 export enum Direction {
-    Arriba,
-    Abajo,
+    CuIzquierdoArriba,
+    CuIzquierdoAbajo,
+    CuSuperiorDerecha,
+    CuSuperiorIzquierda,
+    CuDerechoAbajo,
+    CuDerechoArriba,
+    CuInferiorDerecha,
+    CuInferiorIzquierda,
 }
 
 export interface Coordenada {
