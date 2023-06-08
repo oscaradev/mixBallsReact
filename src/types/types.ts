@@ -13,7 +13,9 @@ export enum Direction {
 export interface Coordenada {
     x: number;
     y: number;
+    color: string;
 }
+
 
 export interface GestureEventType {
     nativeEvent: { translationX: number; translationY: number };
