@@ -46,8 +46,8 @@ const POS_ARRANQUE1 = [
     { x: 0, y: 0, color: 'red' },
     { x: 0, y: 0, color: 'red' },
     { x: 0, y: 0, color: 'yellow' },
-    { x: 0, y: 0, color: 'yellow'},
-    { x: 0, y: 0, color: 'yellow'},
+    { x: 0, y: 0, color: 'yellow' },
+    { x: 0, y: 0, color: 'yellow' },
     { x: 0, y: 0, color: 'yellow' },
     { x: 0, y: 0, color: 'yellow' },
 ]
@@ -117,7 +117,7 @@ export default function Mix(): JSX.Element {
 
 
     //función que mueve las canicas
-    const mueveBola = (longitud:number) => {
+    const mueveBola = (longitud: number) => {
         //console.log('valor de bola', bola)
         //const bolaInicio = bola[0]
         //const bolaInicio = bola
@@ -125,8 +125,8 @@ export default function Mix(): JSX.Element {
         let newBola = bola
 
         //este switch evalua el moviento en pantalla tactil 
-        let primero= newBola[0]
-        let ultimo= newBola[longitud-1]
+        let primero = newBola[0]
+        let ultimo = newBola[longitud - 1]
         switch (direction) {
             case Direction.CuIzquierdoArriba:
                 newBola.shift()
@@ -182,13 +182,13 @@ export default function Mix(): JSX.Element {
 
         if (translationY > 0 && (x > 0 && x < (anchoView1 / 3))) {
             //const setimer = setTimeout(() => {
-               // setDirection(Direction.CuIzquierdoAbajo) 
-               // clearTimeout(setimer)
-           // }, 500);
-      
+            /// setDirection(Direction.CuIzquierdoAbajo) 
+            // clearTimeout(setimer)
+            // }, 500);
+
             //console.log("cuadrante izquierdo - direccion abajo")
         } else if (translationY < 0 && (x > 0 && x < (anchoView1 / 3))) {
-            //setDirection(Direction.CuIzquierdoArriba)
+            ///setDirection(Direction.CuIzquierdoArriba)
             //console.log("cuadrante izquierdo - direccion arriba")
         } else if (translationX > 0 && (y > 0 && y < (altoView1 / 3))) {
             setDirection(Direction.CuSuperiorDerecha)
@@ -197,10 +197,10 @@ export default function Mix(): JSX.Element {
             setDirection(Direction.CuSuperiorIzquierda)
             // console.log("cuadrante superior - direccion izquierda")
         } else if (translationY > 0 && (x > (anchoView1 * 0.75) && x <= (anchoView1 + 10))) {
-           /// setDirection(Direction.CuDerechoAbajo)
+            /// setDirection(Direction.CuDerechoAbajo)
             // console.log("cuadrante derecho - direccion abajo")
         } else if (translationY < 0 && (x > (anchoView1 * 0.75) && x <= (anchoView1 + 10))) {
-           /// setDirection(Direction.CuDerechoArriba)
+            /// setDirection(Direction.CuDerechoArriba)
             // console.log("cuadrante derecho - direccion arriba")
         } else if (translationX > 0 && (y >= (altoView1 * 0.75))) {
             setDirection(Direction.CuInferiorDerecha)
@@ -250,10 +250,11 @@ export default function Mix(): JSX.Element {
                                 return (
                                     <Bola
                                         key={index}
-                                        valor={value.color}
+                                        valor={value}
                                         long={long}
                                         alto={altoView1}
                                         ancho={anchoView1}
+                                        pos={index}
                                     />
                                 )
                             })}
