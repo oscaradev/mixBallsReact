@@ -54,38 +54,13 @@ const POS_ARRANQUE1 = [
 
 const POS_ARRANQUE2 = [
     { x: 0, y: 0, color: 'blue' },
-    { x: 0, y: 0, color: 'yellow' },
-    { x: 0, y: 0, color: 'red' },
+    { x: 0, y: 0, color: 'blue' },
+    { x: 0, y: 0, color: 'blue' },
+    { x: 0, y: 0, color: 'blue' },
+    { x: 0, y: 0, color: 'blue' },
+    { x: 0, y: 0, color: 'blue' },
     { x: 0, y: 0, color: 'blue' },
     { x: 0, y: 0, color: 'red' },
-    { x: 0, y: 0, color: 'white' },
-    { x: 0, y: 0, color: 'yellow' },
-    { x: 0, y: 0, color: 'blue' },
-    { x: 0, y: 0, color: 'yellow' },
-    { x: 0, y: 0, color: 'blue' },
-    { x: 0, y: 0, color: 'yellow' },
-    { x: 0, y: 0, color: 'red' },
-    { x: 0, y: 0, color: 'blue' },
-    { x: 0, y: 0, color: 'red' },
-    { x: 0, y: 0, color: 'white' },
-    { x: 0, y: 0, color: 'yellow' },
-    { x: 0, y: 0, color: 'blue' },
-    { x: 0, y: 0, color: 'yellow' },
-    { x: 0, y: 0, color: 'red' },
-    { x: 0, y: 0, color: 'blue' },
-    { x: 0, y: 0, color: 'red' },
-    { x: 0, y: 0, color: 'white' },
-    { x: 0, y: 0, color: 'yellow' },
-    { x: 0, y: 0, color: 'blue' },
-    { x: 0, y: 0, color: 'yellow' },
-    { x: 0, y: 0, color: 'blue' },
-    { x: 0, y: 0, color: 'yellow' },
-    { x: 0, y: 0, color: 'red' },
-    { x: 0, y: 0, color: 'blue' },
-    { x: 0, y: 0, color: 'red' },
-    { x: 0, y: 0, color: 'white' },
-    { x: 0, y: 0, color: 'yellow' },
-    { x: 0, y: 0, color: 'blue' },
     { x: 0, y: 0, color: 'yellow' },
     { x: 0, y: 0, color: 'blue' },
     { x: 0, y: 0, color: 'yellow' },
@@ -102,6 +77,31 @@ const POS_ARRANQUE2 = [
     { x: 0, y: 0, color: 'white' },
     { x: 0, y: 0, color: 'yellow' },
     { x: 0, y: 0, color: 'blue' },
+    { x: 0, y: 0, color: 'yellow' },
+    { x: 0, y: 0, color: 'blue' },
+    { x: 0, y: 0, color: 'yellow' },
+    { x: 0, y: 0, color: 'red' },
+    { x: 0, y: 0, color: 'blue' },
+    { x: 0, y: 0, color: 'red' },
+    { x: 0, y: 0, color: 'white' },
+    { x: 0, y: 0, color: 'yellow' },
+    { x: 0, y: 0, color: 'blue' },
+    { x: 0, y: 0, color: 'yellow' },
+    { x: 0, y: 0, color: 'blue' },
+    { x: 0, y: 0, color: 'yellow' },
+    { x: 0, y: 0, color: 'red' },
+    { x: 0, y: 0, color: 'blue' },
+    { x: 0, y: 0, color: 'red' },
+    { x: 0, y: 0, color: 'white' },
+    { x: 0, y: 0, color: 'yellow' },
+    { x: 0, y: 0, color: 'yellow' },
+    { x: 0, y: 0, color: 'white' },
+    { x: 0, y: 0, color: 'white' },
+    { x: 0, y: 0, color: 'white' },
+    { x: 0, y: 0, color: 'white' },
+    { x: 0, y: 0, color: 'white' },
+    { x: 0, y: 0, color: 'white' },
+    { x: 0, y: 0, color: 'white' },
 ]
 
 export default function Mix(): JSX.Element {
@@ -113,7 +113,7 @@ export default function Mix(): JSX.Element {
     const [bola, setBola] = React.useState<Coordenada[]>(POS_ARRANQUE2);
 
     //guarda la posición de eje y cuando se toca la pantalla
-    const [traslY, setTrasY] = React.useState<Coordenada[]>(bola);
+    //const [traslY, setTrasY] = React.useState<Coordenada[]>(bola);
 
 
     //función que mueve las canicas
@@ -123,7 +123,6 @@ export default function Mix(): JSX.Element {
         //const bolaInicio = bola
         //let newBola = { ...bolaInicio }; //creando una copia de bolaInicio
         let newBola = bola
-
         //este switch evalua el moviento en pantalla tactil 
         let primero = newBola[0]
         let ultimo = newBola[longitud - 1]
@@ -131,34 +130,42 @@ export default function Mix(): JSX.Element {
             case Direction.CuIzquierdoArriba:
                 newBola.shift()
                 newBola.push(primero)
+                setDirection(Direction.CuIzquierdoArriba1)    
                 break;
             case Direction.CuIzquierdoAbajo:
                 newBola.pop()
                 newBola.unshift(ultimo)
+                setDirection(Direction.CuIzquierdoAbajo2)
                 break;
             case Direction.CuSuperiorDerecha:
                 newBola.pop()
                 newBola.unshift(ultimo)
+                setDirection(undefined)
                 break;
             case Direction.CuSuperiorIzquierda:
                 newBola.shift()
                 newBola.push(primero)
+                setDirection(undefined)
                 break;
             case Direction.CuDerechoAbajo:
                 newBola.pop()
                 newBola.unshift(ultimo)
+                setDirection(undefined)
                 break;
             case Direction.CuDerechoArriba:
                 newBola.shift()
                 newBola.push(primero)
+                setDirection(undefined)
                 break;
             case Direction.CuInferiorDerecha:
                 newBola.pop()
                 newBola.unshift(ultimo)
+                setDirection(undefined)
                 break;
             case Direction.CuInferiorIzquierda:
                 newBola.shift()
                 newBola.push(primero)
+                setDirection(undefined)
                 break;
             default:
                 break;
@@ -166,62 +173,58 @@ export default function Mix(): JSX.Element {
 
         //console.log('sdsds', newBola)
         //posiciono la bola en pantalla
-        //setBola([newBola])
+        setBola(newBola)
     }
 
     //Función asociada a calcular la dirección del movimiento según el toque de pantalla
     const [altoView1, setAltoView1] = React.useState(0);
     const [anchoView1, setAnchoView1] = React.useState(0);
+    //let timer: any
     const movimiento = (event: any) => {
         const { translationX, translationY, x, y } = event.nativeEvent
         // console.log("x: "+translationX, "y: "+translationY)
-        // console.log("window", event.nativeEvent)
+        //console.log("window", event.nativeEvent)
         //console.log("anchoView1", anchoView1)
-        // console.log("screen", screen)
-
+        //console.log("screen",Math.floor(translationX/3) % 2)
 
         if (translationY > 0 && (x > 0 && x < (anchoView1 / 3))) {
-            //const setimer = setTimeout(() => {
-            /// setDirection(Direction.CuIzquierdoAbajo) 
-            // clearTimeout(setimer)
-            // }, 500);
-
+            setDirection(Direction.CuIzquierdoAbajo)
             //console.log("cuadrante izquierdo - direccion abajo")
         } else if (translationY < 0 && (x > 0 && x < (anchoView1 / 3))) {
-            ///setDirection(Direction.CuIzquierdoArriba)
+            setDirection(Direction.CuIzquierdoArriba)
             //console.log("cuadrante izquierdo - direccion arriba")
         } else if (translationX > 0 && (y > 0 && y < (altoView1 / 3))) {
-            setDirection(Direction.CuSuperiorDerecha)
+            ///setDirection(Direction.CuSuperiorDerecha)
             // console.log("cuadrante superior - direccion derecha")
         } else if (translationX < 0 && (y > 0 && y < (altoView1 / 3))) {
-            setDirection(Direction.CuSuperiorIzquierda)
+            ///setDirection(Direction.CuSuperiorIzquierda);
             // console.log("cuadrante superior - direccion izquierda")
         } else if (translationY > 0 && (x > (anchoView1 * 0.75) && x <= (anchoView1 + 10))) {
-            /// setDirection(Direction.CuDerechoAbajo)
+            setDirection(Direction.CuDerechoAbajo)
             // console.log("cuadrante derecho - direccion abajo")
         } else if (translationY < 0 && (x > (anchoView1 * 0.75) && x <= (anchoView1 + 10))) {
-            /// setDirection(Direction.CuDerechoArriba)
+            setDirection(Direction.CuDerechoArriba)
             // console.log("cuadrante derecho - direccion arriba")
         } else if (translationX > 0 && (y >= (altoView1 * 0.75))) {
-            setDirection(Direction.CuInferiorDerecha)
+            ///setDirection(Direction.CuInferiorDerecha)
             // console.log("cuadrante inferior - direccion derecha")
         } else if (translationX < 0 && (y >= (altoView1 * 0.75))) {
-            setDirection(Direction.CuInferiorIzquierda)
+            ///setDirection(Direction.CuInferiorIzquierda)
             // console.log("cuadrante inferior - direccion izquierda")
         }
 
 
         //guarda la posición de eje y cuando se toca la pantalla (en pruebas)
-        setTrasY(translationY);
+        //setTrasY(direction);
 
     }
 
     //se activa la función de movimiento
     React.useEffect(() => {
-        //console.log('dsdsdsd', direction)
-        mueveBola(bola.length);
-    }, [traslY])
-
+        if (direction !== 8 && direction !== 9) {
+            mueveBola(bola.length);
+        }
+    }, [direction])
 
 
     return (
@@ -255,6 +258,7 @@ export default function Mix(): JSX.Element {
                                         alto={altoView1}
                                         ancho={anchoView1}
                                         pos={index}
+                                        direccion={direction}
                                     />
                                 )
                             })}

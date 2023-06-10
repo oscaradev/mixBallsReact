@@ -1,34 +1,54 @@
 //import { Fragment } from "react";
 import { StyleSheet, View } from "react-native";
 import { Colors } from "../styles/colores";
-import { Coordenada } from "../types/types";
+import { Coordenada, Direction } from "../types/types";
+import Animated, { Keyframe, ZoomInLeft } from 'react-native-reanimated';
 
 interface BolaProps {
     valor: Coordenada;
     long: number;
     alto: number;
     ancho: number;
-    pos: number
+    pos: number;
+    direccion: any;
 }
 
-export default function Bola({ valor, long, alto, ancho, pos }: BolaProps): JSX.Element {
-    // const segmentStyle = {
-    //     left: x,
-    //     top: y,
-    // };
-    //console.log('mix11', bola)
 
-    // return <Fragment>
-    //     {bola.map((segment: any, index: number) => {
-    //         const segmentStyle = {
-    //             left: segment.x,
-    //             top: segment.y,
-    //         };
-    //         console.log('ssegment', segment, index)
-    //         return <View key={index} style={[styles.bolaa, segmentStyle]} />
-    //     })}
 
-    // </Fragment>;
+
+export default function Bola({ valor, long, alto, ancho, pos, direccion }: BolaProps): JSX.Element {
+
+
+    const keyframeIn = new Keyframe({
+        0: {
+            opacity: 1,
+            transform: [{ translateX: 0 }],
+        },
+        50: {
+            opacity: 0.5,
+            transform: [{ translateX: Math.floor(ancho / 7) - 5 }],
+        },
+        100: {
+            opacity: 1,
+            transform: [{ translateX: 0 }],
+        },
+    }).duration(400);
+
+    const keyframeIn2 = new Keyframe({
+        0: {
+            opacity: 1,
+            transform: [{ translateX: 0 }],
+        },
+        50: {
+            opacity: 0.5,
+            transform: [{ translateX: -(Math.floor(ancho / 7) - 5) }],
+        },
+        100: {
+            opacity: 1,
+            transform: [{ translateX: 0 }],
+        },
+    }).duration(400);
+
 
     // constuyendo el tamaño de las bolas segun el tamaño del view
     const StyleBola9 = {
@@ -84,25 +104,15 @@ export default function Bola({ valor, long, alto, ancho, pos }: BolaProps): JSX.
         left: -2
 
     };
-    //console.log('mix1', pos,  valor)
-
-
-    // return (
-    //     <View style={long === 9 ? [styles.bola9, StyleBola9] : long === 25 ? [styles.bola25, styles.bola49, StyleBola25] : [styles.bola49, StyleBola49]} />
-    // )
+    console.log('mix1', direccion)
 
     return (
-        // <View>
-        //     {pos != 45 ? <View style={long === 9 ? [styles.bola9, StyleBola9] : long === 25 ? [styles.bola25, styles.bola49, StyleBola25] : [styles.bola49, StyleBola49]} /> :
-        //         <View style={StyleBola49M} />
-        //     }
-        // </View>
-
         <View>
-            <View style={long === 9 ? [styles.bola9, StyleBola9] : long === 25 ? [styles.bola25, StyleBola25] : pos === 27 || pos === 45 ? [styles.bola49, StyleBola49Trans] : [styles.bola49, StyleBola49]} />
+            {direccion === 9 ? <Animated.View entering={keyframeIn} style={long === 9 ? [styles.bola9, StyleBola9] : long === 25 ? [styles.bola25, StyleBola25] : pos === 27 || pos === 45 ? [styles.bola49, StyleBola49Trans] : [styles.bola49, StyleBola49]} /> : ""}
+            {direccion === 8 ? <Animated.View entering={keyframeIn2} style={long === 9 ? [styles.bola9, StyleBola9] : long === 25 ? [styles.bola25, StyleBola25] : pos === 27 || pos === 45 ? [styles.bola49, StyleBola49Trans] : [styles.bola49, StyleBola49]} /> : ""}
             {pos === 45 ? <View style={StyleBola49T} /> : ""}
             {pos === 27 ? <View style={StyleBola49R} /> : ""}
-        
+
         </View>
 
     )
