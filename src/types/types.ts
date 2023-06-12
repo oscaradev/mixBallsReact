@@ -8,8 +8,6 @@ export enum Direction {
     CuDerechoArriba,
     CuInferiorDerecha,
     CuInferiorIzquierda,
-    CuIzquierdoArriba1,
-    CuIzquierdoAbajo2,
 }
 
 export interface Coordenada {

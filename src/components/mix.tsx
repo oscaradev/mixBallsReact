@@ -111,10 +111,10 @@ export default function Mix(): JSX.Element {
 
     //pinta la bola en una posicion de la pantalla
     const [bola, setBola] = React.useState<Coordenada[]>(POS_ARRANQUE2);
+    const [bola2, setBola2] = React.useState<Coordenada[]>(bola);
 
     //guarda la posición de eje y cuando se toca la pantalla
     //const [traslY, setTrasY] = React.useState<Coordenada[]>(bola);
-
 
     //función que mueve las canicas
     const mueveBola = (longitud: number) => {
@@ -130,42 +130,42 @@ export default function Mix(): JSX.Element {
             case Direction.CuIzquierdoArriba:
                 newBola.shift()
                 newBola.push(primero)
-                setDirection(Direction.CuIzquierdoArriba1)    
-                break;
+                setBola2(newBola)
+                break;     
             case Direction.CuIzquierdoAbajo:
                 newBola.pop()
                 newBola.unshift(ultimo)
-                setDirection(Direction.CuIzquierdoAbajo2)
+                setBola2(newBola)
                 break;
             case Direction.CuSuperiorDerecha:
                 newBola.pop()
                 newBola.unshift(ultimo)
-                setDirection(undefined)
+                setBola2(newBola)
                 break;
             case Direction.CuSuperiorIzquierda:
                 newBola.shift()
                 newBola.push(primero)
-                setDirection(undefined)
+                setBola2(newBola)
                 break;
             case Direction.CuDerechoAbajo:
                 newBola.pop()
                 newBola.unshift(ultimo)
-                setDirection(undefined)
+                setBola2(newBola)
                 break;
             case Direction.CuDerechoArriba:
                 newBola.shift()
                 newBola.push(primero)
-                setDirection(undefined)
+                setBola2(newBola)
                 break;
             case Direction.CuInferiorDerecha:
                 newBola.pop()
                 newBola.unshift(ultimo)
-                setDirection(undefined)
+                setBola2(newBola)
                 break;
             case Direction.CuInferiorIzquierda:
                 newBola.shift()
                 newBola.push(primero)
-                setDirection(undefined)
+                setBola2(newBola)
                 break;
             default:
                 break;
@@ -173,7 +173,7 @@ export default function Mix(): JSX.Element {
 
         //console.log('sdsds', newBola)
         //posiciono la bola en pantalla
-        setBola(newBola)
+        //setBola2(newBola)
     }
 
     //Función asociada a calcular la dirección del movimiento según el toque de pantalla
@@ -181,6 +181,7 @@ export default function Mix(): JSX.Element {
     const [anchoView1, setAnchoView1] = React.useState(0);
     //let timer: any
     const movimiento = (event: any) => {
+        setDirection(undefined) 
         const { translationX, translationY, x, y } = event.nativeEvent
         // console.log("x: "+translationX, "y: "+translationY)
         //console.log("window", event.nativeEvent)
@@ -188,31 +189,30 @@ export default function Mix(): JSX.Element {
         //console.log("screen",Math.floor(translationX/3) % 2)
 
         if (translationY > 0 && (x > 0 && x < (anchoView1 / 3))) {
-            setDirection(Direction.CuIzquierdoAbajo)
-            //console.log("cuadrante izquierdo - direccion abajo")
+           /// setDirection(Direction.CuIzquierdoAbajo) 
+           // console.log("cuadrante izquierdo - direccion abajo")
         } else if (translationY < 0 && (x > 0 && x < (anchoView1 / 3))) {
-            setDirection(Direction.CuIzquierdoArriba)
+           /// setDirection(Direction.CuIzquierdoArriba)
             //console.log("cuadrante izquierdo - direccion arriba")
         } else if (translationX > 0 && (y > 0 && y < (altoView1 / 3))) {
-            ///setDirection(Direction.CuSuperiorDerecha)
+            setDirection(Direction.CuSuperiorDerecha)
             // console.log("cuadrante superior - direccion derecha")
         } else if (translationX < 0 && (y > 0 && y < (altoView1 / 3))) {
-            ///setDirection(Direction.CuSuperiorIzquierda);
+            setDirection(Direction.CuSuperiorIzquierda);
             // console.log("cuadrante superior - direccion izquierda")
         } else if (translationY > 0 && (x > (anchoView1 * 0.75) && x <= (anchoView1 + 10))) {
-            setDirection(Direction.CuDerechoAbajo)
+           /// setDirection(Direction.CuDerechoAbajo)
             // console.log("cuadrante derecho - direccion abajo")
         } else if (translationY < 0 && (x > (anchoView1 * 0.75) && x <= (anchoView1 + 10))) {
-            setDirection(Direction.CuDerechoArriba)
+            ///setDirection(Direction.CuDerechoArriba)
             // console.log("cuadrante derecho - direccion arriba")
         } else if (translationX > 0 && (y >= (altoView1 * 0.75))) {
-            ///setDirection(Direction.CuInferiorDerecha)
+            setDirection(Direction.CuInferiorDerecha)
             // console.log("cuadrante inferior - direccion derecha")
         } else if (translationX < 0 && (y >= (altoView1 * 0.75))) {
-            ///setDirection(Direction.CuInferiorIzquierda)
+            setDirection(Direction.CuInferiorIzquierda)
             // console.log("cuadrante inferior - direccion izquierda")
         }
-
 
         //guarda la posición de eje y cuando se toca la pantalla (en pruebas)
         //setTrasY(direction);
@@ -221,9 +221,7 @@ export default function Mix(): JSX.Element {
 
     //se activa la función de movimiento
     React.useEffect(() => {
-        if (direction !== 8 && direction !== 9) {
-            mueveBola(bola.length);
-        }
+        mueveBola(bola.length);
     }, [direction])
 
 
@@ -247,9 +245,9 @@ export default function Mix(): JSX.Element {
                                 setAltoView1(Math.floor(layout.height))
                             }}
                         >
-                            {bola.map((value, index) => {
+                            {bola2.map((value, index) => {
                                 //console.log('sdsdsd', altoView1)
-                                const long = bola.length
+                                const long = bola2.length
                                 return (
                                     <Bola
                                         key={index}
