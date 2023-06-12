@@ -11,8 +11,8 @@ export enum Direction {
 }
 
 export interface Coordenada {
-    x: number;
-    y: number;
+    //x: number;
+    //y: number;
     color: string;
 }
 
