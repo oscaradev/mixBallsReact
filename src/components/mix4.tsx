@@ -13,9 +13,7 @@ interface BolaProps {
 }
 
 
-
-
-export default function Bola({ valor, long, alto, ancho, pos, direccion }: BolaProps): JSX.Element {
+export default function Bola4({ valor, long, alto, ancho, pos, direccion }: BolaProps): JSX.Element {
 
 
     const keyframeIn = new Keyframe({
@@ -95,24 +93,24 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion }: BolaP
         backgroundColor: 'transparent',
     };
     //declaración de bola transparente
-    const StyleBola49R = {
+    const StyleBola49L = {
         width: Math.floor(ancho / 5) - 5,
         height: Math.floor(alto / 5) - 5,
         backgroundColor: valor.color,
         borderRadius: 13,
         borderWidth: 1,
         position: 'absolute',
-        left: (Math.floor(ancho / 5) - 5) / 3,
+        left: -((Math.floor(ancho / 5) - 5) / 3) - 2,
         top: -2
     };
-    const StyleBola49B = {
+    const StyleBola49T = {
         width: Math.floor(ancho / 5) - 5,
         height: Math.floor(alto / 5) - 5,
         backgroundColor: valor.color,
         borderRadius: 13,
         borderWidth: 1,
         position: 'absolute',
-        top: (Math.floor(ancho / 5) - 5) / 3,
+        bottom: ((Math.floor(ancho / 5) - 5) / 3) - 3,
         left: -2
 
     };
@@ -120,11 +118,11 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion }: BolaP
 
     return (
         <View>
-            <View style={long === 9 ? [styles.bola9, StyleBola9] : long === 25 ? [styles.bola25, StyleBola25] : pos === 27 || pos === 45 ? [styles.bola49, StyleBola49Trans] : [styles.bola49, StyleBola49]} />
+            <View style={long === 9 ? [styles.bola9, StyleBola9] : long === 25 ? [styles.bola25, StyleBola25] : pos === 3 || pos === 21 ? [styles.bola49, StyleBola49Trans] : [styles.bola49, StyleBola49]} />
             {/* {direccion === 2 ? <Animated.View exiting={keyframeIn} style={long === 9 ? [styles.bola9, StyleBola9] : long === 25 ? [styles.bola25, StyleBola25] : pos === 27 || pos === 45 ? [styles.bola49, StyleBola49Trans] : [styles.bola49, StyleBola49]} /> : ""}
             {direccion === 3 ? <Animated.View exiting={keyframeIn2} style={long === 9 ? [styles.bola9, StyleBola9] : long === 25 ? [styles.bola25, StyleBola25] : pos === 27 || pos === 45 ? [styles.bola49, StyleBola49Trans] : [styles.bola49, StyleBola49]} /> : ""} */}
-            {pos === 45 && long === 49 ? <Animated.View style={StyleBola49B} /> : ""}
-            {pos === 27 && long === 49 ? <Animated.View style={StyleBola49R} /> : ""}
+            {pos === 3 && long === 49 ? <Animated.View style={StyleBola49T} /> : ""}
+            {pos === 21 && long === 49 ? <Animated.View style={StyleBola49L} /> : ""}
         </View>
     )
 

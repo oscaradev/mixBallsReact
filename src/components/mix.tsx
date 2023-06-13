@@ -1,10 +1,21 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, Button } from "react-native";
+import {
+    SafeAreaView, View, StyleSheet, TouchableOpacity, Text,
+    TextInput,
+    Modal,
+} from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { Colors } from "../styles/colores";
 import Bola from './mix1';
-import { Coordenada, Direction, GestureEventType } from '../types/types';
 import Bola2 from './mix2';
+import Bola3 from './mix3';
+import Bola4 from './mix4';
+import { Coordenada, Direction, GestureEventType } from '../types/types';
+import { en, es, hi, zh, pt } from '../utilidades/localizations';
+import { I18n } from 'i18n-js';
+import { SelectList } from 'react-native-dropdown-select-list';
+import RadioForm from 'react-native-simple-radio-button'
+
 
 //se obtienen las dimensiones del dispositivo
 // const ventana = Dimensions.get("window");
@@ -13,127 +24,124 @@ import Bola2 from './mix2';
 // declaro constante para calcular la posición de arranque del primer array de bolas
 //const POS_ARRANQUE = [{ x: ventana.width * 0.04, y: ventana.height * 0.10 }]
 
-// const POS_ARRANQUE = [
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'yellow' },
-// ]
+const POS_ARRANQUE9 = revolver(9)
+const POS_ARRANQUE25 = revolver(25)
+const POS_ARRANQUE49 = revolver(49)
 
-const POS_ARRANQUE = revolver(9)
-
-// const POS_ARRANQUE1 = [
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'yellow' },
-// ]
-const POS_ARRANQUE1 = revolver(25)
-
-// const POS_ARRANQUE2 = [
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'blue' },
-//     { x: 0, y: 0, color: 'red' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'yellow' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'white' },
-//     { x: 0, y: 0, color: 'white' },
-// ]
-//const POS_ARRANQUE2 = revolver(49);
-
-const POS_ARRANQUE2 = () => {
-    let mix1 = []
-    for (let i = 0; i < 49; i++) {
-        mix1.push(revolver(49)[i])
-    }
-    return mix1
-}
-
-// const POS_ARRANQUE22 = () => {
-//     let mix2 = []
-//     for (let i = 49; i < 98; i++) {
-//         mix2.push(revolver(49)[i])
-//     }
-//     return mix2
-// }
 
 export default function Mix(): JSX.Element {
 
-    //contiene el valo de dirección de movimiento
-    const [direction, setDirection] = React.useState<Direction>();
+    //Defino variable que me guardara las traducciones del juego
+    const i18n = new I18n({ en, es, hi, zh, pt });
+
+    //Variable indicadora de inicio de juego
+    const [play, setPlay] = React.useState(2);
+    // se definen la cantidad de jugadores
+    const players = [
+        { label: i18n.t('play21M'), value: 0 },
+        { label: i18n.t('play22M'), value: 1 }
+    ]
+
+    //Variable indicadora de captación de codigo de invitado
+    const [changeText, setChangeText] = React.useState('');
+
+    //Se define el nivel del juego
+    const [nivel, setNivel] = React.useState("");
+
+    //se Guardan los 3 niveles del juego
+    const niveles = [
+        { key: 'FA', value: i18n.t('selectNivel2M') },
+        { key: 'ME', value: i18n.t('selectNivel3M') },
+        { key: 'DI', value: i18n.t('selectNivel4M') },
+    ]
+
+    //Se inicializa el array de arranque de juego
+    //const [posStart, setPosStart] = React.useState<Coordenada[]>(revolver(9));
 
     //pinta la bola en una posicion de la pantalla
-    const [bola, setBola] = React.useState<Coordenada[]>(POS_ARRANQUE2);
-    const [bola11, setBola11] = React.useState<Coordenada[]>(bola);
-    const [bola22, setBola22] = React.useState<Coordenada[]>(bola);
+    //const [bola, setBola] = React.useState<Coordenada[]>(POS_ARRANQUE);
+    const [bola9, setBola9] = React.useState<Coordenada[]>(POS_ARRANQUE9);
+    const [bola25, setBola25] = React.useState<Coordenada[]>(POS_ARRANQUE25);
+    const [bola49, setBola49] = React.useState<Coordenada[]>(POS_ARRANQUE49);
+    const [bola11, setBola11] = React.useState<Coordenada[]>([]);
+    const [bola22, setBola22] = React.useState<Coordenada[]>([]);
+    const [bola33, setBola33] = React.useState<Coordenada[]>([]);
+    const [bola44, setBola44] = React.useState<Coordenada[]>([]);
+
+    //se carga la difcultad del juego
+    React.useEffect(() => {
+        console.log('niveeel', nivel)
+        if (nivel === 'FA') {
+            let mix1 = []
+            for (let i = 0; i < 9; i++) {
+                mix1.push(bola9[i])
+            }
+            setBola11(mix1)
+            let mix2 = []
+            for (let j = 9; j < 18; j++) {
+                mix2.push(bola9[j])
+            }
+            setBola22(mix2)
+            let mix3 = []
+            for (let k = 18; k < 27; k++) {
+                mix3.push(bola9[k])
+            }
+            setBola33(mix3)
+            let mix4 = []
+            for (let l = 27; l < 36; l++) {
+                mix4.push(bola9[l])
+            }
+            setBola44(mix4)
+        } else if (nivel === 'ME') {
+            let mix1 = []
+            for (let i = 0; i < 25; i++) {
+                mix1.push(bola25[i])
+            }
+            setBola11(mix1)
+            let mix2 = []
+            for (let j = 25; j < 50; j++) {
+                mix2.push(bola25[j])
+            }
+            setBola22(mix2)
+            let mix3 = []
+            for (let k = 50; k < 75; k++) {
+                mix3.push(bola25[k])
+            }
+            setBola33(mix3)
+            let mix4 = []
+            for (let l = 75; l < 100; l++) {
+                mix4.push(bola25[l])
+            }
+            setBola44(mix4)
+        } else if (nivel === 'DI') {
+            let mix1 = []
+            for (let i = 0; i < 49; i++) {
+                mix1.push(bola49[i])
+            }
+            setBola11(mix1)
+            let mix2 = []
+            for (let j = 49; j < 98; j++) {
+                mix2.push(bola49[j])
+            }
+            setBola22(mix2)
+            let mix3 = []
+            for (let k = 98; k < 147; k++) {
+                mix3.push(bola49[k])
+            }
+            setBola33(mix3)
+            let mix4 = []
+            for (let l = 147; l < 196; l++) {
+                mix4.push(bola49[l])
+            }
+            setBola44(mix4)
+        }
+    }, [nivel])
+
+    //variable para iniciar el juego
+    const [iniciar, setIniciar] = React.useState(false);
+
+    //contiene el valo de dirección de movimiento
+    const [direction, setDirection] = React.useState<Direction>();
 
     //guarda la velocidad
     const [velocity, setVelocity] = React.useState(0);
@@ -144,7 +152,8 @@ export default function Mix(): JSX.Element {
         //const bolaInicio = bola[0]
         //const bolaInicio = bola
         //let newBola = { ...bolaInicio }; //creando una copia de bolaInicio
-        let newBola = bola
+        //let newBola = bola
+        let newBola = bola11
         //este switch evalua el moviento en pantalla tactil 
         let primero = newBola[0]
         let ultimo = newBola[longitud - 1]
@@ -249,7 +258,7 @@ export default function Mix(): JSX.Element {
 
     //se activa la función de movimiento
     React.useEffect(() => {
-        mueveBola(bola.length);
+        mueveBola(bola11.length);
         //console.log('velocity', velocity)
     }, [velocity])
 
@@ -258,6 +267,110 @@ export default function Mix(): JSX.Element {
 
         <SafeAreaView style={styles.container}>
             <View style={styles.ViewContenedor}>
+
+                <Modal
+                    animationType='slide'
+                    //onDismiss={''}
+                    //onShow={''}
+                    visible={play == 2 && changeText.length != 7}
+                    transparent
+                >
+                    <View style={styles.modalFondo}>
+                        <View style={styles.modal}>
+
+                            {/* boton para compartir App */}
+                            {/* <TouchableOpacity style={{ alignSelf: 'center' }} onPress={() => onShare()}>
+                                <Text style={{ fontSize: 20, color: '#B233A8', fontWeight: '900', marginBottom: 2 }}>{i18n.t('invitacionapp1M')} ⇵</Text>
+                            </TouchableOpacity> */}
+
+                            {/* {item != 1 ? <Video
+                                style={styles.video}
+                                source={videoIntro}
+                                resizeMode='contain'
+                                shouldPlay={true}
+                                useNativeControls={false}
+                                isLooping={false}
+                            /> : ''} */}
+
+                            {/* boton para retroceder */}
+                            {/* {nivel != '' ? <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={() => reinicar()}>
+                                <Text style={{ fontSize: 25, marginLeft: 5, marginRight: 15, marginBottom: 2 }}>🔙</Text>
+                            </TouchableOpacity> : ""} */}
+
+
+                            {nivel == '' ? <Text style={styles.titulo}>{i18n.t('playM')}</Text> : ''}
+                            {nivel == '' ?
+                                <View style={styles.input}>
+                                    <TextInput
+                                        editable
+                                        cursorColor='#FFCE08'
+                                        placeholder={i18n.t('inputCodeM')}
+                                        maxLength={7}
+                                        onChangeText={text => setChangeText(text.toLowerCase())}
+                                    ></TextInput>
+                                </View> : ''}
+
+                            {nivel == '' ? <Text style={styles.titulo}>{i18n.t('oM')}</Text> : ''}
+                            {nivel == '' ? <SelectList
+                                boxStyles={{ backgroundColor: '#FFF1FE' }}
+                                dropdownStyles={{ backgroundColor: '#FFF1FE' }}
+                                setSelected={setNivel}
+                                data={niveles}
+                                placeholder={i18n.t('selectNivel1M')}
+                                search={false}
+                            /> : ''}
+
+                            {/* {nivel != '' && !iniciar && (item === 2 || item === 1) ? <View>
+                                <Text style={styles.titulo}>{i18n.t('play1M')}</Text>
+                                <View style={styles.radioBu}>
+                                    <RadioForm
+                                        radio_props={items}
+                                        initial={item}
+                                        onPress={(value) => {
+                                            setItem(value);
+                                        }}
+                                    />
+                                </View>
+
+                            </View> : ''} */}
+                            {/* 
+                            {item === 1 && !iniciar ? <SafeAreaView style={styles.safeArea}>
+                                <Text style={styles.titulo}>{nivel === 'FA' && item === 1 ? i18n.t('play121M') + ' ' + (15 - manualCards.length) : nivel === 'ME' && item === 1 ? i18n.t('play121M') + ' ' + (27 - manualCards.length) : nivel === 'DI' && item === 1 ? i18n.t('play121M') + ' ' + (42 - manualCards.length) : ''}</Text>
+                                <ScrollView style={styles.scrollView}>
+                                    <View style={styles.safeArea2}>
+                                        {emojis.map((value, index) => {
+                                            const isTurnOver = manualCards.includes(value)
+                                            return (
+                                                <Tarjeta1
+                                                    key={value}
+                                                    isSelected={isTurnOver}
+                                                    onPress={() => manualTapCard(value)}
+                                                >{value}</Tarjeta1>
+                                            );
+                                        })}
+                                    </View>
+                                </ScrollView>
+                            </SafeAreaView> : ''} */}
+
+
+                            {(nivel != '' && !iniciar) ? <View>
+                                <Text style={styles.titulo}>{i18n.t('play2M')}</Text>
+                                <View style={styles.radioBu}>
+                                    <RadioForm
+                                        radio_props={players}
+                                        initial={play}
+                                        onPress={(value: number) => {
+                                            setPlay(value);
+                                            setIniciar(true)
+                                        }}
+                                    />
+                                </View>
+                            </View> : ''}
+                        </View>
+                    </View>
+                </Modal>
+
+
                 <View style={styles.ViewContenedor1}>
                     <PanGestureHandler onGestureEvent={movimiento}>
                         <View style={styles.View1}
@@ -315,11 +428,51 @@ export default function Mix(): JSX.Element {
                             )
                         })}
                     </View>
-                    <View style={styles.View3}>
-                        {/* <Bola bola={bola}/> */}
+                    <View style={styles.View3}
+                        onLayout={event => {
+                            const layout = event.nativeEvent.layout;
+                            setAnchoView1(Math.floor(layout.width))
+                            setAltoView1(Math.floor(layout.height))
+                        }}
+                    >
+                        {bola33.map((value, index) => {
+                            //console.log('sdsdsd', altoView1)
+                            const long = bola22.length
+                            return (
+                                <Bola3
+                                    key={index}
+                                    valor={value}
+                                    long={long}
+                                    alto={altoView1}
+                                    ancho={anchoView1}
+                                    pos={index}
+                                    direccion={direction}
+                                />
+                            )
+                        })}
                     </View>
-                    <View style={styles.View4}>
-                        {/* <Bola bola={bola}/> */}
+                    <View style={styles.View4}
+                        onLayout={event => {
+                            const layout = event.nativeEvent.layout;
+                            setAnchoView1(Math.floor(layout.width))
+                            setAltoView1(Math.floor(layout.height))
+                        }}
+                    >
+                        {bola44.map((value, index) => {
+                            //console.log('sdsdsd', altoView1)
+                            const long = bola22.length
+                            return (
+                                <Bola4
+                                    key={index}
+                                    valor={value}
+                                    long={long}
+                                    alto={altoView1}
+                                    ancho={anchoView1}
+                                    pos={index}
+                                    direccion={direction}
+                                />
+                            )
+                        })}
                     </View>
                 </View>
             </View>
@@ -436,6 +589,9 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         borderWidth: 1,
         borderRadius: 10,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        position: 'relative',
     },
     View4: {
         margin: '2.5%',
@@ -444,8 +600,43 @@ const styles = StyleSheet.create({
         borderColor: 'yellow',
         borderWidth: 1,
         borderRadius: 10,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        position: 'relative',
     },
-
+    modalFondo: {
+        flex: 1,
+        backgroundColor: 'rgba(1,1,1,0.5)',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    modal: {
+        height: '95%',
+        width: '95%',
+        backgroundColor: '#FFF',
+        borderWidth: 5,
+        borderColor: '#334152',
+        borderRadius: 25,
+        alignItems: 'center'
+    },
+    titulo: {
+        fontSize: 20,
+        color: '#B233A8',
+        fontWeight: '900',
+        textAlign: 'center'
+    },
+    input: {
+        height: 40,
+        margin: 1,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 10,
+        backgroundColor: '#FFF1FE'
+    },
+    radioBu: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
 
 // función para mezclar las cartas
@@ -469,18 +660,7 @@ function revolver(bolas: number) {
         const ramdomIndex = Math.floor(Math.random() * (k + 1));
         [arrayBolas[k], arrayBolas[ramdomIndex]] = [arrayBolas[ramdomIndex], arrayBolas[k]];
     }
-    // let blue=0, white=0, red=0, yellow=0
-    // for (let kk = 0; kk < arrayBolas.length; kk++) {
-    //     if (arrayBolas[kk].color=='blue') {
-    //         blue=blue+1;
-    //     } else if (arrayBolas[kk].color=='white') {
-    //         white=white+1;
-    //     } else if (arrayBolas[kk].color=='red') {
-    //         red=red+1;
-    //     } else if (arrayBolas[kk].color=='yellow') {
-    //         yellow=yellow+1;
-    //     }
-    // }
+
     // console.log('Mix array bolas', blue, white, red, yellow)
     return arrayBolas;
 }
