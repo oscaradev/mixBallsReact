@@ -22,8 +22,6 @@ import RadioForm from 'react-native-simple-radio-button'
 // const pantalla = Dimensions.get("screen");
 
 // declaro constante para calcular la posición de arranque del primer array de bolas
-//const POS_ARRANQUE = [{ x: ventana.width * 0.04, y: ventana.height * 0.10 }]
-
 const POS_ARRANQUE9 = revolver(9)
 const POS_ARRANQUE25 = revolver(25)
 const POS_ARRANQUE49 = revolver(49)
@@ -55,9 +53,6 @@ export default function Mix(): JSX.Element {
         { key: 'DI', value: i18n.t('selectNivel4M') },
     ]
 
-    //Se inicializa el array de arranque de juego
-    //const [posStart, setPosStart] = React.useState<Coordenada[]>(revolver(9));
-
     //pinta la bola en una posicion de la pantalla
     //const [bola, setBola] = React.useState<Coordenada[]>(POS_ARRANQUE);
     const [bola9, setBola9] = React.useState<Coordenada[]>(POS_ARRANQUE9);
@@ -70,69 +65,58 @@ export default function Mix(): JSX.Element {
 
     //se carga la difcultad del juego
     React.useEffect(() => {
-        console.log('niveeel', nivel)
+        let mix1: Coordenada[] = []
+        let mix2: Coordenada[] = []
+        let mix3: Coordenada[] = []
+        let mix4: Coordenada[] = []
         if (nivel === 'FA') {
-            let mix1 = []
-            for (let i = 0; i < 9; i++) {
-                mix1.push(bola9[i])
+            for (let i = 0; i < 36; i++) {
+                if (i >= 0 && i < 9) {
+                    mix1.push(bola9[i])
+                } else if (i >= 9 && i < 18) {
+                    mix2.push(bola9[i])
+                } else if (i >= 18 && i < 27) {
+                    mix3.push(bola9[i])
+                } else if (i >= 27 && i < 36) {
+                    mix4.push(bola9[i])
+                }
             }
             setBola11(mix1)
-            let mix2 = []
-            for (let j = 9; j < 18; j++) {
-                mix2.push(bola9[j])
-            }
             setBola22(mix2)
-            let mix3 = []
-            for (let k = 18; k < 27; k++) {
-                mix3.push(bola9[k])
-            }
             setBola33(mix3)
-            let mix4 = []
-            for (let l = 27; l < 36; l++) {
-                mix4.push(bola9[l])
-            }
             setBola44(mix4)
+
         } else if (nivel === 'ME') {
-            let mix1 = []
-            for (let i = 0; i < 25; i++) {
-                mix1.push(bola25[i])
+            for (let i = 0; i < 100; i++) {
+                if (i >= 0 && i < 25) {
+                    mix1.push(bola25[i])
+                } else if (i >= 25 && i < 50) {
+                    mix2.push(bola25[i])
+                } else if (i >= 50 && i < 75) {
+                    mix3.push(bola25[i])
+                } else if (i >= 75 && i < 100) {
+                    mix4.push(bola25[i])
+                }
             }
             setBola11(mix1)
-            let mix2 = []
-            for (let j = 25; j < 50; j++) {
-                mix2.push(bola25[j])
-            }
             setBola22(mix2)
-            let mix3 = []
-            for (let k = 50; k < 75; k++) {
-                mix3.push(bola25[k])
-            }
             setBola33(mix3)
-            let mix4 = []
-            for (let l = 75; l < 100; l++) {
-                mix4.push(bola25[l])
-            }
             setBola44(mix4)
         } else if (nivel === 'DI') {
-            let mix1 = []
-            for (let i = 0; i < 49; i++) {
-                mix1.push(bola49[i])
+            for (let i = 0; i < 196; i++) {
+                if (i >= 0 && i < 49) {
+                    mix1.push(bola49[i])
+                } else if (i >= 49 && i < 98) {
+                    mix2.push(bola49[i])
+                } else if (i >= 98 && i < 147) {
+                    mix3.push(bola49[i])
+                } else if (i >= 147 && i < 196) {
+                    mix4.push(bola49[i])
+                }
             }
             setBola11(mix1)
-            let mix2 = []
-            for (let j = 49; j < 98; j++) {
-                mix2.push(bola49[j])
-            }
             setBola22(mix2)
-            let mix3 = []
-            for (let k = 98; k < 147; k++) {
-                mix3.push(bola49[k])
-            }
             setBola33(mix3)
-            let mix4 = []
-            for (let l = 147; l < 196; l++) {
-                mix4.push(bola49[l])
-            }
             setBola44(mix4)
         }
     }, [nivel])
@@ -388,7 +372,6 @@ export default function Mix(): JSX.Element {
                             }}
                         >
                             {bola11.map((value, index) => {
-                                //console.log('sdsdsd', altoView1)
                                 const long = bola11.length
                                 return (
                                     <Bola
@@ -436,8 +419,7 @@ export default function Mix(): JSX.Element {
                         }}
                     >
                         {bola33.map((value, index) => {
-                            //console.log('sdsdsd', altoView1)
-                            const long = bola22.length
+                            const long = bola33.length
                             return (
                                 <Bola3
                                     key={index}
@@ -459,8 +441,7 @@ export default function Mix(): JSX.Element {
                         }}
                     >
                         {bola44.map((value, index) => {
-                            //console.log('sdsdsd', altoView1)
-                            const long = bola22.length
+                            const long = bola44.length
                             return (
                                 <Bola4
                                     key={index}
