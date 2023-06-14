@@ -198,24 +198,30 @@ export default function Mix(): JSX.Element {
     const movimiento = (event: any) => {
         // setDirection(undefined) 
         const { translationX, translationY, x, y, velocityX, velocityY } = event.nativeEvent
-        // console.log("x: "+translationX, "y: "+translationY)
+        //console.log("translationX: " + translationX, "translationY: " + translationY)
+        //console.log("x: " + x, "y: " + y)
+        //console.log("velocityX: " + velocityX, "velocityY: " + velocityY)
         //console.log("window", event.nativeEvent)
-        //console.log("anchoView1", anchoView1)
+        //console.log("anchoView1", altoView1)
         //console.log("screen",Math.floor(translationX/3) % 2)
 
-        if (translationY > 0 && (x > 0 && x < (anchoView1 / 3))) {
-            /// setDirection(Direction.CuIzquierdoAbajo) 
+        if (Math.abs(velocityY) > 60 && translationY > 0 && x < (anchoView1 / 3) && y > (altoView1 / 3)) {
+            setDirection(Direction.CuIzquierdoAbajo)
             // console.log("cuadrante izquierdo - direccion abajo")
-        } else if (translationY < 0 && (x > 0 && x < (anchoView1 / 3))) {
-            /// setDirection(Direction.CuIzquierdoArriba)
+            setVelocity(Math.abs(velocityY));
+        } else if (Math.abs(velocityY) > 60 && translationY < 0 && x < (anchoView1 / 3) && y > (altoView1 / 3)) {
+            setDirection(Direction.CuIzquierdoArriba)
             //console.log("cuadrante izquierdo - direccion arriba")
-        } else if (translationX > 0 && (y > 0 && y < (altoView1 / 3))) {
+            setVelocity(Math.abs(velocityY));
+        } else if (Math.abs(velocityX) > 60 && translationX > 0 && y < (altoView1 / 3)) {
             setDirection(Direction.CuSuperiorDerecha)
             // console.log("cuadrante superior - direccion derecha")
-        } else if (translationX < 0 && (y > 0 && y < (altoView1 / 3))) {
+            //guarda la velocidad 
+            setVelocity(Math.abs(velocityX));
+        } else if (Math.abs(velocityX) > 60 && translationX < 0 && y < (altoView1 / 3)) {
             setDirection(Direction.CuSuperiorIzquierda);
-            //revolver(9)
             // console.log("cuadrante superior - direccion izquierda")
+            setVelocity(Math.abs(velocityX));
         } else if (translationY > 0 && (x > (anchoView1 * 0.75) && x <= (anchoView1 + 10))) {
             /// setDirection(Direction.CuDerechoAbajo)
             // console.log("cuadrante derecho - direccion abajo")
@@ -223,20 +229,14 @@ export default function Mix(): JSX.Element {
             ///setDirection(Direction.CuDerechoArriba)
             // console.log("cuadrante derecho - direccion arriba")
         } else if (translationX > 0 && (y >= (altoView1 * 0.75))) {
-            setDirection(Direction.CuInferiorDerecha)
+            /// setDirection(Direction.CuInferiorDerecha)
             //revolver(25)
             // console.log("cuadrante inferior - direccion derecha")
         } else if (translationX < 0 && (y >= (altoView1 * 0.75))) {
-            setDirection(Direction.CuInferiorIzquierda)
+            /// setDirection(Direction.CuInferiorIzquierda)
             // console.log("cuadrante inferior - direccion izquierda")
         }
 
-        //guarda la velocidad (en pruebas)
-        if (Math.abs(velocityX) > 60) {
-            setVelocity(Math.abs(velocityX));
-        } else if (Math.abs(velocityY) > 60) {
-            setVelocity(Math.abs(velocityX));
-        }
 
     }
 
