@@ -65,6 +65,12 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
 
 
     // constuyendo el tamaño de las bolas segun el tamaño del view
+    const StyleBola9Text = {
+        fontSize: Math.floor(ancho / 3) - 6,
+        //fontWeight: '900',
+        bottom: 5,
+        left: 5
+    };
     const StyleBola9 = {
         width: Math.floor(ancho / 3) - 5,
         height: Math.floor(alto / 3) - 5,
@@ -76,7 +82,10 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
         position: 'absolute',
         left: ((Math.floor(ancho / 5) - 5) / 3),
         backgroundColor: valor.color,
-        top: -1
+        top: -1,
+        borderRadius: 25,
+        borderWidth: 2,
+        margin: 2,
     };
     const StyleBola9B = {
         width: Math.floor(ancho / 2.8) - 5,
@@ -84,7 +93,10 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
         position: 'absolute',
         top: ((Math.floor(alto / 5) - 5) / 3),
         backgroundColor: valor.color,
-        left: -4
+        left: -4,
+        borderRadius: 25,
+        borderWidth: 2,
+        margin: 2,
     };
     //declaración de bola transparente
     const StyleBola9Trans = {
@@ -93,6 +105,12 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
         backgroundColor: 'transparent',
     };
 
+    const StyleBola25Text = {
+        fontSize: Math.floor(ancho / 5) - 6,
+        //fontWeight: '900',
+        bottom: 3,
+        left: 3
+    };
     const StyleBola25 = {
         width: Math.floor(ancho / 5) - 5,
         height: Math.floor(alto / 5) - 5,
@@ -104,7 +122,10 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
         position: 'absolute',
         left: ((Math.floor(ancho / 5) - 5) / 3) - 2,
         backgroundColor: valor.color,
-        top: -3
+        top: -3,
+        borderRadius: 18,
+        borderWidth: 2,
+        margin: 2,
     };
     const StyleBola25B = {
         width: Math.floor(ancho / 4) - 5,
@@ -112,7 +133,10 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
         position: 'absolute',
         top: ((Math.floor(alto / 5) - 5) / 3) - 2,
         backgroundColor: valor.color,
-        left: -3
+        left: -3,
+        borderRadius: 18,
+        borderWidth: 2,
+        margin: 2,
     };
     //declaración de bola transparente
     const StyleBola25Trans = {
@@ -127,7 +151,6 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
         //fontWeight: '900',
         bottom: 2,
         left: 1
-
     };
     const StyleBola49 = {
         width: Math.floor(ancho / 7) - 5,
@@ -184,13 +207,13 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
         <View>
             <View style={long === 9 && pos != 5 && pos != 7 ? [styles.bola9, StyleBola9] : long === 9 ? StyleBola9Trans
                 : long === 25 && pos != 14 && pos != 22 ? [styles.bola25, StyleBola25] : long === 25 ? StyleBola25Trans
-                    : pos === 27 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]} >{dir1 ? <Text style={StyleBola49Text}>{dir}</Text> : ''}</View>
+                    : pos === 27 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]} >{dir1 ? <Text style={long === 9 ? StyleBola9Text : long === 25 ? StyleBola25Text : long === 49 ? StyleBola49Text : ''}>{dir}</Text> : ''}</View>
 
 
-            {pos === 5 && long === 9 ? <Animated.View style={[StyleBola9R, styles.bola9]} /> : ""}
-            {pos === 7 && long === 9 ? <Animated.View style={[StyleBola9B, styles.bola9]} /> : ""}
-            {pos === 14 && long === 25 ? <Animated.View style={[StyleBola25R, styles.bola9]} /> : ""}
-            {pos === 22 && long === 25 ? <Animated.View style={[StyleBola25B, styles.bola9]} /> : ""}
+            {pos === 5 && long === 9 ? <Animated.View style={StyleBola9R} /> : ""}
+            {pos === 7 && long === 9 ? <Animated.View style={StyleBola9B} /> : ""}
+            {pos === 14 && long === 25 ? <Animated.View style={StyleBola25R} /> : ""}
+            {pos === 22 && long === 25 ? <Animated.View style={StyleBola25B} /> : ""}
             {pos === 45 && long === 49 ? <Animated.View style={StyleBola49B} /> : ""}
             {pos === 27 && long === 49 ? <Animated.View style={StyleBola49R} /> : ""}
         </View>
@@ -200,28 +223,18 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
 
 const styles = StyleSheet.create({
     bola9: {
-        // width: '30.5%',
-        // height: '30.5%',
         borderRadius: 25,
-        //backgroundColor: Colors.tertiary,
         borderWidth: 2,
         margin: 2,
     },
     bola25: {
-        // width: '17%',
-        // height: '17%',
         borderRadius: 13,
-        //backgroundColor: Colors.tertiary,
         borderWidth: 2,
         margin: 2,
 
     },
     bola49: {
-        // width: '11.5%',
-        // height: '11.5%',
         borderRadius: 13,
-        //backgroundColor: Colors.tertiary,
-        //borderWidth: 1,
         margin: 2,
     },
 
