@@ -373,6 +373,12 @@ export default function Mix(): JSX.Element {
                         >
                             {bola11.map((value, index) => {
                                 const long = bola11.length
+                                let dir = ''
+                                if (direction === 0 || direction === 3) {
+                                    dir = '←';
+                                } else if (direction === 1 || direction === 2) {
+                                    dir = '→';
+                                }
                                 return (
                                     <Bola
                                         key={index}
@@ -382,6 +388,7 @@ export default function Mix(): JSX.Element {
                                         ancho={anchoView1}
                                         pos={index}
                                         direccion={direction}
+                                        dir={dir}
                                     />
                                 )
                             })}

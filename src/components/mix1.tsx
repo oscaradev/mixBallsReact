@@ -1,5 +1,6 @@
 //import { Fragment } from "react";
-import { StyleSheet, View } from "react-native";
+import React from 'react';
+import { StyleSheet, View, Text } from "react-native";
 import { Coordenada } from "../types/types";
 import Animated, { Keyframe } from 'react-native-reanimated';
 
@@ -10,12 +11,11 @@ interface BolaProps {
     ancho: number;
     pos: number;
     direccion: any;
+    dir: string
 }
 
 
-
-
-export default function Bola({ valor, long, alto, ancho, pos, direccion }: BolaProps): JSX.Element {
+export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: BolaProps): JSX.Element {
 
 
     const keyframeIn = new Keyframe({
@@ -74,7 +74,7 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion }: BolaP
         width: Math.floor(ancho / 2.8) - 5,
         height: Math.floor(alto / 2.8) - 5,
         position: 'absolute',
-        left: ((Math.floor(ancho / 5) - 5) / 3) ,
+        left: ((Math.floor(ancho / 5) - 5) / 3),
         backgroundColor: valor.color,
         top: -1
     };
@@ -82,7 +82,7 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion }: BolaP
         width: Math.floor(ancho / 2.8) - 5,
         height: Math.floor(alto / 2.8) - 5,
         position: 'absolute',
-        top: ((Math.floor(alto / 5) - 5) / 3) ,
+        top: ((Math.floor(alto / 5) - 5) / 3),
         backgroundColor: valor.color,
         left: -4
     };
@@ -102,7 +102,7 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion }: BolaP
         width: Math.floor(ancho / 4) - 5,
         height: Math.floor(alto / 4) - 5,
         position: 'absolute',
-        left: ((Math.floor(ancho / 5) - 5) / 3)-2,
+        left: ((Math.floor(ancho / 5) - 5) / 3) - 2,
         backgroundColor: valor.color,
         top: -3
     };
@@ -110,7 +110,7 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion }: BolaP
         width: Math.floor(ancho / 4) - 5,
         height: Math.floor(alto / 4) - 5,
         position: 'absolute',
-        top: ((Math.floor(alto / 5) - 5) / 3)-2 ,
+        top: ((Math.floor(alto / 5) - 5) / 3) - 2,
         backgroundColor: valor.color,
         left: -3
     };
@@ -122,6 +122,13 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion }: BolaP
         margin: 2,
     };
 
+    const StyleBola49Text = {
+        fontSize: Math.floor(ancho / 7) - 6,
+        //fontWeight: '900',
+        bottom: 2,
+        left: 1
+
+    };
     const StyleBola49 = {
         width: Math.floor(ancho / 7) - 5,
         height: Math.floor(alto / 7) - 5,
@@ -157,13 +164,27 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion }: BolaP
         left: -2
 
     };
-    //console.log('mix1', direccion)
+
+    //esta variable activa hace visible el sentido del movimiento
+    const [dir1, setDir1] = React.useState(true);
+
+    // este useEffect muestra el movimiento segun la direccion de movimiento
+    let timer: NodeJS.Timeout
+    React.useEffect(() => {
+        setDir1(true)
+        timer = setTimeout(() => {
+            setDir1(false)
+        }, 2000);
+        return () => clearTimeout(timer)
+    }, [valor])
+
+
 
     return (
         <View>
             <View style={long === 9 && pos != 5 && pos != 7 ? [styles.bola9, StyleBola9] : long === 9 ? StyleBola9Trans
                 : long === 25 && pos != 14 && pos != 22 ? [styles.bola25, StyleBola25] : long === 25 ? StyleBola25Trans
-                    : pos === 27 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]} />
+                    : pos === 27 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]} >{dir1 ? <Text style={StyleBola49Text}>{dir}</Text> : ''}</View>
 
 
             {pos === 5 && long === 9 ? <Animated.View style={[StyleBola9R, styles.bola9]} /> : ""}
@@ -193,6 +214,7 @@ const styles = StyleSheet.create({
         //backgroundColor: Colors.tertiary,
         borderWidth: 2,
         margin: 2,
+
     },
     bola49: {
         // width: '11.5%',
