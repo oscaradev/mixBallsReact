@@ -68,8 +68,8 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
     const StyleBola9Text = {
         fontSize: Math.floor(ancho / 3) - 6,
         //fontWeight: '900',
-        bottom: 5,
-        left: 5
+        bottom: '20%',
+        left: '20%'
     };
     const StyleBola9 = {
         width: Math.floor(ancho / 3) - 5,
@@ -108,8 +108,8 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
     const StyleBola25Text = {
         fontSize: Math.floor(ancho / 5) - 6,
         //fontWeight: '900',
-        bottom: 3,
-        left: 3
+        bottom: '20%',
+        left: '20%'
     };
     const StyleBola25 = {
         width: Math.floor(ancho / 5) - 5,
@@ -149,8 +149,8 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: 
     const StyleBola49Text = {
         fontSize: Math.floor(ancho / 7) - 6,
         //fontWeight: '900',
-        bottom: 2,
-        left: 1
+        bottom: '15%',
+        left: '20%'
     };
     const StyleBola49 = {
         width: Math.floor(ancho / 7) - 5,

@@ -125,13 +125,15 @@ export default function Mix(): JSX.Element {
     const [iniciar, setIniciar] = React.useState(false);
 
     //contiene el valo de dirección de movimiento
-    const [direction, setDirection] = React.useState<Direction>();
+    const [direction1, setDirection1] = React.useState<Direction>();
+    const [direction2, setDirection2] = React.useState<Direction>();
 
     //guarda la velocidad
-    const [velocity, setVelocity] = React.useState(0);
+    const [velocity1, setVelocity1] = React.useState(0);
+    const [velocity2, setVelocity2] = React.useState(0);
 
     //función que mueve las canicas
-    const mueveBola = (longitud: number) => {
+    const mueveBola1 = (longitud: number) => {
         //console.log('valor de bola', bola)
         //const bolaInicio = bola[0]
         //const bolaInicio = bola
@@ -141,11 +143,12 @@ export default function Mix(): JSX.Element {
         //este switch evalua el moviento en pantalla tactil 
         let primero = newBola[0]
         let ultimo = newBola[longitud - 1]
-        switch (direction) {
+        switch (direction1) {
             case Direction.CuIzquierdoArriba:
                 newBola.shift()
                 newBola.push(primero)
                 setBola11(newBola)
+                //setVelocity2(0)
                 break;
             case Direction.CuIzquierdoAbajo:
                 newBola.pop()
@@ -191,11 +194,71 @@ export default function Mix(): JSX.Element {
         //setBola2(newBola)
     }
 
+    const mueveBola2 = (longitud: number) => {
+        //console.log('valor de bola', bola)
+        //const bolaInicio = bola[0]
+        //const bolaInicio = bola
+        //let newBola = { ...bolaInicio }; //creando una copia de bolaInicio
+        //let newBola = bola
+        let newBola2 = bola22
+        //este switch evalua el moviento en pantalla tactil 
+        let primero2 = newBola2[0]
+        let ultimo2 = newBola2[longitud - 1]
+        switch (direction2) {
+            case Direction.CuIzquierdoArriba:
+                newBola2.shift()
+                newBola2.push(primero2)
+                setBola22(newBola2)
+                break;
+            case Direction.CuIzquierdoAbajo:
+                newBola2.pop()
+                newBola2.unshift(ultimo2)
+                setBola22(newBola2)
+                break;
+            case Direction.CuSuperiorDerecha:
+                newBola2.pop()
+                newBola2.unshift(ultimo2)
+                setBola22(newBola2)
+                break;
+            case Direction.CuSuperiorIzquierda:
+                newBola2.shift()
+                newBola2.push(primero2)
+                setBola22(newBola2)
+                break;
+            case Direction.CuDerechoAbajo:
+                newBola2.pop()
+                newBola2.unshift(ultimo2)
+                setBola22(newBola2)
+                break;
+            case Direction.CuDerechoArriba:
+                newBola2.shift()
+                newBola2.push(primero2)
+                setBola22(newBola2)
+                break;
+            case Direction.CuInferiorDerecha:
+                newBola2.pop()
+                newBola2.unshift(ultimo2)
+                setBola22(newBola2)
+                break;
+            case Direction.CuInferiorIzquierda:
+                newBola2.shift()
+                newBola2.push(primero2)
+                setBola22(newBola2)
+                break;
+            default:
+                break;
+        }
+
+    }
+
+
     //Función asociada a calcular la dirección del movimiento según el toque de pantalla
     const [altoView1, setAltoView1] = React.useState(0);
     const [anchoView1, setAnchoView1] = React.useState(0);
+    const [altoView2, setAltoView2] = React.useState(0);
+    const [anchoView2, setAnchoView2] = React.useState(0);
     //let timer: any
-    const movimiento = (event: any) => {
+    const movimiento1 = (event: any) => {
         // setDirection(undefined) 
         const { translationX, translationY, x, y, velocityX, velocityY } = event.nativeEvent
         //console.log("translationX: " + translationX, "translationY: " + translationY)
@@ -206,45 +269,96 @@ export default function Mix(): JSX.Element {
         //console.log("screen",Math.floor(translationX/3) % 2)
 
         if (Math.abs(velocityY) > 60 && translationY > 0 && x < (anchoView1 / 3) && y > (altoView1 / 3)) {
-            setDirection(Direction.CuIzquierdoAbajo)
+            setDirection1(Direction.CuIzquierdoAbajo)
             // console.log("cuadrante izquierdo - direccion abajo")
-            setVelocity(Math.abs(velocityY));
+            setVelocity1(Math.abs(velocityY));
         } else if (Math.abs(velocityY) > 60 && translationY < 0 && x < (anchoView1 / 3) && y > (altoView1 / 3)) {
-            setDirection(Direction.CuIzquierdoArriba)
+            setDirection1(Direction.CuIzquierdoArriba)
             //console.log("cuadrante izquierdo - direccion arriba")
-            setVelocity(Math.abs(velocityY));
+            setVelocity1(Math.abs(velocityY));
         } else if (Math.abs(velocityX) > 60 && translationX > 0 && y < (altoView1 / 3)) {
-            setDirection(Direction.CuSuperiorDerecha)
+            setDirection1(Direction.CuSuperiorDerecha)
             // console.log("cuadrante superior - direccion derecha")
-            //guarda la velocidad 
-            setVelocity(Math.abs(velocityX));
+            setVelocity1(Math.abs(velocityX));
         } else if (Math.abs(velocityX) > 60 && translationX < 0 && y < (altoView1 / 3)) {
-            setDirection(Direction.CuSuperiorIzquierda);
+            setDirection1(Direction.CuSuperiorIzquierda);
             // console.log("cuadrante superior - direccion izquierda")
-            setVelocity(Math.abs(velocityX));
+            setVelocity1(Math.abs(velocityX));
         } else if (translationY > 0 && (x > (anchoView1 * 0.75) && x <= (anchoView1 + 10))) {
-            /// setDirection(Direction.CuDerechoAbajo)
+            /// setDirection1(Direction.CuDerechoAbajo)
             // console.log("cuadrante derecho - direccion abajo")
         } else if (translationY < 0 && (x > (anchoView1 * 0.75) && x <= (anchoView1 + 10))) {
-            ///setDirection(Direction.CuDerechoArriba)
+            ///setDirection1(Direction.CuDerechoArriba)
             // console.log("cuadrante derecho - direccion arriba")
         } else if (translationX > 0 && (y >= (altoView1 * 0.75))) {
-            /// setDirection(Direction.CuInferiorDerecha)
+            /// setDirection1(Direction.CuInferiorDerecha)
             //revolver(25)
             // console.log("cuadrante inferior - direccion derecha")
         } else if (translationX < 0 && (y >= (altoView1 * 0.75))) {
-            /// setDirection(Direction.CuInferiorIzquierda)
+            /// setDirection1(Direction.CuInferiorIzquierda)
             // console.log("cuadrante inferior - direccion izquierda")
         }
-
-
     }
 
-    //se activa la función de movimiento
+    const movimiento2 = (event: any) => {
+        // setDirection(undefined) 
+        const { translationX, translationY, x, y, velocityX, velocityY } = event.nativeEvent
+        //console.log("translationX: " + translationX, "translationY: " + translationY)
+        //console.log("x: " + x, "y: " + y)
+        //console.log("velocityX: " + velocityX, "velocityY: " + velocityY)
+        //console.log("window", event.nativeEvent)
+        //console.log("anchoView1", altoView1)
+        //console.log("screen",Math.floor(translationX/3) % 2)
+
+        if (Math.abs(velocityY) > 60 && translationY > 0 && x < (anchoView2 / 3) && y > (altoView2 / 3)) {
+            setDirection2(Direction.CuIzquierdoAbajo)
+            // console.log("cuadrante izquierdo - direccion abajo")
+            setVelocity2(Math.abs(velocityY));
+        } else if (Math.abs(velocityY) > 60 && translationY < 0 && x < (anchoView2 / 3) && y > (altoView2 / 3)) {
+            setDirection2(Direction.CuIzquierdoArriba)
+            //console.log("cuadrante izquierdo - direccion arriba")
+            setVelocity2(Math.abs(velocityY));
+        } else if (Math.abs(velocityX) > 60 && translationX > 0 && y < (altoView2 / 3)) {
+            setDirection2(Direction.CuSuperiorDerecha)
+            // console.log("cuadrante superior - direccion derecha")
+            setVelocity2(Math.abs(velocityX));
+        } else if (Math.abs(velocityX) > 60 && translationX < 0 && y < (altoView2 / 3)) {
+            setDirection2(Direction.CuSuperiorIzquierda);
+            // console.log("cuadrante superior - direccion izquierda")
+            setVelocity2(Math.abs(velocityX));
+        } else if (translationY > 0 && (x > (anchoView2 * 0.75) && x <= (anchoView2 + 10))) {
+            /// setDirection2(Direction.CuDerechoAbajo)
+            // console.log("cuadrante derecho - direccion abajo")
+        } else if (translationY < 0 && (x > (anchoView2 * 0.75) && x <= (anchoView2 + 10))) {
+            ///setDirection2(Direction.CuDerechoArriba)
+            // console.log("cuadrante derecho - direccion arriba")
+        } else if (translationX > 0 && (y >= (altoView2 * 0.75))) {
+            /// setDirection2(Direction.CuInferiorDerecha)
+            //revolver(25)
+            // console.log("cuadrante inferior - direccion derecha")
+        } else if (translationX < 0 && (y >= (altoView2 * 0.75))) {
+            /// setDirection2(Direction.CuInferiorIzquierda)
+            // console.log("cuadrante inferior - direccion izquierda")
+        }
+    }
+
+    //se activa la función de movimiento 1
     React.useEffect(() => {
-        mueveBola(bola11.length);
-        //console.log('velocity', velocity)
-    }, [velocity])
+        if (velocity1 > 0) {
+            //console.log('entro a velocity1')
+            setVelocity2(0)
+            mueveBola1(bola11.length);
+        }
+    }, [velocity1])
+
+    //se activa la función de movimiento 2
+    React.useEffect(() => {
+        if (velocity2 > 0) {
+            //console.log('entro a velocity2')
+            setVelocity1(0)
+            mueveBola2(bola22.length);
+        }
+    }, [velocity2])
 
 
     return (
@@ -356,7 +470,7 @@ export default function Mix(): JSX.Element {
 
 
                 <View style={styles.ViewContenedor1}>
-                    <PanGestureHandler onGestureEvent={movimiento}>
+                    <PanGestureHandler onGestureEvent={movimiento1}>
                         <View style={styles.View1}
                             onLayout={event => {
                                 const layout = event.nativeEvent.layout;
@@ -374,9 +488,9 @@ export default function Mix(): JSX.Element {
                             {bola11.map((value, index) => {
                                 const long = bola11.length
                                 let dir = ''
-                                if (direction === 0 || direction === 3) {
+                                if (direction1 === 0 || direction1 === 3) {
                                     dir = '←';
-                                } else if (direction === 1 || direction === 2) {
+                                } else if (direction1 === 1 || direction1 === 2) {
                                     dir = '→';
                                 }
                                 return (
@@ -387,7 +501,7 @@ export default function Mix(): JSX.Element {
                                         alto={altoView1}
                                         ancho={anchoView1}
                                         pos={index}
-                                        direccion={direction}
+                                        direccion={direction1}
                                         dir={dir}
                                     />
                                 )
@@ -395,29 +509,38 @@ export default function Mix(): JSX.Element {
                         </View>
                     </PanGestureHandler>
 
-                    <View style={styles.View2}
-                        onLayout={event => {
-                            const layout = event.nativeEvent.layout;
-                            setAnchoView1(Math.floor(layout.width))
-                            setAltoView1(Math.floor(layout.height))
-                        }}
-                    >
-                        {bola22.map((value, index) => {
-                            //console.log('sdsdsd', altoView1)
-                            const long = bola22.length
-                            return (
-                                <Bola2
-                                    key={index}
-                                    valor={value}
-                                    long={long}
-                                    alto={altoView1}
-                                    ancho={anchoView1}
-                                    pos={index}
-                                    direccion={direction}
-                                />
-                            )
-                        })}
-                    </View>
+                    <PanGestureHandler onGestureEvent={movimiento2}>
+                        <View style={styles.View2}
+                            onLayout={event => {
+                                const layout2 = event.nativeEvent.layout;
+                                setAnchoView2(Math.floor(layout2.width))
+                                setAltoView2(Math.floor(layout2.height))
+                            }}
+                        >
+                           {bola22.map((value, index) => {
+                                const long2 = bola22.length
+                                let dir2 = ''
+                                if (direction2 === 0 || direction2 === 3) {
+                                    dir2 = '←';
+                                } else if (direction2 === 1 || direction2 === 2) {
+                                    dir2 = '→';
+                                }
+                                return (
+                                    <Bola2
+                                        key={index}
+                                        valor={value}
+                                        long={long2}
+                                        alto={altoView2}
+                                        ancho={anchoView2}
+                                        pos={index}
+                                        direccion={direction2}
+                                        dir={dir2}
+                                    />
+                                )
+                            })}
+                        </View>
+                    </PanGestureHandler>
+
                     <View style={styles.View3}
                         onLayout={event => {
                             const layout = event.nativeEvent.layout;
@@ -435,7 +558,7 @@ export default function Mix(): JSX.Element {
                                     alto={altoView1}
                                     ancho={anchoView1}
                                     pos={index}
-                                    direccion={direction}
+                                    direccion={direction2}
                                 />
                             )
                         })}
@@ -457,7 +580,7 @@ export default function Mix(): JSX.Element {
                                     alto={altoView1}
                                     ancho={anchoView1}
                                     pos={index}
-                                    direccion={direction}
+                                    direccion={direction2}
                                 />
                             )
                         })}

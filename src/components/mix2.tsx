@@ -1,5 +1,6 @@
 //import { Fragment } from "react";
-import { StyleSheet, View } from "react-native";
+import React from 'react';
+import { StyleSheet, View, Text } from "react-native";
 import { Coordenada } from "../types/types";
 import Animated, { Keyframe } from 'react-native-reanimated';
 
@@ -10,10 +11,11 @@ interface BolaProps {
     ancho: number;
     pos: number;
     direccion: any;
+    dir: string
 }
 
 
-export default function Bola2({ valor, long, alto, ancho, pos, direccion }: BolaProps): JSX.Element {
+export default function Bola2({ valor, long, alto, ancho, pos, direccion, dir }: BolaProps): JSX.Element {
 
 
     const keyframeIn = new Keyframe({
@@ -63,6 +65,12 @@ export default function Bola2({ valor, long, alto, ancho, pos, direccion }: Bola
 
 
     // constuyendo el tamaño de las bolas segun el tamaño del view
+    const StyleBola9Text = {
+        fontSize: Math.floor(ancho / 3) - 6,
+        //fontWeight: '900',
+        bottom: '20%',
+        left: '20%'
+    };
     const StyleBola9 = {
         width: Math.floor(ancho / 3) - 5,
         height: Math.floor(alto / 3) - 5,
@@ -97,6 +105,12 @@ export default function Bola2({ valor, long, alto, ancho, pos, direccion }: Bola
         backgroundColor: 'transparent',
     };
 
+    const StyleBola25Text = {
+        fontSize: Math.floor(ancho / 5) - 6,
+        //fontWeight: '900',
+        bottom: '20%',
+        left: '20%'
+    };
     const StyleBola25 = {
         width: Math.floor(ancho / 5) - 5,
         height: Math.floor(alto / 5) - 5,
@@ -132,6 +146,12 @@ export default function Bola2({ valor, long, alto, ancho, pos, direccion }: Bola
         margin: 2,
     };
 
+    const StyleBola49Text = {
+        fontSize: Math.floor(ancho / 7) - 6,
+        //fontWeight: '900',
+        bottom: '15%',
+        left: '20%'
+    };
     const StyleBola49 = {
         width: Math.floor(ancho / 7) - 5,
         height: Math.floor(alto / 7) - 5,
@@ -167,14 +187,26 @@ export default function Bola2({ valor, long, alto, ancho, pos, direccion }: Bola
         left: -2
 
     };
-    //console.log('mix1', direccion)
+
+    //esta variable activa hace visible el sentido del movimiento
+    const [dir2, setDir2] = React.useState(true);
+
+    // este useEffect muestra el movimiento segun la direccion de movimiento
+    let timer2: NodeJS.Timeout
+    React.useEffect(() => {
+        setDir2(true)
+        timer2 = setTimeout(() => {
+            setDir2(false)
+        }, 2000);
+        return () => clearTimeout(timer2)
+    }, [valor])
 
     return (
         <View>
 
             <View style={long === 9 && pos != 3 && pos != 7 ? [styles.bola9, StyleBola9] : long === 9 ? StyleBola9Trans
                 : long === 25 && pos != 10 && pos != 22 ? [styles.bola25, StyleBola25] : long === 25 ? StyleBola25Trans
-                    : pos === 21 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]} />
+                    : pos === 21 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]}>{dir2 ? <Text style={long === 9 ? StyleBola9Text : long === 25 ? StyleBola25Text : long === 49 ? StyleBola49Text : ''}>{dir}</Text> : ''}</View>
 
 
             {pos === 3 && long === 9 ? <Animated.View style={StyleBola9L} /> : ""}
