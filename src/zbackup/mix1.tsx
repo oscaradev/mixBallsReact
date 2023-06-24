@@ -1,6 +1,6 @@
 //import { Fragment } from "react";
 import React from 'react';
-import { StyleSheet, View, Text, Pressable, NativeSyntheticEvent } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { Coordenada } from "../types/types";
 import Animated, { Keyframe } from 'react-native-reanimated';
 
@@ -11,16 +11,11 @@ interface BolaProps {
     ancho: number;
     pos: number;
     direccion: any;
-    dir: string;
-    onLongPress: any;
-    onPressOut: any;
-    bolaSelect: number;
-    movX: number;
-    movY: number;
+    dir: string
 }
 
 
-export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, onLongPress, onPressOut, bolaSelect, movX, movY }: BolaProps): JSX.Element {
+export default function Bola({ valor, long, alto, ancho, pos, direccion, dir }: BolaProps): JSX.Element {
 
 
     const keyframeIn = new Keyframe({
@@ -119,27 +114,7 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, on
     const StyleBola25 = {
         width: Math.floor(ancho / 5) - 5,
         height: Math.floor(alto / 5) - 5,
-        backgroundColor: valor.color,
-    };
-    const StyleBola25Select = {
-        width: Math.floor(ancho / 2),
-        height: Math.floor(alto / 2),
-        backgroundColor: valor.color,
-        position: 'absolute',
-        borderRadius: 50,
-        borderWidth: 2,
-        top: '-125%',
-        left: '-125%',
-    };
-    const StyleBola25Select1 = {
-        width: Math.floor(ancho / 2),
-        height: Math.floor(alto / 2),
-        backgroundColor: valor.color,
-        position: 'absolute',
-        borderRadius: 50,
-        borderWidth: 2,
-        top: movY,
-        left: movX,
+        backgroundColor: valor.color
     };
     const StyleBola25R = {
         width: Math.floor(ancho / 4) - 5,
@@ -230,17 +205,9 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, on
 
     return (
         <View>
-            <Pressable onLongPress={onLongPress}
-                onPressOut={onPressOut}
-            >
-
-
-                <View style={long === 9 && pos != 5 && pos != 7 ? [styles.bola9, StyleBola9] : long === 9 ? StyleBola9Trans
-                    : long === 25 && pos != 14 && pos != 22 ? [styles.bola25, StyleBola25] : long === 25 ? StyleBola25Trans
-                        : pos === 27 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]} >{dir1 ? <Text style={long === 9 ? StyleBola9Text : long === 25 ? StyleBola25Text : long === 49 ? StyleBola49Text : ''}>{dir}</Text> : ''}</View>
-            </Pressable>
-
-            {bolaSelect === pos ? <Animated.View style={StyleBola25Select1} ></Animated.View> : ''}
+            <View style={long === 9 && pos != 5 && pos != 7 ? [styles.bola9, StyleBola9] : long === 9 ? StyleBola9Trans
+                : long === 25 && pos != 14 && pos != 22 ? [styles.bola25, StyleBola25] : long === 25 ? StyleBola25Trans
+                    : pos === 27 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]} >{dir1 ? <Text style={long === 9 ? StyleBola9Text : long === 25 ? StyleBola25Text : long === 49 ? StyleBola49Text : ''}>{dir}</Text> : ''}</View>
 
 
             {pos === 5 && long === 9 ? <Animated.View style={StyleBola9R} /> : ""}
@@ -250,7 +217,6 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, on
             {pos === 45 && long === 49 ? <Animated.View style={StyleBola49B} /> : ""}
             {pos === 27 && long === 49 ? <Animated.View style={StyleBola49R} /> : ""}
         </View>
-
     )
 
 }
@@ -271,6 +237,5 @@ const styles = StyleSheet.create({
         borderRadius: 13,
         margin: 2,
     },
-
 
 })

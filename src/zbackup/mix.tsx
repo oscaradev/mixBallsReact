@@ -132,10 +132,6 @@ export default function Mix(): JSX.Element {
     const [velocity1, setVelocity1] = React.useState(0);
     const [velocity2, setVelocity2] = React.useState(0);
 
-    //guarda movimiento x,y
-    const [MovX, setMovX] = React.useState(0);
-    const [MovY, setMovY] = React.useState(0);
-
     //función que mueve las canicas
     const mueveBola1 = (longitud: number) => {
         //console.log('valor de bola', bola)
@@ -152,6 +148,7 @@ export default function Mix(): JSX.Element {
                 newBola.shift()
                 newBola.push(primero)
                 setBola11(newBola)
+                //setVelocity2(0)
                 break;
             case Direction.CuIzquierdoAbajo:
                 newBola.pop()
@@ -272,21 +269,21 @@ export default function Mix(): JSX.Element {
         //console.log("screen",Math.floor(translationX/3) % 2)
 
         if (Math.abs(velocityY) > 60 && translationY > 0 && x < (anchoView1 / 3) && y > (altoView1 / 3)) {
-            ///setDirection1(Direction.CuIzquierdoAbajo)
+            setDirection1(Direction.CuIzquierdoAbajo)
             // console.log("cuadrante izquierdo - direccion abajo")
-            /// setVelocity1(Math.abs(velocityY));
+            setVelocity1(Math.abs(velocityY));
         } else if (Math.abs(velocityY) > 60 && translationY < 0 && x < (anchoView1 / 3) && y > (altoView1 / 3)) {
-            /// setDirection1(Direction.CuIzquierdoArriba)
+            setDirection1(Direction.CuIzquierdoArriba)
             //console.log("cuadrante izquierdo - direccion arriba")
-            /// setVelocity1(Math.abs(velocityY));
+            setVelocity1(Math.abs(velocityY));
         } else if (Math.abs(velocityX) > 60 && translationX > 0 && y < (altoView1 / 3)) {
-            /// setDirection1(Direction.CuSuperiorDerecha)
+            setDirection1(Direction.CuSuperiorDerecha)
             // console.log("cuadrante superior - direccion derecha")
-            /// setVelocity1(Math.abs(velocityX));
+            setVelocity1(Math.abs(velocityX));
         } else if (Math.abs(velocityX) > 60 && translationX < 0 && y < (altoView1 / 3)) {
-            /// setDirection1(Direction.CuSuperiorIzquierda);
+            setDirection1(Direction.CuSuperiorIzquierda);
             // console.log("cuadrante superior - direccion izquierda")
-            /// setVelocity1(Math.abs(velocityX));
+            setVelocity1(Math.abs(velocityX));
         } else if (translationY > 0 && (x > (anchoView1 * 0.75) && x <= (anchoView1 + 10))) {
             /// setDirection1(Direction.CuDerechoAbajo)
             // console.log("cuadrante derecho - direccion abajo")
@@ -301,27 +298,6 @@ export default function Mix(): JSX.Element {
             /// setDirection1(Direction.CuInferiorIzquierda)
             // console.log("cuadrante inferior - direccion izquierda")
         }
-
-
-        //determino la zona derecha central del Mix1
-        if (x > (anchoView1 * 0.8) && y > (altoView1 * 0.4) && y < (altoView1 * 0.6)) {
-            if (bola11.length === 25) {
-                if (bolaSelect < 14) {
-                    for (let i = bolaSelect; i <= 15; i++) {
-                        console.log('entrooo', i)
-                        setDirection1(Direction.CuSuperiorDerecha);
-                        mueveBola1(bola11.length);
-                    }
-                }
-            }
-        }
-
-
-
-        //se capturan constantemente movimientos x,y
-        setMovX(translationX);
-        setMovY(translationY);
-
     }
 
     const movimiento2 = (event: any) => {
@@ -386,22 +362,6 @@ export default function Mix(): JSX.Element {
         }
     }, [velocity2])
 
-
-    const [bolaSelect, setBolaSelect] = React.useState(-1);
-    //función para obtener la bola seleccionada
-    const selectBall = (index: number) => {
-        //se capturan constantemente movimientos x,y
-        setMovX(0);
-        setMovY(0);
-        setBolaSelect(index)
-        //return console.log('bola seleccionada', bola11[index], index)
-    };
-
-    //función que interpreta que la bola ya no esta seleccionada
-    const selectOutBall = () => {
-        //setBolaSelect(-1)
-        //return console.log('bola no seleccionada')
-    };
 
     return (
 
@@ -545,11 +505,6 @@ export default function Mix(): JSX.Element {
                                         pos={index}
                                         direccion={direction1}
                                         dir={dir}
-                                        onLongPress={() => selectBall(index)}
-                                        onPressOut={() => selectOutBall()}
-                                        bolaSelect={bolaSelect}
-                                        movX={MovX}
-                                        movY={MovY}
                                     />
                                 )
                             })}
