@@ -260,6 +260,7 @@ export default function Mix(): JSX.Element {
     const [anchoView1, setAnchoView1] = React.useState(0);
     const [altoView2, setAltoView2] = React.useState(0);
     const [anchoView2, setAnchoView2] = React.useState(0);
+    const [view1BolaR, setView1BolaR] = React.useState(true);
     //let timer: any
     const movimiento1 = (event: any) => {
         // setDirection(undefined) 
@@ -302,14 +303,18 @@ export default function Mix(): JSX.Element {
             // console.log("cuadrante inferior - direccion izquierda")
         }
 
+        if (!(x > (anchoView1 * 0.8) && y > (altoView1 * 0.4) && y < (altoView1 * 0.6))) {
+            setView1BolaR(true)
+        }
 
         //determino la zona derecha central del Mix1
-        if (x > (anchoView1 * 0.8) && y > (altoView1 * 0.4) && y < (altoView1 * 0.6)) {
+        if (x > (anchoView1 * 0.8) && y > (altoView1 * 0.4) && y < (altoView1 * 0.6) && view1BolaR) {
             if (bola11.length === 25) {
                 if (bolaSelect < 14) {
-                    for (let i = bolaSelect; i <= 15; i++) {
-                        console.log('entrooo', i)
-                        setDirection1(Direction.CuSuperiorDerecha);
+                    setView1BolaR(false)
+                    setDirection1(Direction.CuSuperiorDerecha);
+                    for (let i = bolaSelect; i < 14; i++) {
+                       // console.log('entrooo', i)
                         mueveBola1(bola11.length);
                     }
                 }
@@ -371,7 +376,7 @@ export default function Mix(): JSX.Element {
     //se activa la función de movimiento 1
     React.useEffect(() => {
         if (velocity1 > 0) {
-            mueveBola1(bola11.length);
+            // mueveBola1(bola11.length);
             setVelocity2(0)
             setVelocity1(0)
         }
@@ -390,6 +395,7 @@ export default function Mix(): JSX.Element {
     const [bolaSelect, setBolaSelect] = React.useState(-1);
     //función para obtener la bola seleccionada
     const selectBall = (index: number) => {
+        setView1BolaR(true)
         //se capturan constantemente movimientos x,y
         setMovX(0);
         setMovY(0);
@@ -550,6 +556,7 @@ export default function Mix(): JSX.Element {
                                         bolaSelect={bolaSelect}
                                         movX={MovX}
                                         movY={MovY}
+                                        bolaR={view1BolaR}
                                     />
                                 )
                             })}

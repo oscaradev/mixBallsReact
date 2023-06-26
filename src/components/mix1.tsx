@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable, NativeSyntheticEvent } from "react-native";
 import { Coordenada } from "../types/types";
-import Animated, { Keyframe } from 'react-native-reanimated';
+import Animated, { Keyframe, ZoomIn, ZoomOut } from 'react-native-reanimated';
 
 interface BolaProps {
     valor: Coordenada;
@@ -17,10 +17,11 @@ interface BolaProps {
     bolaSelect: number;
     movX: number;
     movY: number;
+    bolaR: boolean;
 }
 
 
-export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, onLongPress, onPressOut, bolaSelect, movX, movY }: BolaProps): JSX.Element {
+export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, onLongPress, onPressOut, bolaSelect, movX, movY, bolaR }: BolaProps): JSX.Element {
 
 
     const keyframeIn = new Keyframe({
@@ -240,7 +241,11 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, on
                         : pos === 27 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]} >{dir1 ? <Text style={long === 9 ? StyleBola9Text : long === 25 ? StyleBola25Text : long === 49 ? StyleBola49Text : ''}>{dir}</Text> : ''}</View>
             </Pressable>
 
-            {bolaSelect === pos ? <Animated.View style={StyleBola25Select1} ></Animated.View> : ''}
+            {bolaSelect === pos && bolaR ? <Animated.View
+                entering={ZoomIn}
+                exiting={ZoomOut}
+                style={StyleBola25Select1}
+            /> : null}
 
 
             {pos === 5 && long === 9 ? <Animated.View style={StyleBola9R} /> : ""}
