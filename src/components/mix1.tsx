@@ -12,16 +12,16 @@ interface BolaProps {
     pos: number;
     direccion: any;
     dir: string;
-    onLongPress: any;
+    onPress: any;
     onPressOut: any;
     bolaSelect: number;
     movX: number;
     movY: number;
-    bolaR: boolean;
+    bola: boolean;
 }
 
 
-export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, onLongPress, onPressOut, bolaSelect, movX, movY, bolaR }: BolaProps): JSX.Element {
+export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, onPress, onPressOut, bolaSelect, movX, movY, bola }: BolaProps): JSX.Element {
 
 
     const keyframeIn = new Keyframe({
@@ -231,17 +231,15 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, on
 
     return (
         <View>
-            <Pressable onLongPress={onLongPress}
+            <Pressable onPress={onPress}
                 onPressOut={onPressOut}
             >
-
-
                 <View style={long === 9 && pos != 5 && pos != 7 ? [styles.bola9, StyleBola9] : long === 9 ? StyleBola9Trans
                     : long === 25 && pos != 14 && pos != 22 ? [styles.bola25, StyleBola25] : long === 25 ? StyleBola25Trans
                         : pos === 27 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]} >{dir1 ? <Text style={long === 9 ? StyleBola9Text : long === 25 ? StyleBola25Text : long === 49 ? StyleBola49Text : ''}>{dir}</Text> : ''}</View>
             </Pressable>
 
-            {bolaSelect === pos && bolaR ? <Animated.View
+            {bolaSelect === pos && bola ? <Animated.View
                 entering={ZoomIn}
                 exiting={ZoomOut}
                 style={StyleBola25Select1}
