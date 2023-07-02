@@ -167,12 +167,12 @@ export default function Mix(): JSX.Element {
             case Direction.Derecha:
                 newBola2.pop()
                 newBola2.unshift(ultimo2)
-                setBola11(newBola2)
+                setBola22(newBola2)
                 break;
             case Direction.Izquierda:
                 newBola2.shift()
                 newBola2.push(primero2)
-                setBola11(newBola2)
+                setBola22(newBola2)
                 break;
             default:
                 break;
@@ -1030,18 +1030,18 @@ export default function Mix(): JSX.Element {
                                 return (
                                     <Bola2
                                         key={index}
-                                        valor2={value}
-                                        long2={long2}
-                                        alto2={altoView2}
-                                        ancho2={anchoView2}
-                                        pos2={index}
-                                        dir22={dir2}
-                                        onPress2={() => selectBall2(index)}
-                                        onPressOut2={() => selectOutBall()}
-                                        bolaSelect2={bolaSelect2}
-                                        movX2={MovX}
-                                        movY2={MovY}
-                                        bola2={view2Bola}
+                                        valor={value}
+                                        long={long2}
+                                        alto={altoView2}
+                                        ancho={anchoView2}
+                                        pos={index}
+                                        dir={dir2}
+                                        onPress={() => selectBall2(index)}
+                                        onPressOut={() => selectOutBall()}
+                                        bolaSelect={bolaSelect2}
+                                        movX={MovX}
+                                        movY={MovY}
+                                        bola={view2Bola}
                                     />
                                 )
                             })}
