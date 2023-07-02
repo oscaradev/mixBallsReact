@@ -10,7 +10,6 @@ interface BolaProps {
     alto: number;
     ancho: number;
     pos: number;
-    direccion: any;
     dir: string;
     onPress: any;
     onPressOut: any;
@@ -21,7 +20,7 @@ interface BolaProps {
 }
 
 
-export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, onPress, onPressOut, bolaSelect, movX, movY, bola }: BolaProps): JSX.Element {
+export default function Bola({ valor, long, alto, ancho, pos, dir, onPress, onPressOut, bolaSelect, movX, movY, bola }: BolaProps): JSX.Element {
 
 
     const keyframeIn = new Keyframe({
@@ -73,7 +72,6 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, on
     // constuyendo el tamaño de las bolas segun el tamaño del view
     const StyleBola9Text = {
         fontSize: Math.floor(ancho / 3) - 6,
-        //fontWeight: '900',
         bottom: '20%',
         left: '20%'
     };
@@ -123,16 +121,6 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, on
         backgroundColor: valor.color,
     };
     const StyleBola25Select = {
-        width: Math.floor(ancho / 2),
-        height: Math.floor(alto / 2),
-        backgroundColor: valor.color,
-        position: 'absolute',
-        borderRadius: 50,
-        borderWidth: 2,
-        top: '-125%',
-        left: '-125%',
-    };
-    const StyleBola25Select1 = {
         width: Math.floor(ancho / 2),
         height: Math.floor(alto / 2),
         backgroundColor: valor.color,
@@ -242,7 +230,7 @@ export default function Bola({ valor, long, alto, ancho, pos, direccion, dir, on
             {bolaSelect === pos && bola ? <Animated.View
                 entering={ZoomIn}
                 exiting={ZoomOut}
-                style={StyleBola25Select1}
+                style={StyleBola25Select}
             /> : null}
 
 
