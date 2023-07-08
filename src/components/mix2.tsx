@@ -223,7 +223,8 @@ export default function Bola2({ valor, long, alto, ancho, pos, dir, onPress, onP
             >
                 <View style={long === 9 && pos != 3 && pos != 7 ? [styles.bola9, StyleBola9] : long === 9 ? StyleBola9Trans
                     : long === 25 && pos != 10 && pos != 22 ? [styles.bola25, StyleBola25] : long === 25 ? StyleBola25Trans
-                        : pos === 21 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]}>{dir2 ? <Text style={long === 9 ? StyleBola9Text : long === 25 ? StyleBola25Text : long === 49 ? StyleBola49Text : ''}>{dir}</Text> : ''}</View>
+                        : pos === 21 || pos === 45 ? StyleBola49Trans : [styles.bola49, StyleBola49]}>{dir2 ? <Text style={long === 9 ? StyleBola9Text : long === 25 ? StyleBola25Text : long === 49 ? StyleBola49Text : ''}>{dir}</Text> : ''}
+                </View>
             </Pressable>
 
             {bolaSelect === pos && bola ? <Animated.View

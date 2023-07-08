@@ -127,10 +127,14 @@ export default function Mix(): JSX.Element {
     //contiene el valo de dirección de movimiento
     const [direction1, setDirection1] = React.useState<Direction>();
     const [direction2, setDirection2] = React.useState<Direction>();
+    const [direction3, setDirection3] = React.useState<Direction>();
+    const [direction4, setDirection4] = React.useState<Direction>();
 
     //guarda la velocidad
     const [velocity1, setVelocity1] = React.useState(0);
     const [velocity2, setVelocity2] = React.useState(0);
+    const [velocity3, setVelocity3] = React.useState(0);
+    const [velocity4, setVelocity4] = React.useState(0);
 
     //guarda movimiento x,y
     const [MovX, setMovX] = React.useState(0);
@@ -180,14 +184,40 @@ export default function Mix(): JSX.Element {
 
     }
 
+    const mueveBola3 = (longitud: number) => {
+        let newBola3 = bola33
+        //este switch evalua el moviento en pantalla tactil 
+        let primero3 = newBola3[0]
+        let ultimo3 = newBola3[longitud - 1]
+        switch (direction3) {
+            case Direction.Derecha:
+                newBola3.pop()
+                newBola3.unshift(ultimo3)
+                setBola33(newBola3)
+                break;
+            case Direction.Izquierda:
+                newBola3.shift()
+                newBola3.push(primero3)
+                setBola33(newBola3)
+                break;
+            default:
+                break;
+        }
+    }
 
     //Función asociada a calcular la dirección del movimiento según el toque de pantalla
     const [altoView1, setAltoView1] = React.useState(0);
     const [anchoView1, setAnchoView1] = React.useState(0);
     const [altoView2, setAltoView2] = React.useState(0);
     const [anchoView2, setAnchoView2] = React.useState(0);
+    const [altoView3, setAltoView3] = React.useState(0);
+    const [anchoView3, setAnchoView3] = React.useState(0);
+    const [altoView4, setAltoView4] = React.useState(0);
+    const [anchoView4, setAnchoView4] = React.useState(0);
     const [view1Bola, setView1Bola] = React.useState(true);
     const [view2Bola, setView2Bola] = React.useState(true);
+    const [view3Bola, setView3Bola] = React.useState(true);
+    const [view4Bola, setView4Bola] = React.useState(true);
 
     const movimiento1 = (event: any) => {
         const { translationX, translationY, x, y, velocityX, velocityY } = event.nativeEvent
@@ -687,7 +717,6 @@ export default function Mix(): JSX.Element {
         setMovY(translationY);
     }
 
-
     const movimiento2 = (event: any) => {
         // setDirection(undefined) 
         const { translationX, translationY, x, y, velocityX, velocityY } = event.nativeEvent
@@ -1184,6 +1213,418 @@ export default function Mix(): JSX.Element {
         setMovY(translationY);
     }
 
+    const movimiento3 = (event: any) => {
+        const { translationX, translationY, x, y, velocityX, velocityY } = event.nativeEvent
+        //console.log("translationX: " + translationX, "translationY: " + translationY)
+        //console.log("x: " + x, "y: " + y)
+        //console.log("velocityX: " + velocityX, "velocityY: " + velocityY)
+        //console.log("window", event.nativeEvent)
+        //console.log("anchoView1", altoView1)
+        //console.log("screen",Math.floor(translationX/3) % 2)
+
+
+        //determino la zona derecha central del Mix3
+        if (x > (anchoView3 * 0.8) && y > (altoView3 * 0.4) && y < (altoView3 * 0.6) && view3Bola) {
+            //Configuración de Partida Facil
+            if (bola33.length === 9) {
+                let n = bolaSelect3;
+                //selección de bola mitad arriba
+                if (bolaSelect3 < 5) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity3(n)
+                        if (n == 5) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_5 = mix33[5]
+                            let mix44 = bola44
+                            let mix_3 = mix44[3]
+                            mix44[3] = mix_5
+                            mix33[5] = mix_3
+                            setBola44(mix44)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 400);
+                }
+                //selección de bola mitad abajo
+                if (bolaSelect3 > 5 && bolaSelect3 < 9) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity3(n)
+                        if (n === 5) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_5 = mix33[5]
+                            let mix44 = bola44
+                            let mix_3 = mix44[3]
+                            mix44[3] = mix_5
+                            mix33[5] = mix_3
+                            setBola44(mix44)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 400);
+                }
+            }
+
+            //Configuración de Partida Media
+            if (bola33.length === 25) {
+                let n = bolaSelect3;
+                //selección de bola mitad arriba
+                if (bolaSelect3 < 14) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity3(n)
+                        if (n == 14) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_14 = mix33[14]
+                            let mix44 = bola44
+                            let mix_10 = mix44[10]
+                            mix44[10] = mix_14
+                            mix33[14] = mix_10
+                            setBola44(mix44)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 300);
+                }
+                //selección de bola mitad abajo
+                if (bolaSelect3 > 14 && bolaSelect3 < 25) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity3(n)
+                        if (n == 14) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_14 = mix33[14]
+                            let mix44 = bola44
+                            let mix_10 = mix44[10]
+                            mix44[10] = mix_14
+                            mix33[14] = mix_10
+                            setBola44(mix44)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 300);
+                }
+            }
+
+
+            //Configuración de Partida Dificil
+            if (bola33.length === 49) {
+                let n = bolaSelect3;
+                //selección de bola mitad arriba
+                if (bolaSelect3 < 27) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity3(n)
+                        if (n == 27) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_27 = mix33[27]
+                            let mix44 = bola44
+                            let mix_21 = mix44[21]
+                            mix44[21] = mix_27
+                            mix33[27] = mix_21
+                            setBola44(mix44)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 200);
+                }
+                //selección de bola mitad abajo
+                if (bolaSelect3 > 27 && bolaSelect3 < 49) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity3(n)
+                        if (n == 27) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_27 = mix33[27]
+                            let mix44 = bola44
+                            let mix_21 = mix44[21]
+                            mix44[21] = mix_27
+                            mix33[27] = mix_21
+                            setBola44(mix44)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 200);
+                }
+            }
+        }
+
+
+        //determino la zona superior central del Mix3
+        if (y < (altoView3 * 0.8) && x > (anchoView3 * 0.4) && x < (anchoView3 * 0.6) && view3Bola) {
+            //Configuración de Partida Facil
+            if (bola33.length === 9) {
+                let n = bolaSelect3;
+                //selección de bola mitad arriba
+                if (bolaSelect3 > 1 && bolaSelect3 < 5) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity3(n)
+                        if (n == 1) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_1 = mix33[1]
+                            let mix11 = bola11
+                            let mix_7 = mix11[7]
+                            mix11[7] = mix_1
+                            mix33[1] = mix_7
+                            setBola11(mix11)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 400);
+                }
+                //selección de bola mitad abajo
+                if (bolaSelect3 == 0) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity3(n)
+                        if (n == 1) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_1 = mix33[1]
+                            let mix11 = bola11
+                            let mix_7 = mix11[7]
+                            mix11[7] = mix_1
+                            mix33[1] = mix_7
+                            setBola11(mix11)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 400);
+                }
+                if (bolaSelect3 > 5 && bolaSelect3 < 9) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity3(n)
+                        if (n == 10) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_1 = mix33[1]
+                            let mix11 = bola11
+                            let mix_7 = mix11[7]
+                            mix11[7] = mix_1
+                            mix33[1] = mix_7
+                            setBola11(mix11)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 400);
+                }
+            }
+
+
+            //Configuración de Partida Media
+            if (bola33.length === 25) {
+                let n = bolaSelect3;
+                //selección de bola mitad abajo
+                if (bolaSelect3 > 14 && bolaSelect3 < 25) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity3(n)
+                        if (n == 27) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_3 = mix33[2]
+                            let mix11 = bola11
+                            let mix_2 = mix11[22]
+                            mix11[22] = mix_3
+                            mix33[2] = mix_2
+                            setBola11(mix11)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 300);
+                }
+
+                if (bolaSelect3 > 2 && bolaSelect3 < 14) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity3(n)
+                        if (n == 2) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_3 = mix33[2]
+                            let mix11 = bola11
+                            let mix_2 = mix11[22]
+                            mix11[22] = mix_3
+                            mix33[2] = mix_2
+                            setBola11(mix11)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 300);
+                }
+
+                //selección de bola mitad arriba
+                if (bolaSelect3 < 2) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity3(n)
+                        if (n == 2) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_3 = mix33[2]
+                            let mix11 = bola11
+                            let mix_2 = mix11[22]
+                            mix11[22] = mix_3
+                            mix33[2] = mix_2
+                            setBola11(mix11)
+                            setBola33(mix33)
+                            setBolaSelect3(-1)
+                        }
+                    }, 300);
+                }
+
+            }
+
+            //Configuración de Partida Dificil
+            if (bola33.length === 49) {
+                let n = bolaSelect3;
+                //selección de bola mitad abajo
+                if (bolaSelect3 > 27 && bolaSelect3 < 45) {
+                    //setView1BolaB(false)
+                    setView3Bola(false)
+                    setDirection3(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity3(n)
+                        if (45 - n == 0) {
+                            setVelocity3(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix11 = bola11
+                            let mix_45 = mix11[45]
+                            let mix33 = bola33
+                            let mix_3 = mix33[3]
+                            mix33[3] = mix_45
+                            mix11[45] = mix_3
+                            setBola33(mix33)
+                            setBola11(mix11)
+                            setBolaSelect3(-1)
+                        }
+                    }, 200);
+                }
+                if (bolaSelect3 > 45) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity3(n)
+                        if (n == 45) {
+                            setVelocity1(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix11 = bola11
+                            let mix_45 = mix11[45]
+                            let mix33 = bola33
+                            let mix_3 = mix33[3]
+                            mix33[3] = mix_45
+                            mix11[45] = mix_3
+                            setBola33(mix33)
+                            setBola11(mix11)
+                            setBolaSelect3(-1)
+                        }
+                    }, 200);
+                }
+                //selección de bola mitad arriba
+                if (bolaSelect3 < 27) {
+                    //setView1BolaB(false)
+                    setView1Bola(false)
+                    setDirection1(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        if (n >= 0) {
+                            if (n == 0) {
+                                setVelocity1(11)
+                            } else {
+                                setVelocity1(n + 1)
+                            }
+                        }
+                        if (n < 0) {
+                            setVelocity1(n * -1)
+                        }
+                        if (n === -4) {
+                            setVelocity1(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix11 = bola11
+                            let mix_45 = mix11[45]
+                            let mix33 = bola33
+                            let mix_3 = mix33[3]
+                            mix33[3] = mix_45
+                            mix11[45] = mix_3
+                            setBola33(mix33)
+                            setBola11(mix11)
+                            setBolaSelect(-1)
+                        }
+                    }, 200);
+                }
+            }
+        }
+
+
+        //se capturan constantemente movimientos x,y
+        setMovX(translationX);
+        setMovY(translationY);
+    }
+
+
     //se activa la función de movimiento 1
     React.useEffect(() => {
         if (velocity1 > 0) {
@@ -1202,9 +1643,24 @@ export default function Mix(): JSX.Element {
         }
     }, [velocity2])
 
+    //se activa la función de movimiento 3
+    React.useEffect(() => {
+        if (velocity3 > 0) {
+            mueveBola3(bola33.length);
+        }
+    }, [velocity3])
+
+    //se activa la función de movimiento 4
+    React.useEffect(() => {
+        if (velocity4 > 0) {
+            //mueveBola4(bola44.length);
+        }
+    }, [velocity4])
+
 
     const [bolaSelect, setBolaSelect] = React.useState(-1);
     const [bolaSelect2, setBolaSelect2] = React.useState(-1);
+    const [bolaSelect3, setBolaSelect3] = React.useState(-1);
     //función para obtener la bola seleccionada mix1
     const selectBall = (index: number) => {
         setView1Bola(!view1Bola)
@@ -1223,6 +1679,14 @@ export default function Mix(): JSX.Element {
         setBolaSelect2(index)
     };
 
+    //función para obtener la bola seleccionada mix2
+    const selectBall3 = (index: number) => {
+        setView3Bola(!view3Bola)
+        //se capturan constantemente movimientos x,y
+        setMovX(-30);
+        setMovY(-30);
+        setBolaSelect3(index)
+    };
     //función que interpreta que la bola ya no esta seleccionada
     const selectOutBall = () => {
         //setBolaSelect(-1)
@@ -1421,29 +1885,53 @@ export default function Mix(): JSX.Element {
                         </View>
                     </PanGestureHandler>
 
+                    <PanGestureHandler onGestureEvent={movimiento3}>
+                        <View style={styles.View3}
+                            onLayout={event => {
+                                const layout = event.nativeEvent.layout;
+                                // console.log('height:', layout.height);
+                                // console.log('width:', layout.width);
+                                // console.log('x:', layout.x);
+                                // console.log('y:', layout.y);
+                                //setBola([{ x:  Math.floor(layout.x), y:  Math.floor(layout.y) }])
+                                //setBola([{ x:  Math.floor(layout.width), y:  Math.floor(layout.height) }])
+                                ///setBola([{ x: 0, y: 0 }])
+                                setAnchoView3(Math.floor(layout.width))
+                                setAltoView3(Math.floor(layout.height))
+                            }}
+                        >
+                            {bola33.map((value, index) => {
+                                //console.log('direction', direction1)
+                                const long3 = bola33.length
+                                let dir3 = ''
+                                if (direction3 == 0) {
+                                    dir3 = '→';
+                                } else if (direction3 == 1) {
+                                    dir3 = '←';
+                                }
+                                return (
+                                    <Bola3
+                                        key={index}
+                                        valor={value}
+                                        long={long3}
+                                        alto={altoView3}
+                                        ancho={anchoView3}
+                                        pos={index}
+                                        dir={dir3}
+                                        onPress={() => selectBall3(index)}
+                                        onPressOut={() => selectOutBall()}
+                                        bolaSelect={bolaSelect3}
+                                        movX={MovX}
+                                        movY={MovY}
+                                        bola={view3Bola}
+                                    />
+                                )
+                            })}
+                        </View>
+                    </PanGestureHandler>
 
-                    <View style={styles.View3}
-                        onLayout={event => {
-                            const layout = event.nativeEvent.layout;
-                            setAnchoView1(Math.floor(layout.width))
-                            setAltoView1(Math.floor(layout.height))
-                        }}
-                    >
-                        {bola33.map((value, index) => {
-                            const long = bola33.length
-                            return (
-                                <Bola3
-                                    key={index}
-                                    valor={value}
-                                    long={long}
-                                    alto={altoView1}
-                                    ancho={anchoView1}
-                                    pos={index}
-                                    direccion={direction2}
-                                />
-                            )
-                        })}
-                    </View>
+
+
                     <View style={styles.View4}
                         onLayout={event => {
                             const layout = event.nativeEvent.layout;

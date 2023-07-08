@@ -1,6 +1,6 @@
 //import { Fragment } from "react";
 import React from 'react';
-import { StyleSheet, View, Text, Pressable, NativeSyntheticEvent } from "react-native";
+import { StyleSheet, View, Text, Pressable} from "react-native";
 import { Coordenada } from "../types/types";
 import Animated, { Keyframe, ZoomIn, ZoomOut } from 'react-native-reanimated';
 
@@ -111,7 +111,6 @@ export default function Bola({ valor, long, alto, ancho, pos, dir, onPress, onPr
 
     const StyleBola25Text = {
         fontSize: Math.floor(ancho / 5) - 6,
-        //fontWeight: '900',
         bottom: '20%',
         left: '20%'
     };
@@ -162,7 +161,6 @@ export default function Bola({ valor, long, alto, ancho, pos, dir, onPress, onPr
 
     const StyleBola49Text = {
         fontSize: Math.floor(ancho / 7) - 6,
-        //fontWeight: '900',
         bottom: '15%',
         left: '20%'
     };
