@@ -1219,7 +1219,7 @@ export default function Mix(): JSX.Element {
         //console.log("x: " + x, "y: " + y)
         //console.log("velocityX: " + velocityX, "velocityY: " + velocityY)
         //console.log("window", event.nativeEvent)
-        //console.log("anchoView1", altoView1)
+        //console.log("altoView3", altoView3)
         //console.log("screen",Math.floor(translationX/3) % 2)
 
 
@@ -1280,7 +1280,7 @@ export default function Mix(): JSX.Element {
             if (bola33.length === 25) {
                 let n = bolaSelect3;
                 //selección de bola mitad arriba
-                if (bolaSelect3 < 14) {
+                if (bolaSelect3 >= 0 && bolaSelect3 < 14) {
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1332,7 +1332,7 @@ export default function Mix(): JSX.Element {
             if (bola33.length === 49) {
                 let n = bolaSelect3;
                 //selección de bola mitad arriba
-                if (bolaSelect3 < 27) {
+                if (bolaSelect3 >= 0 && bolaSelect3 < 27) {
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1382,7 +1382,7 @@ export default function Mix(): JSX.Element {
 
 
         //determino la zona superior central del Mix3
-        if (y < (altoView3 * 0.8) && x > (anchoView3 * 0.4) && x < (anchoView3 * 0.6) && view3Bola) {
+        if (y < (altoView3 * 0.1) && x > (anchoView3 * 0.4) && x < (anchoView3 * 0.6) && view3Bola) {
             //Configuración de Partida Facil
             if (bola33.length === 9) {
                 let n = bolaSelect3;
@@ -1537,14 +1537,14 @@ export default function Mix(): JSX.Element {
             if (bola33.length === 49) {
                 let n = bolaSelect3;
                 //selección de bola mitad abajo
-                if (bolaSelect3 > 27 && bolaSelect3 < 45) {
+                if (bolaSelect3 > 27 && bolaSelect3 < 49) {
                     //setView1BolaB(false)
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
                         n = n + 1;
                         setVelocity3(n)
-                        if (45 - n == 0) {
+                        if (n == 52) {
                             setVelocity3(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
@@ -1560,14 +1560,15 @@ export default function Mix(): JSX.Element {
                         }
                     }, 200);
                 }
-                if (bolaSelect3 > 45) {
+                //selección de bola mitad arriba
+                if (bolaSelect3 >= 0 && bolaSelect3 < 3) {
                     setView3Bola(false)
-                    setDirection3(Direction.Izquierda);
+                    setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
-                        n = n - 1;
+                        n = n + 1;
                         setVelocity3(n)
-                        if (n == 45) {
-                            setVelocity1(0)
+                        if (n == 3) {
+                            setVelocity3(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
                             let mix11 = bola11
@@ -1582,25 +1583,14 @@ export default function Mix(): JSX.Element {
                         }
                     }, 200);
                 }
-                //selección de bola mitad arriba
-                if (bolaSelect3 < 27) {
-                    //setView1BolaB(false)
-                    setView1Bola(false)
-                    setDirection1(Direction.Izquierda);
+                if (bolaSelect3 > 3 && bolaSelect3 < 27) {
+                    setView3Bola(false)
+                    setDirection3(Direction.Izquierda);
                     let setInter = setInterval(() => {
                         n = n - 1;
-                        if (n >= 0) {
-                            if (n == 0) {
-                                setVelocity1(11)
-                            } else {
-                                setVelocity1(n + 1)
-                            }
-                        }
-                        if (n < 0) {
-                            setVelocity1(n * -1)
-                        }
-                        if (n === -4) {
-                            setVelocity1(0)
+                        setVelocity3(n)
+                        if (n == 3) {
+                            setVelocity3(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
                             let mix11 = bola11
@@ -1611,7 +1601,7 @@ export default function Mix(): JSX.Element {
                             mix11[45] = mix_3
                             setBola33(mix33)
                             setBola11(mix11)
-                            setBolaSelect(-1)
+                            setBolaSelect3(-1)
                         }
                     }, 200);
                 }
