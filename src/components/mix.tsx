@@ -205,6 +205,27 @@ export default function Mix(): JSX.Element {
         }
     }
 
+    const mueveBola4 = (longitud: number) => {
+        let newBola4 = bola44
+        //este switch evalua el moviento en pantalla tactil 
+        let primero4 = newBola4[0]
+        let ultimo4 = newBola4[longitud - 1]
+        switch (direction4) {
+            case Direction.Derecha:
+                newBola4.pop()
+                newBola4.unshift(ultimo4)
+                setBola44(newBola4)
+                break;
+            case Direction.Izquierda:
+                newBola4.shift()
+                newBola4.push(primero4)
+                setBola44(newBola4)
+                break;
+            default:
+                break;
+        }
+    }
+
     //Función asociada a calcular la dirección del movimiento según el toque de pantalla
     const [altoView1, setAltoView1] = React.useState(0);
     const [anchoView1, setAnchoView1] = React.useState(0);
@@ -1615,11 +1636,410 @@ export default function Mix(): JSX.Element {
     }
 
 
+    const movimiento4 = (event: any) => {
+        const { translationX, translationY, x, y, velocityX, velocityY } = event.nativeEvent
+        //console.log("translationX: " + translationX, "translationY: " + translationY)
+        //console.log("x: " + x, "y: " + y)
+        //console.log("velocityX: " + velocityX, "velocityY: " + velocityY)
+        //console.log("window", event.nativeEvent)
+        //console.log("altoView3", altoView3)
+        //console.log("screen",Math.floor(translationX/3) % 2)
+
+
+        //determino la zona izquierda central del Mix4
+        if (x < (anchoView4 * 0.2) && y > (altoView4 * 0.4) && y < (altoView4 * 0.6) && view4Bola) {
+            //Configuración de Partida Facil
+            if (bola44.length === 9) {
+                let n = bolaSelect4;
+                //selección de bola mitad arriba
+                if (bolaSelect4 < 3) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        //setVelocity1(0)
+                        setVelocity4(n)
+                        if (n == 3) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_5 = mix33[5]
+                            let mix44 = bola44
+                            let mix_44 = mix44[3]
+                            mix33[5] = mix_44
+                            mix44[3] = mix_5
+                            setBola33(mix33)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 400);
+                }
+                //selección de bola mitad abajo
+                if (bolaSelect4 > 3 && bolaSelect4 < 9) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity4(n)
+                        if (n === 3) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_5 = mix33[5]
+                            let mix44 = bola44
+                            let mix_44 = mix44[3]
+                            mix33[5] = mix_44
+                            mix44[3] = mix_5
+                            setBola33(mix33)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 400);
+                }
+            }
+
+            //Configuración de Partida Media
+            if (bola44.length === 25) {
+                let n = bolaSelect4;
+                //selección de bola mitad arriba
+                if (bolaSelect4 < 10) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity4(n)
+                        if (n == 10) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_14 = mix33[14]
+                            let mix44 = bola44
+                            let mix_10 = mix44[10]
+                            mix33[14] = mix_10
+                            mix44[10] = mix_14
+                            setBola33(mix33)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 300);
+                }
+                //selección de bola mitad abajo
+                if (bolaSelect4 > 10 && bolaSelect4 < 25) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity4(n)
+                        if (n == 10) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_14 = mix33[14]
+                            let mix44 = bola44
+                            let mix_10 = mix44[10]
+                            mix33[14] = mix_10
+                            mix44[10] = mix_14
+                            setBola33(mix33)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 300);
+                }
+            }
+
+
+            //Configuración de Partida Dificil
+            if (bola44.length === 49) {
+                let n = bolaSelect4;
+                //selección de bola mitad arriba
+                if (bolaSelect4 >= 0 && bolaSelect4 < 21) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity4(n)
+                        if (n == 21) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_27 = mix33[27]
+                            let mix44 = bola44
+                            let mix_21 = mix44[21]
+                            mix33[27] = mix_21
+                            mix44[21] = mix_27
+                            setBola33(mix33)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 200);
+                }
+                //selección de bola mitad abajo
+                if (bolaSelect4 > 21 && bolaSelect4 < 49) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity4(n)
+                        if (n == 21) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix33 = bola33
+                            let mix_27 = mix33[27]
+                            let mix44 = bola44
+                            let mix_21 = mix44[21]
+                            mix33[27] = mix_21
+                            mix44[21] = mix_27
+                            setBola33(mix33)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 200);
+                }
+            }
+        }
+
+
+        //determino la zona superior central del Mix4
+        if (y < (altoView4 * 0.1) && x > (anchoView4 * 0.4) && x < (anchoView4 * 0.6) && view4Bola) {
+            //Configuración de Partida Facil
+            if (bola44.length === 9) {
+                let n = bolaSelect4;
+                //selección de bola mitad arriba
+                if (bolaSelect4 == 2) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity4(n)
+                        if (n == 1) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix22 = bola22
+                            let mix_7 = mix22[7]
+                            let mix44 = bola44
+                            let mix_1 = mix44[1]
+                            mix22[7] = mix_1
+                            mix44[1] = mix_7
+                            setBola22(mix22)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 400);
+                }
+                if (bolaSelect4 == 0) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity4(n)
+                        if (n == 1) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix22 = bola22
+                            let mix_7 = mix22[7]
+                            let mix44 = bola44
+                            let mix_1 = mix44[1]
+                            mix22[7] = mix_1
+                            mix44[1] = mix_7
+                            setBola22(mix22)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 400);
+                }
+                //selección de bola mitad abajo
+                if (bolaSelect4 > 3 && bolaSelect4 < 9) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity4(n)
+                        if (n == 10) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix22 = bola22
+                            let mix_7 = mix22[7]
+                            let mix44 = bola44
+                            let mix_1 = mix44[1]
+                            mix22[7] = mix_1
+                            mix44[1] = mix_7
+                            setBola22(mix22)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 400);
+                }
+            }
+
+
+            //Configuración de Partida Media
+            if (bola44.length === 25) {
+                let n = bolaSelect4;
+                //selección de bola mitad abajo
+                if (bolaSelect4 > 10 && bolaSelect4 < 25) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity4(n)
+                        if (n == 27) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix22 = bola22
+                            let mix_22 = mix22[22]
+                            let mix44 = bola44
+                            let mix_2 = mix44[2]
+                            mix22[22] = mix_2
+                            mix44[2] = mix_22
+                            setBola22(mix22)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 300);
+                }
+
+                if (bolaSelect4 > 2 && bolaSelect4 < 10) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity4(n)
+                        if (n == 2) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix22 = bola22
+                            let mix_22 = mix22[22]
+                            let mix44 = bola44
+                            let mix_2 = mix44[2]
+                            mix22[22] = mix_2
+                            mix44[2] = mix_22
+                            setBola22(mix22)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 300);
+                }
+
+                //selección de bola mitad arriba
+                if (bolaSelect4 < 2) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity4(n)
+                        if (n == 2) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix22 = bola22
+                            let mix_22 = mix22[22]
+                            let mix44 = bola44
+                            let mix_2 = mix44[2]
+                            mix22[22] = mix_2
+                            mix44[2] = mix_22
+                            setBola22(mix22)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 300);
+                }
+
+            }
+
+            //Configuración de Partida Dificil
+            if (bola44.length === 49) {
+                let n = bolaSelect4;
+                //selección de bola mitad abajo
+                if (bolaSelect4 > 21 && bolaSelect4 < 49) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity4(n)
+                        if (n == 52) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix22 = bola22
+                            let mix_45 = mix22[45]
+                            let mix44 = bola44
+                            let mix_3 = mix44[3]
+                            mix22[45] = mix_3
+                            mix44[3] = mix_45
+                            setBola22(mix22)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 200);
+                }
+                //selección de bola mitad arriba
+                if (bolaSelect4 >= 0 && bolaSelect4 < 3) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Derecha);
+                    let setInter = setInterval(() => {
+                        n = n + 1;
+                        setVelocity4(n)
+                        if (n == 3) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix22 = bola22
+                            let mix_45 = mix22[45]
+                            let mix44 = bola44
+                            let mix_3 = mix44[3]
+                            mix22[45] = mix_3
+                            mix44[3] = mix_45
+                            setBola22(mix22)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 200);
+                }
+                if (bolaSelect4 > 3 && bolaSelect4 < 21) {
+                    setView4Bola(false)
+                    setDirection4(Direction.Izquierda);
+                    let setInter = setInterval(() => {
+                        n = n - 1;
+                        setVelocity4(n)
+                        if (n == 3) {
+                            setVelocity4(0)
+                            clearInterval(setInter)
+                            //se intercambia bola con el mix proximo
+                            let mix22 = bola22
+                            let mix_45 = mix22[45]
+                            let mix44 = bola44
+                            let mix_3 = mix44[3]
+                            mix22[45] = mix_3
+                            mix44[3] = mix_45
+                            setBola22(mix22)
+                            setBola44(mix44)
+                            setBolaSelect4(-1)
+                        }
+                    }, 200);
+                }
+            }
+        }
+
+
+        //se capturan constantemente movimientos x,y
+        setMovX(translationX);
+        setMovY(translationY);
+    }
+
     //se activa la función de movimiento 1
     React.useEffect(() => {
         if (velocity1 > 0) {
-            //setVelocity2(0)
-            ///setVelocity1(0)
             mueveBola1(bola11.length);
         }
     }, [velocity1])
@@ -1627,8 +2047,6 @@ export default function Mix(): JSX.Element {
     //se activa la función de movimiento 2
     React.useEffect(() => {
         if (velocity2 > 0) {
-            //setVelocity1(0)
-            ///setVelocity2(0)
             mueveBola2(bola22.length);
         }
     }, [velocity2])
@@ -1643,7 +2061,7 @@ export default function Mix(): JSX.Element {
     //se activa la función de movimiento 4
     React.useEffect(() => {
         if (velocity4 > 0) {
-            //mueveBola4(bola44.length);
+            mueveBola4(bola44.length);
         }
     }, [velocity4])
 
@@ -1651,6 +2069,7 @@ export default function Mix(): JSX.Element {
     const [bolaSelect, setBolaSelect] = React.useState(-1);
     const [bolaSelect2, setBolaSelect2] = React.useState(-1);
     const [bolaSelect3, setBolaSelect3] = React.useState(-1);
+    const [bolaSelect4, setBolaSelect4] = React.useState(-1);
     //función para obtener la bola seleccionada mix1
     const selectBall = (index: number) => {
         setView1Bola(!view1Bola)
@@ -1669,13 +2088,21 @@ export default function Mix(): JSX.Element {
         setBolaSelect2(index)
     };
 
-    //función para obtener la bola seleccionada mix2
+    //función para obtener la bola seleccionada mix3
     const selectBall3 = (index: number) => {
         setView3Bola(!view3Bola)
         //se capturan constantemente movimientos x,y
         setMovX(-30);
         setMovY(-30);
         setBolaSelect3(index)
+    };
+    //función para obtener la bola seleccionada mix2
+    const selectBall4 = (index: number) => {
+        setView4Bola(!view4Bola)
+        //se capturan constantemente movimientos x,y
+        setMovX(-30);
+        setMovY(-30);
+        setBolaSelect4(index)
     };
     //función que interpreta que la bola ya no esta seleccionada
     const selectOutBall = () => {
@@ -1878,7 +2305,7 @@ export default function Mix(): JSX.Element {
                     <PanGestureHandler onGestureEvent={movimiento3}>
                         <View style={styles.View3}
                             onLayout={event => {
-                                const layout = event.nativeEvent.layout;
+                                const layout3 = event.nativeEvent.layout;
                                 // console.log('height:', layout.height);
                                 // console.log('width:', layout.width);
                                 // console.log('x:', layout.x);
@@ -1886,8 +2313,8 @@ export default function Mix(): JSX.Element {
                                 //setBola([{ x:  Math.floor(layout.x), y:  Math.floor(layout.y) }])
                                 //setBola([{ x:  Math.floor(layout.width), y:  Math.floor(layout.height) }])
                                 ///setBola([{ x: 0, y: 0 }])
-                                setAnchoView3(Math.floor(layout.width))
-                                setAltoView3(Math.floor(layout.height))
+                                setAnchoView3(Math.floor(layout3.width))
+                                setAltoView3(Math.floor(layout3.height))
                             }}
                         >
                             {bola33.map((value, index) => {
@@ -1920,30 +2347,49 @@ export default function Mix(): JSX.Element {
                         </View>
                     </PanGestureHandler>
 
-
-
-                    <View style={styles.View4}
-                        onLayout={event => {
-                            const layout = event.nativeEvent.layout;
-                            setAnchoView1(Math.floor(layout.width))
-                            setAltoView1(Math.floor(layout.height))
-                        }}
-                    >
-                        {bola44.map((value, index) => {
-                            const long = bola44.length
-                            return (
-                                <Bola4
-                                    key={index}
-                                    valor={value}
-                                    long={long}
-                                    alto={altoView1}
-                                    ancho={anchoView1}
-                                    pos={index}
-                                    direccion={direction2}
-                                />
-                            )
-                        })}
-                    </View>
+                    <PanGestureHandler onGestureEvent={movimiento4}>
+                        <View style={styles.View4}
+                            onLayout={event => {
+                                const layout4 = event.nativeEvent.layout;
+                                // console.log('height:', layout.height);
+                                // console.log('width:', layout.width);
+                                // console.log('x:', layout.x);
+                                // console.log('y:', layout.y);
+                                //setBola([{ x:  Math.floor(layout.x), y:  Math.floor(layout.y) }])
+                                //setBola([{ x:  Math.floor(layout.width), y:  Math.floor(layout.height) }])
+                                ///setBola([{ x: 0, y: 0 }])
+                                setAnchoView4(Math.floor(layout4.width))
+                                setAltoView4(Math.floor(layout4.height))
+                            }}
+                        >
+                            {bola44.map((value, index) => {
+                                const long4 = bola44.length
+                                let dir4 = ''
+                                if (direction4 == 0) {
+                                    dir4 = '→';
+                                } else if (direction4 == 1) {
+                                    dir4 = '←';
+                                }
+                                return (
+                                    <Bola4
+                                        key={index}
+                                        valor={value}
+                                        long={long4}
+                                        alto={altoView4}
+                                        ancho={anchoView4}
+                                        pos={index}
+                                        dir={dir4}
+                                        onPress={() => selectBall4(index)}
+                                        onPressOut={() => selectOutBall()}
+                                        bolaSelect={bolaSelect4}
+                                        movX={MovX}
+                                        movY={MovY}
+                                        bola={view4Bola}
+                                    />
+                                )
+                            })}
+                        </View>
+                    </PanGestureHandler>
                 </View>
             </View>
         </SafeAreaView>

@@ -1,7 +1,8 @@
 //import { Fragment } from "react";
-import { StyleSheet, View } from "react-native";
+import React from 'react';
+import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Coordenada } from "../types/types";
-import Animated, { Keyframe } from 'react-native-reanimated';
+import Animated, { Keyframe, ZoomIn, ZoomOut } from 'react-native-reanimated';
 
 interface BolaProps {
     valor: Coordenada;
@@ -9,11 +10,17 @@ interface BolaProps {
     alto: number;
     ancho: number;
     pos: number;
-    direccion: any;
+    dir: string;
+    onPress: any;
+    onPressOut: any;
+    bolaSelect: number;
+    movX: number;
+    movY: number;
+    bola: boolean;
 }
 
 
-export default function Bola4({ valor, long, alto, ancho, pos, direccion }: BolaProps): JSX.Element {
+export default function Bola4({ valor, long, alto, ancho, pos, dir, onPress, onPressOut, bolaSelect, movX, movY, bola }: BolaProps): JSX.Element {
 
 
     const keyframeIn = new Keyframe({
@@ -63,6 +70,11 @@ export default function Bola4({ valor, long, alto, ancho, pos, direccion }: Bola
 
 
     // constuyendo el tamaño de las bolas segun el tamaño del view
+    const StyleBola9Text = {
+        fontSize: Math.floor(ancho / 3) - 6,
+        bottom: '20%',
+        left: '20%'
+    };
     const StyleBola9 = {
         width: Math.floor(ancho / 3) - 5,
         height: Math.floor(alto / 3) - 5,
@@ -96,11 +108,25 @@ export default function Bola4({ valor, long, alto, ancho, pos, direccion }: Bola
         height: Math.floor(alto / 3) - 5,
         backgroundColor: 'transparent',
     };
-
+    const StyleBola25Text = {
+        fontSize: Math.floor(ancho / 5) - 6,
+        bottom: '20%',
+        left: '20%'
+    };
     const StyleBola25 = {
         width: Math.floor(ancho / 5) - 5,
         height: Math.floor(alto / 5) - 5,
         backgroundColor: valor.color
+    };
+    const StyleBola25Select = {
+        width: Math.floor(ancho / 2),
+        height: Math.floor(alto / 2),
+        backgroundColor: valor.color,
+        position: 'absolute',
+        borderRadius: 50,
+        borderWidth: 2,
+        top: movY,
+        left: movX,
     };
     const StyleBola25L = {
         width: Math.floor(ancho / 4) - 5,
@@ -131,7 +157,11 @@ export default function Bola4({ valor, long, alto, ancho, pos, direccion }: Bola
         backgroundColor: 'transparent',
         margin: 2,
     };
-
+    const StyleBola49Text = {
+        fontSize: Math.floor(ancho / 7) - 6,
+        bottom: '15%',
+        left: '20%'
+    };
     const StyleBola49 = {
         width: Math.floor(ancho / 7) - 5,
         height: Math.floor(alto / 7) - 5,
@@ -167,15 +197,35 @@ export default function Bola4({ valor, long, alto, ancho, pos, direccion }: Bola
         left: -2
 
     };
-    //console.log('mix1', direccion)
+    //esta variable activa hace visible el sentido del movimiento
+    const [dir4, setDir4] = React.useState(true);
+
+    // este useEffect muestra el movimiento segun la direccion de movimiento
+    let timer4: NodeJS.Timeout
+    React.useEffect(() => {
+        setDir4(true)
+        timer4 = setTimeout(() => {
+            setDir4(false)
+        }, 2000);
+        return () => clearTimeout(timer4)
+    }, [valor])
 
     return (
         <View>
-            {/* <View style={long === 9 ? [styles.bola9, StyleBola9] : long === 25 ? [styles.bola25, StyleBola25] : pos === 3 || pos === 21 ? [styles.bola49, StyleBola49Trans] : [styles.bola49, StyleBola49]} /> */}
-            <View style={long === 9 && pos != 3 && pos != 1 ? [styles.bola9, StyleBola9] : long === 9 ? StyleBola9Trans
-                : long === 25 && pos != 2 && pos != 10 ? [styles.bola25, StyleBola25] : long === 25 ? StyleBola25Trans
-                    : pos === 3 || pos === 21 ? StyleBola49Trans : [styles.bola49, StyleBola49]} />
+            <Pressable onPress={onPress}
+                onPressOut={onPressOut}
+            >
+                <View style={long === 9 && pos != 3 && pos != 1 ? [styles.bola9, StyleBola9] : long === 9 ? StyleBola9Trans
+                    : long === 25 && pos != 2 && pos != 10 ? [styles.bola25, StyleBola25] : long === 25 ? StyleBola25Trans
+                        : pos === 3 || pos === 21 ? StyleBola49Trans : [styles.bola49, StyleBola49]}>{dir4 ? <Text style={long === 9 ? StyleBola9Text : long === 25 ? StyleBola25Text : long === 49 ? StyleBola49Text : ''}>{dir}</Text> : ''}
+                </View>
+            </Pressable>
 
+            {bolaSelect === pos && bola ? <Animated.View
+                entering={ZoomIn}
+                exiting={ZoomOut}
+                style={StyleBola25Select}
+            /> : null}
 
             {pos === 3 && long === 9 ? <Animated.View style={StyleBola9L} /> : ""}
             {pos === 1 && long === 9 ? <Animated.View style={StyleBola9T} /> : ""}
