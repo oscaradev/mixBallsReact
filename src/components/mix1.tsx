@@ -1,6 +1,6 @@
 //import { Fragment } from "react";
 import React from 'react';
-import { StyleSheet, View, Text, Pressable} from "react-native";
+import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Coordenada } from "../types/types";
 import Animated, { Keyframe, ZoomIn, ZoomOut } from 'react-native-reanimated';
 
@@ -12,6 +12,8 @@ interface BolaProps {
     pos: number;
     dir: string;
     onPress: any;
+    onPressMix1R: any;
+    onPressMix1B: any;
     onPressOut: any;
     bolaSelect: number;
     movX: number;
@@ -20,7 +22,7 @@ interface BolaProps {
 }
 
 
-export default function Bola({ valor, long, alto, ancho, pos, dir, onPress, onPressOut, bolaSelect, movX, movY, bola }: BolaProps): JSX.Element {
+export default function Bola({ valor, long, alto, ancho, pos, dir, onPress, onPressMix1R, onPressMix1B, onPressOut, bolaSelect, movX, movY, bola }: BolaProps): JSX.Element {
 
 
     const keyframeIn = new Keyframe({
@@ -231,13 +233,24 @@ export default function Bola({ valor, long, alto, ancho, pos, dir, onPress, onPr
                 style={StyleBola25Select}
             /> : null}
 
-
-            {pos === 5 && long === 9 ? <Animated.View style={StyleBola9R} /> : ""}
-            {pos === 7 && long === 9 ? <Animated.View style={StyleBola9B} /> : ""}
-            {pos === 14 && long === 25 ? <Animated.View style={StyleBola25R} /> : ""}
-            {pos === 22 && long === 25 ? <Animated.View style={StyleBola25B} /> : ""}
-            {pos === 45 && long === 49 ? <Animated.View style={StyleBola49B} /> : ""}
-            {pos === 27 && long === 49 ? <Animated.View style={StyleBola49R} /> : ""}
+            {pos === 5 && long === 9 ? <Pressable style={StyleBola9R} onPress={onPressMix1R}>
+                <Animated.View />
+            </Pressable> : ""}
+            {pos === 7 && long === 9 ? <Pressable style={StyleBola9B} onPress={onPressMix1B}>
+                <Animated.View />
+            </Pressable> : ""}
+            {pos === 14 && long === 25 ? <Pressable style={StyleBola25R} onPress={onPressMix1R}>
+                <Animated.View />
+            </Pressable> : ""}
+            {pos === 22 && long === 25 ? <Pressable style={StyleBola25B} onPress={onPressMix1B}>
+                <Animated.View />
+            </Pressable> : ""}
+            {pos === 27 && long === 49 ? <Pressable style={StyleBola49R} onPress={onPressMix1R}>
+                <Animated.View />
+            </Pressable> : ""}
+            {pos === 45 && long === 49 ? <Pressable style={StyleBola49B} onPress={onPressMix1B}>
+                <Animated.View />
+            </Pressable> : ""}
         </View>
 
     )

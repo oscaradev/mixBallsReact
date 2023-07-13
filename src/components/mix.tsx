@@ -266,15 +266,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_5 = mix11[5]
-                            let mix22 = bola22
-                            let mix_3 = mix22[3]
-                            mix22[3] = mix_5
-                            mix11[5] = mix_3
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_5 = mix11[5]
+                            // let mix22 = bola22
+                            // let mix_3 = mix22[3]
+                            // mix22[3] = mix_5
+                            // mix11[5] = mix_3
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 400);
                 }
@@ -289,16 +289,16 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_5 = mix11[5]
-                            let mix22 = bola22
-                            let mix_3 = mix22[3]
-                            mix22[3] = mix_5
-                            mix11[5] = mix_3
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
-                            setVelocity1(0)
+                            // let mix11 = bola11
+                            // let mix_5 = mix11[5]
+                            // let mix22 = bola22
+                            // let mix_3 = mix22[3]
+                            // mix22[3] = mix_5
+                            // mix11[5] = mix_3
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
+                            // setVelocity1(0)
                         }
                     }, 400);
                 }
@@ -312,15 +312,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_5 = mix11[5]
-                            let mix22 = bola22
-                            let mix_3 = mix22[3]
-                            mix22[3] = mix_5
-                            mix11[5] = mix_3
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_5 = mix11[5]
+                            // let mix22 = bola22
+                            // let mix_3 = mix22[3]
+                            // mix22[3] = mix_5
+                            // mix11[5] = mix_3
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 400);
                 }
@@ -340,15 +340,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_14 = mix11[14]
-                            let mix22 = bola22
-                            let mix_10 = mix22[10]
-                            mix22[10] = mix_14
-                            mix11[14] = mix_10
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_14 = mix11[14]
+                            // let mix22 = bola22
+                            // let mix_10 = mix22[10]
+                            // mix22[10] = mix_14
+                            // mix11[14] = mix_10
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 300);
                 }
@@ -363,15 +363,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_14 = mix11[14]
-                            let mix22 = bola22
-                            let mix_10 = mix22[10]
-                            mix22[10] = mix_14
-                            mix11[14] = mix_10
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_14 = mix11[14]
+                            // let mix22 = bola22
+                            // let mix_10 = mix22[10]
+                            // mix22[10] = mix_14
+                            // mix11[14] = mix_10
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 300);
                 }
@@ -385,15 +385,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_14 = mix11[14]
-                            let mix22 = bola22
-                            let mix_10 = mix22[10]
-                            mix22[10] = mix_14
-                            mix11[14] = mix_10
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_14 = mix11[14]
+                            // let mix22 = bola22
+                            // let mix_10 = mix22[10]
+                            // mix22[10] = mix_14
+                            // mix11[14] = mix_10
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 300);
                 }
@@ -414,15 +414,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_27 = mix11[27]
-                            let mix22 = bola22
-                            let mix_21 = mix22[21]
-                            mix22[21] = mix_27
-                            mix11[27] = mix_21
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_27 = mix11[27]
+                            // let mix22 = bola22
+                            // let mix_21 = mix22[21]
+                            // mix22[21] = mix_27
+                            // mix11[27] = mix_21
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 200);
                 }
@@ -437,15 +437,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_27 = mix11[27]
-                            let mix22 = bola22
-                            let mix_21 = mix22[21]
-                            mix22[21] = mix_27
-                            mix11[27] = mix_21
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_27 = mix11[27]
+                            // let mix22 = bola22
+                            // let mix_21 = mix22[21]
+                            // mix22[21] = mix_27
+                            // mix11[27] = mix_21
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 200);
                 }
@@ -459,15 +459,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_27 = mix11[27]
-                            let mix22 = bola22
-                            let mix_21 = mix22[21]
-                            mix22[21] = mix_27
-                            mix11[27] = mix_21
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_27 = mix11[27]
+                            // let mix22 = bola22
+                            // let mix_21 = mix22[21]
+                            // mix22[21] = mix_27
+                            // mix11[27] = mix_21
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 200);
                 }
@@ -500,15 +500,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_7 = mix11[7]
-                            let mix33 = bola33
-                            let mix_1 = mix33[1]
-                            mix33[1] = mix_7
-                            mix11[7] = mix_1
-                            setBola33(mix33)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_7 = mix11[7]
+                            // let mix33 = bola33
+                            // let mix_1 = mix33[1]
+                            // mix33[1] = mix_7
+                            // mix11[7] = mix_1
+                            // setBola33(mix33)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 400);
                 }
@@ -523,15 +523,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_7 = mix11[7]
-                            let mix33 = bola33
-                            let mix_1 = mix33[1]
-                            mix33[1] = mix_7
-                            mix11[7] = mix_1
-                            setBola33(mix33)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_7 = mix11[7]
+                            // let mix33 = bola33
+                            // let mix_1 = mix33[1]
+                            // mix33[1] = mix_7
+                            // mix11[7] = mix_1
+                            // setBola33(mix33)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 400);
                 }
@@ -545,15 +545,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_7 = mix11[7]
-                            let mix33 = bola33
-                            let mix_1 = mix33[1]
-                            mix33[1] = mix_7
-                            mix11[7] = mix_1
-                            setBola33(mix33)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_7 = mix11[7]
+                            // let mix33 = bola33
+                            // let mix_1 = mix33[1]
+                            // mix33[1] = mix_7
+                            // mix11[7] = mix_1
+                            // setBola33(mix33)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 400);
                 }
@@ -575,15 +575,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_22 = mix11[22]
-                            let mix33 = bola33
-                            let mix_2 = mix33[2]
-                            mix33[2] = mix_22
-                            mix11[22] = mix_2
-                            setBola33(mix33)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_22 = mix11[22]
+                            // let mix33 = bola33
+                            // let mix_2 = mix33[2]
+                            // mix33[2] = mix_22
+                            // mix11[22] = mix_2
+                            // setBola33(mix33)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 300);
                 }
@@ -598,15 +598,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_22 = mix11[22]
-                            let mix33 = bola33
-                            let mix_2 = mix33[2]
-                            mix33[2] = mix_22
-                            mix11[22] = mix_2
-                            setBola33(mix33)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_22 = mix11[22]
+                            // let mix33 = bola33
+                            // let mix_2 = mix33[2]
+                            // mix33[2] = mix_22
+                            // mix11[22] = mix_2
+                            // setBola33(mix33)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 300);
                 }
@@ -632,15 +632,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_22 = mix11[22]
-                            let mix33 = bola33
-                            let mix_2 = mix33[2]
-                            mix33[2] = mix_22
-                            mix11[22] = mix_2
-                            setBola33(mix33)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_22 = mix11[22]
+                            // let mix33 = bola33
+                            // let mix_2 = mix33[2]
+                            // mix33[2] = mix_22
+                            // mix11[22] = mix_2
+                            // setBola33(mix33)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 300);
                 }
@@ -662,15 +662,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_45 = mix11[45]
-                            let mix33 = bola33
-                            let mix_3 = mix33[3]
-                            mix33[3] = mix_45
-                            mix11[45] = mix_3
-                            setBola33(mix33)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_45 = mix11[45]
+                            // let mix33 = bola33
+                            // let mix_3 = mix33[3]
+                            // mix33[3] = mix_45
+                            // mix11[45] = mix_3
+                            // setBola33(mix33)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 200);
                 }
@@ -684,15 +684,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_45 = mix11[45]
-                            let mix33 = bola33
-                            let mix_3 = mix33[3]
-                            mix33[3] = mix_45
-                            mix11[45] = mix_3
-                            setBola33(mix33)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_45 = mix11[45]
+                            // let mix33 = bola33
+                            // let mix_3 = mix33[3]
+                            // mix33[3] = mix_45
+                            // mix11[45] = mix_3
+                            // setBola33(mix33)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 200);
                 }
@@ -717,15 +717,15 @@ export default function Mix(): JSX.Element {
                             setVelocity1(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_45 = mix11[45]
-                            let mix33 = bola33
-                            let mix_3 = mix33[3]
-                            mix33[3] = mix_45
-                            mix11[45] = mix_3
-                            setBola33(mix33)
-                            setBola11(mix11)
-                            setBolaSelect(-1)
+                            // let mix11 = bola11
+                            // let mix_45 = mix11[45]
+                            // let mix33 = bola33
+                            // let mix_3 = mix33[3]
+                            // mix33[3] = mix_45
+                            // mix11[45] = mix_3
+                            // setBola33(mix33)
+                            // setBola11(mix11)
+                            // setBolaSelect(-1)
                         }
                     }, 200);
                 }
@@ -765,15 +765,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_3 = mix22[3]
-                            let mix11 = bola11
-                            let mix_5 = mix11[5]
-                            mix22[3] = mix_5
-                            mix11[5] = mix_3
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_3 = mix22[3]
+                            // let mix11 = bola11
+                            // let mix_5 = mix11[5]
+                            // mix22[3] = mix_5
+                            // mix11[5] = mix_3
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect2(-1)
                         }
                     }, 400);
                 }
@@ -788,15 +788,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_3 = mix22[3]
-                            let mix11 = bola11
-                            let mix_5 = mix11[5]
-                            mix22[3] = mix_5
-                            mix11[5] = mix_3
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_3 = mix22[3]
+                            // let mix11 = bola11
+                            // let mix_5 = mix11[5]
+                            // mix22[3] = mix_5
+                            // mix11[5] = mix_3
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect2(-1)
                         }
                     }, 400);
                 }
@@ -810,15 +810,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_3 = mix22[3]
-                            let mix11 = bola11
-                            let mix_5 = mix11[5]
-                            mix22[3] = mix_5
-                            mix11[5] = mix_3
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_3 = mix22[3]
+                            // let mix11 = bola11
+                            // let mix_5 = mix11[5]
+                            // mix22[3] = mix_5
+                            // mix11[5] = mix_3
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect2(-1)
                         }
                     }, 400);
                 }
@@ -838,15 +838,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_14 = mix11[14]
-                            let mix22 = bola22
-                            let mix_10 = mix22[10]
-                            mix22[10] = mix_14
-                            mix11[14] = mix_10
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect2(-1)
+                            // let mix11 = bola11
+                            // let mix_14 = mix11[14]
+                            // let mix22 = bola22
+                            // let mix_10 = mix22[10]
+                            // mix22[10] = mix_14
+                            // mix11[14] = mix_10
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect2(-1)
                         }
                     }, 300);
                 }
@@ -861,15 +861,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_14 = mix11[14]
-                            let mix22 = bola22
-                            let mix_10 = mix22[10]
-                            mix22[10] = mix_14
-                            mix11[14] = mix_10
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect2(-1)
+                            // let mix11 = bola11
+                            // let mix_14 = mix11[14]
+                            // let mix22 = bola22
+                            // let mix_10 = mix22[10]
+                            // mix22[10] = mix_14
+                            // mix11[14] = mix_10
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect2(-1)
                         }
                     }, 300);
                 }
@@ -883,15 +883,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix11 = bola11
-                            let mix_14 = mix11[14]
-                            let mix22 = bola22
-                            let mix_10 = mix22[10]
-                            mix22[10] = mix_14
-                            mix11[14] = mix_10
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect2(-1)
+                            // let mix11 = bola11
+                            // let mix_14 = mix11[14]
+                            // let mix22 = bola22
+                            // let mix_10 = mix22[10]
+                            // mix22[10] = mix_14
+                            // mix11[14] = mix_10
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect2(-1)
                         }
                     }, 300);
                 }
@@ -912,15 +912,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_21 = mix22[21]
-                            let mix11 = bola11
-                            let mix_27 = mix11[27]
-                            mix22[21] = mix_27
-                            mix11[27] = mix_21
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_21 = mix22[21]
+                            // let mix11 = bola11
+                            // let mix_27 = mix11[27]
+                            // mix22[21] = mix_27
+                            // mix11[27] = mix_21
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect2(-1)
                         }
                     }, 200);
                 }
@@ -935,15 +935,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_21 = mix22[21]
-                            let mix11 = bola11
-                            let mix_27 = mix11[27]
-                            mix22[21] = mix_27
-                            mix11[27] = mix_21
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_21 = mix22[21]
+                            // let mix11 = bola11
+                            // let mix_27 = mix11[27]
+                            // mix22[21] = mix_27
+                            // mix11[27] = mix_21
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect2(-1)
                         }
                     }, 200);
                 }
@@ -957,15 +957,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_21 = mix22[21]
-                            let mix11 = bola11
-                            let mix_27 = mix11[27]
-                            mix22[21] = mix_27
-                            mix11[27] = mix_21
-                            setBola22(mix22)
-                            setBola11(mix11)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_21 = mix22[21]
+                            // let mix11 = bola11
+                            // let mix_27 = mix11[27]
+                            // mix22[21] = mix_27
+                            // mix11[27] = mix_21
+                            // setBola22(mix22)
+                            // setBola11(mix11)
+                            // setBolaSelect2(-1)
                         }
                     }, 200);
                 }
@@ -973,7 +973,7 @@ export default function Mix(): JSX.Element {
         }
 
 
-        //determino la zona inferior central del Mix1
+        //determino la zona inferior central del Mix2
         if (y > (altoView2 * 0.8) && x > (anchoView2 * 0.4) && x < (anchoView2 * 0.6) && view2Bola) {
             //Configuración de Partida Facil
             if (bola22.length === 9) {
@@ -998,15 +998,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_7 = mix22[7]
-                            let mix44 = bola44
-                            let mix_1 = mix44[1]
-                            mix44[1] = mix_7
-                            mix22[7] = mix_1
-                            setBola22(mix22)
-                            setBola44(mix44)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_7 = mix22[7]
+                            // let mix44 = bola44
+                            // let mix_1 = mix44[1]
+                            // mix44[1] = mix_7
+                            // mix22[7] = mix_1
+                            // setBola22(mix22)
+                            // setBola44(mix44)
+                            // setBolaSelect2(-1)
                         }
                     }, 400);
                 }
@@ -1021,15 +1021,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_7 = mix22[7]
-                            let mix44 = bola44
-                            let mix_1 = mix44[1]
-                            mix44[1] = mix_7
-                            mix22[7] = mix_1
-                            setBola22(mix22)
-                            setBola44(mix44)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_7 = mix22[7]
+                            // let mix44 = bola44
+                            // let mix_1 = mix44[1]
+                            // mix44[1] = mix_7
+                            // mix22[7] = mix_1
+                            // setBola22(mix22)
+                            // setBola44(mix44)
+                            // setBolaSelect2(-1)
                         }
                     }, 400);
                 }
@@ -1043,15 +1043,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_7 = mix22[7]
-                            let mix44 = bola44
-                            let mix_1 = mix44[1]
-                            mix44[1] = mix_7
-                            mix22[7] = mix_1
-                            setBola22(mix22)
-                            setBola44(mix44)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_7 = mix22[7]
+                            // let mix44 = bola44
+                            // let mix_1 = mix44[1]
+                            // mix44[1] = mix_7
+                            // mix22[7] = mix_1
+                            // setBola22(mix22)
+                            // setBola44(mix44)
+                            // setBolaSelect2(-1)
                         }
                     }, 400);
                 }
@@ -1072,15 +1072,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_22 = mix22[22]
-                            let mix44 = bola44
-                            let mix_2 = mix44[2]
-                            mix44[2] = mix_22
-                            mix22[22] = mix_2
-                            setBola22(mix22)
-                            setBola44(mix44)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_22 = mix22[22]
+                            // let mix44 = bola44
+                            // let mix_2 = mix44[2]
+                            // mix44[2] = mix_22
+                            // mix22[22] = mix_2
+                            // setBola22(mix22)
+                            // setBola44(mix44)
+                            // setBolaSelect2(-1)
                         }
                     }, 300);
                 }
@@ -1095,15 +1095,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_22 = mix22[22]
-                            let mix44 = bola44
-                            let mix_2 = mix44[2]
-                            mix44[2] = mix_22
-                            mix22[22] = mix_2
-                            setBola22(mix22)
-                            setBola44(mix44)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_22 = mix22[22]
+                            // let mix44 = bola44
+                            // let mix_2 = mix44[2]
+                            // mix44[2] = mix_22
+                            // mix22[22] = mix_2
+                            // setBola22(mix22)
+                            // setBola44(mix44)
+                            // setBolaSelect2(-1)
                         }
                     }, 300);
                 }
@@ -1129,15 +1129,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_22 = mix22[22]
-                            let mix44 = bola44
-                            let mix_2 = mix44[2]
-                            mix44[2] = mix_22
-                            mix22[22] = mix_2
-                            setBola22(mix22)
-                            setBola44(mix44)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_22 = mix22[22]
+                            // let mix44 = bola44
+                            // let mix_2 = mix44[2]
+                            // mix44[2] = mix_22
+                            // mix22[22] = mix_2
+                            // setBola22(mix22)
+                            // setBola44(mix44)
+                            // setBolaSelect2(-1)
                         }
                     }, 300);
                 }
@@ -1159,15 +1159,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_45 = mix22[45]
-                            let mix44 = bola44
-                            let mix_3 = mix44[3]
-                            mix44[3] = mix_45
-                            mix22[45] = mix_3
-                            setBola22(mix22)
-                            setBola44(mix44)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_45 = mix22[45]
+                            // let mix44 = bola44
+                            // let mix_3 = mix44[3]
+                            // mix44[3] = mix_45
+                            // mix22[45] = mix_3
+                            // setBola22(mix22)
+                            // setBola44(mix44)
+                            // setBolaSelect2(-1)
                         }
                     }, 200);
                 }
@@ -1181,15 +1181,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_45 = mix22[45]
-                            let mix44 = bola44
-                            let mix_3 = mix44[3]
-                            mix44[3] = mix_45
-                            mix22[45] = mix_3
-                            setBola22(mix22)
-                            setBola44(mix44)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_45 = mix22[45]
+                            // let mix44 = bola44
+                            // let mix_3 = mix44[3]
+                            // mix44[3] = mix_45
+                            // mix22[45] = mix_3
+                            // setBola22(mix22)
+                            // setBola44(mix44)
+                            // setBolaSelect2(-1)
                         }
                     }, 200);
                 }
@@ -1213,15 +1213,15 @@ export default function Mix(): JSX.Element {
                             setVelocity2(0)
                             clearInterval(setInter)
                             //se intercambia bola con el mix proximo
-                            let mix22 = bola22
-                            let mix_45 = mix22[45]
-                            let mix44 = bola44
-                            let mix_3 = mix44[3]
-                            mix44[3] = mix_45
-                            mix22[45] = mix_3
-                            setBola22(mix22)
-                            setBola44(mix44)
-                            setBolaSelect2(-1)
+                            // let mix22 = bola22
+                            // let mix_45 = mix22[45]
+                            // let mix44 = bola44
+                            // let mix_3 = mix44[3]
+                            // mix44[3] = mix_45
+                            // mix22[45] = mix_3
+                            // setBola22(mix22)
+                            // setBola44(mix44)
+                            // setBolaSelect2(-1)
                         }
                     }, 200);
                 }
@@ -2110,6 +2110,165 @@ export default function Mix(): JSX.Element {
         //return console.log('bola no seleccionada')
     };
 
+    //Mix 1,Presionado Bola Derecha
+    const OnPressMix1R = (tamano: number) => {
+        if (tamano === 9) {
+            let mix11 = bola11
+            let mix_5 = mix11[5]
+            let mix22 = bola22
+            let mix_3 = mix22[3]
+            mix22[3] = mix_5
+            mix11[5] = mix_3
+            setBola22(mix22)
+            setBola11(mix11)
+            setBolaSelect(-1)
+        } else if (tamano === 25) {
+            let mix11 = bola11
+            let mix_14 = mix11[14]
+            let mix22 = bola22
+            let mix_10 = mix22[10]
+            mix22[10] = mix_14
+            mix11[14] = mix_10
+            setBola22(mix22)
+            setBola11(mix11)
+            setBolaSelect(-1)
+        } else if (tamano === 49) {
+            let mix11 = bola11
+            let mix_27 = mix11[27]
+            let mix22 = bola22
+            let mix_21 = mix22[21]
+            mix22[21] = mix_27
+            mix11[27] = mix_21
+            setBola22(mix22)
+            setBola11(mix11)
+            setBolaSelect(-1)
+        }
+    };
+    //Mix 1,Presionado Bola Inferior
+    const OnPressMix1B = (tamano: number) => {
+        if (tamano === 9) {
+            let mix11 = bola11
+            let mix_7 = mix11[7]
+            let mix33 = bola33
+            let mix_1 = mix33[1]
+            mix33[1] = mix_7
+            mix11[7] = mix_1
+            setBola33(mix33)
+            setBola11(mix11)
+            setBolaSelect(-1)
+        } else if (tamano === 25) {
+            let mix11 = bola11
+            let mix_22 = mix11[22]
+            let mix33 = bola33
+            let mix_2 = mix33[2]
+            mix33[2] = mix_22
+            mix11[22] = mix_2
+            setBola33(mix33)
+            setBola11(mix11)
+            setBolaSelect(-1)
+        } else if (tamano === 49) {
+            let mix11 = bola11
+            let mix_45 = mix11[45]
+            let mix33 = bola33
+            let mix_3 = mix33[3]
+            mix33[3] = mix_45
+            mix11[45] = mix_3
+            setBola33(mix33)
+            setBola11(mix11)
+            setBolaSelect(-1)
+        }
+    };
+    //Mix 2,Presionado Bola Izquierda
+    const OnPressMix2L = (tamano: number) => {
+        if (tamano === 9) {
+            let mix22 = bola22
+            let mix_3 = mix22[3]
+            let mix11 = bola11
+            let mix_5 = mix11[5]
+            mix22[3] = mix_5
+            mix11[5] = mix_3
+            setBola22(mix22)
+            setBola11(mix11)
+            setBolaSelect2(-1)
+        } else if (tamano === 25) {
+            let mix11 = bola11
+            let mix_14 = mix11[14]
+            let mix22 = bola22
+            let mix_10 = mix22[10]
+            mix22[10] = mix_14
+            mix11[14] = mix_10
+            setBola22(mix22)
+            setBola11(mix11)
+            setBolaSelect2(-1)
+
+        } else if (tamano === 49) {
+            let mix22 = bola22
+            let mix_21 = mix22[21]
+            let mix11 = bola11
+            let mix_27 = mix11[27]
+            mix22[21] = mix_27
+            mix11[27] = mix_21
+            setBola22(mix22)
+            setBola11(mix11)
+            setBolaSelect2(-1)
+
+        }
+    };
+    //Mix 1,Presionado Bola Inferior
+    const OnPressMix2B = (tamano: number) => {
+        if (tamano === 9) {
+            let mix22 = bola22
+            let mix_7 = mix22[7]
+            let mix44 = bola44
+            let mix_1 = mix44[1]
+            mix44[1] = mix_7
+            mix22[7] = mix_1
+            setBola22(mix22)
+            setBola44(mix44)
+            setBolaSelect2(-1)
+        } else if (tamano === 25) {
+            let mix22 = bola22
+            let mix_22 = mix22[22]
+            let mix44 = bola44
+            let mix_2 = mix44[2]
+            mix44[2] = mix_22
+            mix22[22] = mix_2
+            setBola22(mix22)
+            setBola44(mix44)
+            setBolaSelect2(-1)
+        } else if (tamano === 49) {
+            let mix22 = bola22
+            let mix_45 = mix22[45]
+            let mix44 = bola44
+            let mix_3 = mix44[3]
+            mix44[3] = mix_45
+            mix22[45] = mix_3
+            setBola22(mix22)
+            setBola44(mix44)
+            setBolaSelect2(-1)
+        }
+    };
+    const OnPressMix3R = (tamano: number) => {
+        if (tamano === 9) {
+  
+        } else if (tamano === 25) {
+    
+        } else if (tamano === 49) {
+
+        }
+    };
+    //Mix 1,Presionado Bola Inferior
+    const OnPressMix3T = (tamano: number) => {
+        if (tamano === 9) {
+
+        } else if (tamano === 25) {
+
+        } else if (tamano === 49) {
+
+        }
+    };
+
+
     return (
 
         <SafeAreaView style={styles.container}>
@@ -2253,6 +2412,8 @@ export default function Mix(): JSX.Element {
                                         pos={index}
                                         dir={dir}
                                         onPress={() => selectBall(index)}
+                                        onPressMix1R={() => OnPressMix1R(long)}
+                                        onPressMix1B={() => OnPressMix1B(long)}
                                         onPressOut={() => selectOutBall()}
                                         bolaSelect={bolaSelect}
                                         movX={MovX}
@@ -2291,6 +2452,8 @@ export default function Mix(): JSX.Element {
                                         pos={index}
                                         dir={dir2}
                                         onPress={() => selectBall2(index)}
+                                        onPressMix2L={() => OnPressMix2L(long2)}
+                                        onPressMix2B={() => OnPressMix2B(long2)}
                                         onPressOut={() => selectOutBall()}
                                         bolaSelect={bolaSelect2}
                                         movX={MovX}
