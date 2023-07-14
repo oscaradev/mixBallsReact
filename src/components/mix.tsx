@@ -1,8 +1,12 @@
 import React from 'react';
 import {
-    SafeAreaView, View, StyleSheet, Text,
+    SafeAreaView, 
+    View, 
+    StyleSheet, 
+    Text,
     TextInput,
     Modal,
+    Vibration
 } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { Colors } from "../styles/colores";
@@ -257,6 +261,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect;
                 //selección de bola mitad arriba
                 if (bolaSelect < 5) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -280,6 +285,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect === 6) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -303,6 +309,7 @@ export default function Mix(): JSX.Element {
                     }, 400);
                 }
                 if (bolaSelect === 8) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -331,6 +338,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect;
                 //selección de bola mitad arriba
                 if (bolaSelect < 14) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -354,6 +362,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect > 14 && bolaSelect < 22) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -376,6 +385,7 @@ export default function Mix(): JSX.Element {
                     }, 300);
                 }
                 if (bolaSelect > 22) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -405,6 +415,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect;
                 //selección de bola mitad arriba
                 if (bolaSelect < 27) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -428,6 +439,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect > 27 && bolaSelect < 45) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -450,6 +462,7 @@ export default function Mix(): JSX.Element {
                     }, 200);
                 }
                 if (bolaSelect > 45) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -482,6 +495,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect;
                 //selección de bola mitad arriba
                 if (bolaSelect < 5) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -514,6 +528,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect === 6) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -536,6 +551,7 @@ export default function Mix(): JSX.Element {
                     }, 400);
                 }
                 if (bolaSelect === 8) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -565,7 +581,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect;
                 //selección de bola mitad abajo
                 if (bolaSelect > 14 && bolaSelect < 22) {
-                    //setView1BolaB(false)
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -589,6 +605,7 @@ export default function Mix(): JSX.Element {
                 }
 
                 if (bolaSelect > 22) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -613,7 +630,7 @@ export default function Mix(): JSX.Element {
 
                 //selección de bola mitad arriba
                 if (bolaSelect < 14) {
-                    //setView1BolaB(false)
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -652,7 +669,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect;
                 //selección de bola mitad abajo
                 if (bolaSelect > 27 && bolaSelect < 45) {
-                    //setView1BolaB(false)
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -675,6 +692,7 @@ export default function Mix(): JSX.Element {
                     }, 200);
                 }
                 if (bolaSelect > 45) {
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -698,7 +716,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad arriba
                 if (bolaSelect < 27) {
-                    //setView1BolaB(false)
+                    Vibration.vibrate(100)
                     setView1Bola(false)
                     setDirection1(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -755,11 +773,11 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect2;
                 //selección de bola mitad arriba
                 if (bolaSelect2 < 3) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Derecha);
                     let setInter = setInterval(() => {
                         n = n + 1;
-                        //setVelocity1(0)
                         setVelocity2(n)
                         if (3 - n == 0) {
                             setVelocity2(0)
@@ -779,6 +797,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect2 > 3 && bolaSelect2 < 7) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -801,6 +820,7 @@ export default function Mix(): JSX.Element {
                     }, 400);
                 }
                 if (bolaSelect2 === 8) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -829,6 +849,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect2;
                 //selección de bola mitad arriba
                 if (bolaSelect2 < 10) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -852,6 +873,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect2 > 10 && bolaSelect2 < 22) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -874,6 +896,7 @@ export default function Mix(): JSX.Element {
                     }, 300);
                 }
                 if (bolaSelect2 > 22) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -903,6 +926,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect2;
                 //selección de bola mitad arriba
                 if (bolaSelect2 < 21) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -926,6 +950,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect2 > 21 && bolaSelect2 < 45) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -948,6 +973,7 @@ export default function Mix(): JSX.Element {
                     }, 200);
                 }
                 if (bolaSelect2 > 45) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -980,6 +1006,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect2;
                 //selección de bola mitad arriba
                 if (bolaSelect2 < 3) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1012,6 +1039,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect2 > 3 && bolaSelect2 < 7) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1034,6 +1062,7 @@ export default function Mix(): JSX.Element {
                     }, 400);
                 }
                 if (bolaSelect2 === 8) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1063,6 +1092,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect2;
                 //selección de bola mitad abajo
                 if (bolaSelect2 > 10 && bolaSelect2 < 22) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1086,6 +1116,7 @@ export default function Mix(): JSX.Element {
                 }
 
                 if (bolaSelect2 > 22) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1110,7 +1141,7 @@ export default function Mix(): JSX.Element {
 
                 //selección de bola mitad arriba
                 if (bolaSelect2 < 10) {
-                    //setView1BolaB(false)
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1149,7 +1180,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect2;
                 //selección de bola mitad abajo
                 if (bolaSelect2 > 21 && bolaSelect2 < 45) {
-                    //setView1BolaB(false)
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1172,6 +1203,7 @@ export default function Mix(): JSX.Element {
                     }, 200);
                 }
                 if (bolaSelect2 > 45) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1195,6 +1227,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad arriba
                 if (bolaSelect2 < 21) {
+                    Vibration.vibrate(100)
                     setView2Bola(false)
                     setDirection2(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1251,6 +1284,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect3;
                 //selección de bola mitad arriba
                 if (bolaSelect3 < 5) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1274,6 +1308,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect3 > 5 && bolaSelect3 < 9) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1302,6 +1337,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect3;
                 //selección de bola mitad arriba
                 if (bolaSelect3 >= 0 && bolaSelect3 < 14) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1325,6 +1361,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect3 > 14 && bolaSelect3 < 25) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1354,6 +1391,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect3;
                 //selección de bola mitad arriba
                 if (bolaSelect3 >= 0 && bolaSelect3 < 27) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1377,6 +1415,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect3 > 27 && bolaSelect3 < 49) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1409,6 +1448,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect3;
                 //selección de bola mitad arriba
                 if (bolaSelect3 > 1 && bolaSelect3 < 5) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1432,6 +1472,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect3 == 0) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1454,6 +1495,7 @@ export default function Mix(): JSX.Element {
                     }, 400);
                 }
                 if (bolaSelect3 > 5 && bolaSelect3 < 9) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1483,6 +1525,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect3;
                 //selección de bola mitad abajo
                 if (bolaSelect3 > 14 && bolaSelect3 < 25) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1506,6 +1549,7 @@ export default function Mix(): JSX.Element {
                 }
 
                 if (bolaSelect3 > 2 && bolaSelect3 < 14) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1530,6 +1574,7 @@ export default function Mix(): JSX.Element {
 
                 //selección de bola mitad arriba
                 if (bolaSelect3 < 2) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1559,7 +1604,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect3;
                 //selección de bola mitad abajo
                 if (bolaSelect3 > 27 && bolaSelect3 < 49) {
-                    //setView1BolaB(false)
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1583,6 +1628,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad arriba
                 if (bolaSelect3 >= 0 && bolaSelect3 < 3) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1605,6 +1651,7 @@ export default function Mix(): JSX.Element {
                     }, 200);
                 }
                 if (bolaSelect3 > 3 && bolaSelect3 < 27) {
+                    Vibration.vibrate(100)
                     setView3Bola(false)
                     setDirection3(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1635,7 +1682,6 @@ export default function Mix(): JSX.Element {
         setMovY(translationY);
     }
 
-
     const movimiento4 = (event: any) => {
         const { translationX, translationY, x, y, velocityX, velocityY } = event.nativeEvent
         //console.log("translationX: " + translationX, "translationY: " + translationY)
@@ -1653,11 +1699,11 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect4;
                 //selección de bola mitad arriba
                 if (bolaSelect4 < 3) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Derecha);
                     let setInter = setInterval(() => {
                         n = n + 1;
-                        //setVelocity1(0)
                         setVelocity4(n)
                         if (n == 3) {
                             setVelocity4(0)
@@ -1677,6 +1723,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect4 > 3 && bolaSelect4 < 9) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1705,6 +1752,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect4;
                 //selección de bola mitad arriba
                 if (bolaSelect4 < 10) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1728,6 +1776,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect4 > 10 && bolaSelect4 < 25) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1757,6 +1806,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect4;
                 //selección de bola mitad arriba
                 if (bolaSelect4 >= 0 && bolaSelect4 < 21) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1780,6 +1830,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect4 > 21 && bolaSelect4 < 49) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1812,6 +1863,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect4;
                 //selección de bola mitad arriba
                 if (bolaSelect4 == 2) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1834,6 +1886,7 @@ export default function Mix(): JSX.Element {
                     }, 400);
                 }
                 if (bolaSelect4 == 0) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1857,6 +1910,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad abajo
                 if (bolaSelect4 > 3 && bolaSelect4 < 9) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1886,6 +1940,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect4;
                 //selección de bola mitad abajo
                 if (bolaSelect4 > 10 && bolaSelect4 < 25) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1909,6 +1964,7 @@ export default function Mix(): JSX.Element {
                 }
 
                 if (bolaSelect4 > 2 && bolaSelect4 < 10) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Izquierda);
                     let setInter = setInterval(() => {
@@ -1933,6 +1989,7 @@ export default function Mix(): JSX.Element {
 
                 //selección de bola mitad arriba
                 if (bolaSelect4 < 2) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1962,6 +2019,7 @@ export default function Mix(): JSX.Element {
                 let n = bolaSelect4;
                 //selección de bola mitad abajo
                 if (bolaSelect4 > 21 && bolaSelect4 < 49) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -1985,6 +2043,7 @@ export default function Mix(): JSX.Element {
                 }
                 //selección de bola mitad arriba
                 if (bolaSelect4 >= 0 && bolaSelect4 < 3) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Derecha);
                     let setInter = setInterval(() => {
@@ -2007,6 +2066,7 @@ export default function Mix(): JSX.Element {
                     }, 200);
                 }
                 if (bolaSelect4 > 3 && bolaSelect4 < 21) {
+                    Vibration.vibrate(100)
                     setView4Bola(false)
                     setDirection4(Direction.Izquierda);
                     let setInter = setInterval(() => {
