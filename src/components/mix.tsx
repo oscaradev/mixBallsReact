@@ -2077,6 +2077,9 @@ export default function Mix(): JSX.Element {
         setMovX(-30);
         setMovY(-30);
         setBolaSelect(index)
+        setBolaSelect2(-100+bolaSelect2)
+        setBolaSelect3(-100+bolaSelect3)
+        setBolaSelect4(-100+bolaSelect4)
     };
 
     //función para obtener la bola seleccionada mix2
@@ -2086,6 +2089,9 @@ export default function Mix(): JSX.Element {
         setMovX(-30);
         setMovY(-30);
         setBolaSelect2(index)
+        setBolaSelect(-100+bolaSelect)
+        setBolaSelect3(-100+bolaSelect3)
+        setBolaSelect4(-100+bolaSelect4)
     };
 
     //función para obtener la bola seleccionada mix3
@@ -2095,6 +2101,9 @@ export default function Mix(): JSX.Element {
         setMovX(-30);
         setMovY(-30);
         setBolaSelect3(index)
+        setBolaSelect2(-100+bolaSelect2)
+        setBolaSelect(-100+bolaSelect)
+        setBolaSelect4(-100+bolaSelect4)
     };
     //función para obtener la bola seleccionada mix2
     const selectBall4 = (index: number) => {
@@ -2103,6 +2112,9 @@ export default function Mix(): JSX.Element {
         setMovX(-30);
         setMovY(-30);
         setBolaSelect4(index)
+        setBolaSelect2(-100+bolaSelect2)
+        setBolaSelect3(-100+bolaSelect3)
+        setBolaSelect(-100+bolaSelect)
     };
     //función que interpreta que la bola ya no esta seleccionada
     const selectOutBall = () => {
@@ -2684,41 +2696,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.primary
     },
-    // ViewContenedor: {
-    //     //flex: 1,
-    //     //alignItems: 'center',
-    //     //justifyContent: 'center',
-    //     top: ventana.height * 0.10,
-    //     bottom: ventana.height * 0.05,
-    //     left: ventana.width * 0.04,
-    //     right: ventana.width * 0.04,
-    //     height: ventana.height * 0.80,
-    //     width: ventana.width * 0.92,
-    //     borderColor: 'blue',
-    //     borderWidth: 2,
-    //     borderRadius: 10,
-    //     flexDirection: 'row',
-    //     flexWrap: 'wrap',
-    //     //justifyContent:'space-evenly',
-    // },
-    // View1: {
-    //     top: (ventana.height * 0.80) * 0.02,
-    //     left: (ventana.width * 0.92) * 0.03,
-    //     height: ventana.height * 0.35,
-    //     width: ventana.width * 0.40,
-    //     borderColor: 'blue',
-    //     borderWidth: 1,
-    //     borderRadius: 10,
-    // },
-    // View2: {
-    //     top: (ventana.height * 0.03),
-    //     left: (ventana.width * 0.92) * 0.03,
-    //     height: ventana.height * 0.35,
-    //     width: ventana.width * 0.40,
-    //     borderColor: 'red',
-    //     borderWidth: 1,
-    //     borderRadius: 10,
-    // },
     ViewContenedor: {
         //flex: 1,
         //alignItems: 'center',
@@ -2763,6 +2740,7 @@ const styles = StyleSheet.create({
         height: '40%',
         width: '43%',
         borderColor: 'blue',
+        backgroundColor:'#0FC5FF',
         borderWidth: 2,
         borderRadius: 10,
         flexDirection: 'row',
@@ -2774,6 +2752,7 @@ const styles = StyleSheet.create({
         height: '40%',
         width: '43%',
         borderColor: 'red',
+        backgroundColor:'#FF9494',
         borderWidth: 2,
         borderRadius: 10,
         flexDirection: 'row',
@@ -2785,6 +2764,7 @@ const styles = StyleSheet.create({
         height: '40%',
         width: '43%',
         borderColor: 'white',
+        backgroundColor:'#D3FABD',
         borderWidth: 2,
         borderRadius: 10,
         flexDirection: 'row',
@@ -2796,6 +2776,7 @@ const styles = StyleSheet.create({
         height: '40%',
         width: '43%',
         borderColor: 'yellow',
+        backgroundColor:'#D5DC8C',
         borderWidth: 2,
         borderRadius: 10,
         flexDirection: 'row',
