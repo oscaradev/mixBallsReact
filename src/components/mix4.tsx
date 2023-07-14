@@ -1,6 +1,6 @@
 //import { Fragment } from "react";
 import React from 'react';
-import { StyleSheet, View, Text, Pressable } from "react-native";
+import { StyleSheet, View, Text, Pressable, TouchableOpacity } from "react-native";
 import { Coordenada } from "../types/types";
 import Animated, { Keyframe, ZoomIn, ZoomOut } from 'react-native-reanimated';
 
@@ -205,7 +205,15 @@ export default function Bola4({ valor, long, alto, ancho, pos, dir, onPress, onP
     // este useEffect muestra el movimiento segun la direccion de movimiento
     let timer4: NodeJS.Timeout
     React.useEffect(() => {
-        setDir4(true)
+        if (long === 9 && pos != 3 && pos != 1) {
+            setDir4(true)
+        }
+        if (long === 25 && pos != 10 && pos != 2) {
+            setDir4(true)
+        }
+        if (long === 49 && pos != 21 && pos != 3) {
+            setDir4(true)
+        }
         timer4 = setTimeout(() => {
             setDir4(false)
         }, 2000);
@@ -214,7 +222,7 @@ export default function Bola4({ valor, long, alto, ancho, pos, dir, onPress, onP
 
     return (
         <View>
-            <Pressable onPress={onPress}
+            <Pressable onPressIn={onPress}
                 onPressOut={onPressOut}
             >
                 <View style={long === 9 && pos != 3 && pos != 1 ? [styles.bola9, StyleBola9] : long === 9 ? StyleBola9Trans
@@ -229,25 +237,25 @@ export default function Bola4({ valor, long, alto, ancho, pos, dir, onPress, onP
                 style={StyleBola25Select}
             /> : null}
 
-            {pos === 3 && long === 9 ? <Pressable style={StyleBola9L} onPress={onPressMix4L}>
+            {pos === 3 && long === 9 ? <TouchableOpacity style={StyleBola9L} onPress={onPressMix4L}>
                 <Animated.View />
-            </Pressable> : ""}
-            {pos === 1 && long === 9 ? <Pressable style={StyleBola9T} onPress={onPressMix4T}>
+            </TouchableOpacity> : ""}
+            {pos === 1 && long === 9 ? <TouchableOpacity style={StyleBola9T} onPress={onPressMix4T}>
                 <Animated.View />
-            </Pressable> : ""}
-            {pos === 10 && long === 25 ? <Pressable style={StyleBola25L} onPress={onPressMix4L}>
+            </TouchableOpacity> : ""}
+            {pos === 10 && long === 25 ? <TouchableOpacity style={StyleBola25L} onPress={onPressMix4L}>
                 <Animated.View />
-            </Pressable> : ""}
-            {pos === 2 && long === 25 ? <Pressable style={StyleBola25T} onPress={onPressMix4T}>
+            </TouchableOpacity> : ""}
+            {pos === 2 && long === 25 ? <TouchableOpacity style={StyleBola25T} onPress={onPressMix4T}>
                 <Animated.View />
-            </Pressable> : ""}
-            {pos === 21 && long === 49 ? <Pressable style={StyleBola49L} onPress={onPressMix4L}>
+            </TouchableOpacity> : ""}
+            {pos === 21 && long === 49 ? <TouchableOpacity style={StyleBola49L} onPress={onPressMix4L}>
                 <Animated.View />
-            </Pressable> : ""}
-            {pos === 3 && long === 49 ? <Pressable style={StyleBola49T} onPress={onPressMix4T}>
+            </TouchableOpacity> : ""}
+            {pos === 3 && long === 49 ? <TouchableOpacity style={StyleBola49T} onPress={onPressMix4T}>
                 <Animated.View />
-            </Pressable> : ""}
- 
+            </TouchableOpacity> : ""}
+
         </View>
     )
 
