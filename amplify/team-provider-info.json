@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mixballs-dev-192248-authRole",
+      "UnauthRoleArn": "arn:aws:iam::396316595554:role/amplify-mixballs-dev-192248-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::396316595554:role/amplify-mixballs-dev-192248-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-mixballs-dev-192248-deployment",
+      "UnauthRoleName": "amplify-mixballs-dev-192248-unauthRole",
+      "StackName": "amplify-mixballs-dev-192248",
+      "StackId": "arn:aws:cloudformation:us-east-2:396316595554:stack/amplify-mixballs-dev-192248/55257b80-2754-11ee-a1bf-06c6716fa2ed",
+      "AmplifyAppId": "d1ejju65lq4lpp"
+    }
+  }
+}
