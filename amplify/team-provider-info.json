@@ -10,6 +10,11 @@
       "StackName": "amplify-mixballs-dev-192248",
       "StackId": "arn:aws:cloudformation:us-east-2:396316595554:stack/amplify-mixballs-dev-192248/55257b80-2754-11ee-a1bf-06c6716fa2ed",
       "AmplifyAppId": "d1ejju65lq4lpp"
+    },
+    "categories": {
+      "auth": {
+        "mixBalls": {}
+      }
     }
   }
 }

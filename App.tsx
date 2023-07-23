@@ -1,14 +1,20 @@
 import { StyleSheet } from 'react-native';
 import "react-native-gesture-handler"
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+//Creando Dependencias de Navegación entre componenetes
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+//Creando Componentes
 import Mix from './src/components/mix';
 import SignInScreen from './src/screens/SignInScreen/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen/SignUpScreen';
 import ConfirmEmailScreen from './src/screens/ConfirmEmailScreen/ConfirmEmailScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen/ForgotPasswordScreen';
 import NewPasswordScreen from './src/screens/NewPasswordScreen/NewPasswordScreen';
+//Establecion comuncicación con AWS
+import { Amplify } from 'aws-amplify';
+import awsExports from './src/aws-exports';
+Amplify.configure(awsExports);
 
 function Mixx() {
   return (
