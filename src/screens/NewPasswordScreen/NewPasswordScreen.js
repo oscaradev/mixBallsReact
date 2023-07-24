@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useNavigation } from '@react-navigation/native'
+import { useForm } from "react-hook-form"
 
 const NewPasswordScreen = () => {
 
-    const [code, setCode] = useState('');
-    const [newPassword, setNewPassword] = useState('');
     const navigation = useNavigation();
+    const { control,
+        handleSubmit,
+        formState: { errors }
+    } = useForm()
 
     const onSubmitPressed = () => {
         navigation.navigate('Sign In')
@@ -27,15 +30,28 @@ const NewPasswordScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Text style={styles.title}>Reset your password</Text>
                 <CustomInput
-                    placeholder="Enter the code received"
-                    value={code}
-                    setValue={setCode} />
+                    name="Code"
+                    placeholder="Enter de code received"
+                    control={control}
+                    rules={{ required: 'Code is required' }} />
                 <CustomInput
+                    name="NewPassword"
                     placeholder="Enter new password"
-                    value={newPassword}
-                    setValue={setNewPassword} />
+                    control={control}
+                    rules={{
+                        required: 'New password is required',
+                        minLength: {
+                            value: 8,
+                            message: 'New password should be minimun 8 characters long'
+                        },
+                        maxLength: {
+                            value: 8,
+                            message: 'New password should be maximum 8 characters long'
+                        }
+                    }}
+                    secureTextEntry={true} />
                 <CustomButton
-                    onPress={onSubmitPressed}
+                    onPress={handleSubmit(onSubmitPressed)}
                     text="Submit"
                 />
                 <CustomButton

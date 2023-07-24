@@ -1,19 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useNavigation } from '@react-navigation/native'
+import { useForm } from "react-hook-form"
 
 const SignUpScreen = () => {
 
-    const [name, setName] = useState('');
-    const [emailUser, setEmailUser] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordRepeat, setPasswordRepeat] = useState('');
     const navigation = useNavigation();
+    const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
-    const onRegisterPressed = () => {
-        navigation.navigate('Confirm Email')
+    const { control,
+        handleSubmit,
+        formState: { errors },
+        watch
+    } = useForm()
+
+    const passw = watch('Password')
+
+    const onRegisterPressed = async (data) => {
+        console.log('register data', data)
+        //navigation.navigate('Confirm Email')
     }
 
     const onTermsOfUsePressed = () => {
@@ -41,25 +48,56 @@ const SignUpScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Text style={styles.title}>Create an account</Text>
                 <CustomInput
+                    name="Name"
                     placeholder="Name"
-                    value={name}
-                    setValue={setName} />
+                    control={control}
+                    rules={{ required: 'Name is required' }} />
                 <CustomInput
+                    name="Email"
                     placeholder="Email"
-                    value={emailUser}
-                    setValue={setEmailUser} />
+                    control={control}
+                    rules={{
+                        required: 'Email is required',
+                        pattern: {
+                            value: EMAIL_REGEX,
+                            message: 'Format email is incorrect'
+                        }
+                    }} />
                 <CustomInput
+                    name="Password"
                     placeholder="Password"
-                    value={password}
-                    setValue={setPassword}
+                    control={control}
+                    rules={{
+                        required: 'Password is required',
+                        minLength: {
+                            value: 8,
+                            message: 'Password should be minimun 8 characters long'
+                        },
+                        maxLength: {
+                            value: 8,
+                            message: 'Password should be maximum 8 characters long'
+                        }
+                    }}
                     secureTextEntry={true} />
                 <CustomInput
+                    name="Repeat Password"
                     placeholder="Repeat Password"
-                    value={passwordRepeat}
-                    setValue={setPasswordRepeat}
+                    control={control}
+                    rules={{
+                        required: 'Password is required',
+                        minLength: {
+                            value: 8,
+                            message: 'Password should be minimun 8 characters long'
+                        },
+                        maxLength: {
+                            value: 8,
+                            message: 'Password should be maximum 8 characters long'
+                        },
+                        validate: value => value === passw || 'Password do no match'
+                    }}
                     secureTextEntry={true} />
                 <CustomButton
-                    onPress={onRegisterPressed}
+                    onPress={handleSubmit(onRegisterPressed)}
                     text="Register"
                 />
                 <Text style={styles.text}>By registering, you confirm that you accept our <Text style={styles.link} onPress={onTermsOfUsePressed}>Terms of Use</Text> and <Text style={styles.link} onPress={onPrivacyPolicyPressed}>Privacy Policy</Text>

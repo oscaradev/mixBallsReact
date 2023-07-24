@@ -13,6 +13,7 @@ import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen/ForgotPassw
 import NewPasswordScreen from './src/screens/NewPasswordScreen/NewPasswordScreen';
 //Establecion comuncicación con AWS
 import { Amplify } from 'aws-amplify';
+// import { withAuthenticator } from '@aws-amplify/ui-react';
 import awsExports from './src/aws-exports';
 Amplify.configure(awsExports);
 
@@ -27,6 +28,7 @@ function Mixx() {
 const Stack = createNativeStackNavigator();
 
 export default function App(): JSX.Element {
+//const App = function (): JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -46,3 +48,6 @@ const styles = StyleSheet.create({
     flex: 1,
   }
 });
+
+//esta exportación de este modo guarda relación con la dependencia AWS withAuthenticator
+//export default withAuthenticator(App)
