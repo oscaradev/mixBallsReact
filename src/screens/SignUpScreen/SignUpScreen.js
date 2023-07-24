@@ -1,14 +1,16 @@
-import React from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native'
 import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useNavigation } from '@react-navigation/native'
+import { Auth } from 'aws-amplify'
 import { useForm } from "react-hook-form"
 
 const SignUpScreen = () => {
 
     const navigation = useNavigation();
     const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    const [loading, setLoading] = useState(false);
 
     const { control,
         handleSubmit,
@@ -19,9 +21,27 @@ const SignUpScreen = () => {
     const passw = watch('Password')
 
     const onRegisterPressed = async (data) => {
-        console.log('register data', data)
-        //navigation.navigate('Confirm Email')
+        const { Email, Name, Password } = data
+        if (loading) {
+            return;
+        }
+        setLoading(true);
+
+        await Auth.signUp({
+            username: Email,
+            password: Password,
+            attributes: { name: Name }
+        }).then(res => {
+            //console.log('response res', res)
+            navigation.navigate('Confirm Email')
+            setLoading(false);
+        }).catch(error => {
+            //console.log('response error', error)
+            setLoading(false);
+            Alert.alert('Error', Email + ' ' + error.message)
+        })
     }
+
 
     const onTermsOfUsePressed = () => {
 
@@ -47,11 +67,6 @@ const SignUpScreen = () => {
         <View style={styles.viewP}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Text style={styles.title}>Create an account</Text>
-                <CustomInput
-                    name="Name"
-                    placeholder="Name"
-                    control={control}
-                    rules={{ required: 'Name is required' }} />
                 <CustomInput
                     name="Email"
                     placeholder="Email"
@@ -96,9 +111,14 @@ const SignUpScreen = () => {
                         validate: value => value === passw || 'Password do no match'
                     }}
                     secureTextEntry={true} />
+                <CustomInput
+                    name="Name"
+                    placeholder="Name"
+                    control={control}
+                    rules={{ required: 'Name is required' }} />
                 <CustomButton
                     onPress={handleSubmit(onRegisterPressed)}
-                    text="Register"
+                    text={loading ? "Registering..." : "Register"}
                 />
                 <Text style={styles.text}>By registering, you confirm that you accept our <Text style={styles.link} onPress={onTermsOfUsePressed}>Terms of Use</Text> and <Text style={styles.link} onPress={onPrivacyPolicyPressed}>Privacy Policy</Text>
                 </Text>

@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, Image, StyleSheet, useWindowDimensions, ScrollView, TextInput } from 'react-native'
+import React, { useState } from 'react'
+import { View, Image, StyleSheet, useWindowDimensions, ScrollView, Alert } from 'react-native'
 import Logo from '../../../assets/images/logo.png'
 import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
@@ -13,6 +13,8 @@ const SignInScreen = () => {
     const { height } = useWindowDimensions();
     const navigation = useNavigation();
     const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    const [loading, setLoading] = useState(false);
+
 
     const { control,
         handleSubmit,
@@ -20,10 +22,36 @@ const SignInScreen = () => {
     } = useForm()
 
     const onSignInPressed = async (data) => {
-        // console.log('data', data)
-        // const response = await Auth.signIn(data.username, data.password);
-        // console.log('response', response)
-        //navigation.navigate('Mix Balls')
+        //console.log('data', data)
+        if (loading) {
+            return;
+        }
+        setLoading(true);
+        await Auth.signIn(data.Email, data.Password).then(res => {
+            console.log('response res', res)
+            navigation.navigate('Mix Balls')
+            setLoading(false);
+        }).catch(error => {
+            let codeRes = error.code
+            //console.log('response error', error.code)
+            setLoading(false);
+            switch (codeRes) {
+                case 'UserNotConfirmedException':
+                    return Alert.alert('Email unconfirmed', 'Do you need confirm account to ' + data.Email, [{
+                        text: 'YES',
+                        onPress: () => navigation.navigate('Confirm Email', data.Email),
+                        style: 'default',
+                    },
+                    {
+                        text: 'NO',
+                        style: 'cancel',
+                    },
+                    ]);
+                default:
+                    return Alert.alert('Error', error.message);
+            }
+        })
+
     }
 
     const onForgotPasswordPressed = () => {
@@ -79,7 +107,7 @@ const SignInScreen = () => {
 
                 <CustomButton
                     onPress={handleSubmit(onSignInPressed)}
-                    text="Sign In"
+                    text={loading ? "Loading..." : "Sign In"}
                 />
                 <CustomButton
                     onPress={onForgotPasswordPressed}

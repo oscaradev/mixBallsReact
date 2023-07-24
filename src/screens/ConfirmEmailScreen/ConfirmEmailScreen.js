@@ -1,20 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import { Auth } from 'aws-amplify'
 import { useForm } from "react-hook-form"
 
 const ConfirmEmailScreen = () => {
-
+    const route = useRoute();
+    const emailUser = route?.params;
     const navigation = useNavigation();
     const { control,
         handleSubmit,
         formState: { errors }
     } = useForm()
+    const [loading, setLoading] = useState(false);
 
-    const onConfirmPressed = () => {
-        navigation.navigate('Mix Balls')
+    const onConfirmPressed = async (data) => {
+        if (loading) {
+            return;
+        }
+        setLoading(true);
+
+        await Auth.confirmSignUp(emailUser, data.Code).then(res => {
+            navigation.navigate('Mix Balls')
+            setLoading(false);
+        }).catch(error => {
+            //console.log('response error', error)
+            setLoading(false);
+            Alert.alert('Error Confirming', error.message)
+        })
+
+
+
     }
 
     const onResendCodePress = () => {
@@ -28,7 +46,7 @@ const ConfirmEmailScreen = () => {
 
         <View style={styles.viewP}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <Text style={styles.title}>Confirm your email</Text>
+                <Text style={styles.title}>Confirm your email {emailUser}</Text>
                 <CustomInput
                     name="Code"
                     placeholder="Enter your confirmation code"
@@ -36,7 +54,7 @@ const ConfirmEmailScreen = () => {
                     rules={{ required: 'Confirmation code is required' }} />
                 <CustomButton
                     onPress={handleSubmit(onConfirmPressed)}
-                    text="Confirm"
+                    text={loading ? "Confirming..." : "Confirm"}
                 />
                 <CustomButton
                     onPress={onResendCodePress}
