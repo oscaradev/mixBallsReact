@@ -1,20 +1,35 @@
-import React from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native'
 import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { useForm } from "react-hook-form"
+import { Auth } from 'aws-amplify'
 
 const NewPasswordScreen = () => {
-
+    const route = useRoute();
+    const emailUser = route?.params;
     const navigation = useNavigation();
     const { control,
         handleSubmit,
         formState: { errors }
     } = useForm()
+    const [loading, setLoading] = useState(false);
 
-    const onSubmitPressed = () => {
-        navigation.navigate('Sign In')
+    const onSubmitPressed = async (data) => {
+        if (loading) {
+            return;
+        }
+        setLoading(true);
+
+        await Auth.forgotPasswordSubmit(emailUser, data.Code, data.NewPassword).then(() => {
+            Alert.alert('Password change successful!', 'Please sign in with your new password')
+            navigation.navigate('Sign In')
+            setLoading(false);
+        }).catch(error => {
+            setLoading(false);
+            Alert.alert('Error change password', error.message)
+        })
     }
 
     const onResendCodePress = () => {
@@ -28,7 +43,7 @@ const NewPasswordScreen = () => {
 
         <View style={styles.viewP}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <Text style={styles.title}>Reset your password</Text>
+                <Text style={styles.title}>Reset password to {emailUser} </Text>
                 <CustomInput
                     name="Code"
                     placeholder="Enter de code received"
@@ -52,7 +67,7 @@ const NewPasswordScreen = () => {
                     secureTextEntry={true} />
                 <CustomButton
                     onPress={handleSubmit(onSubmitPressed)}
-                    text="Submit"
+                    text={loading ? "Changing..." : "Submit"}
                 />
                 <CustomButton
                     onPress={onSignInPress}

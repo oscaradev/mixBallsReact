@@ -33,7 +33,7 @@ const SignUpScreen = () => {
             attributes: { name: Name }
         }).then(res => {
             //console.log('response res', res)
-            navigation.navigate('Confirm Email')
+            navigation.navigate('Confirm Email', data.Email)
             setLoading(false);
         }).catch(error => {
             //console.log('response error', error)

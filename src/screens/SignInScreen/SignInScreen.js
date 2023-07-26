@@ -28,7 +28,7 @@ const SignInScreen = () => {
         }
         setLoading(true);
         await Auth.signIn(data.Email, data.Password).then(res => {
-            console.log('response res', res)
+            //console.log('response res', res)
             navigation.navigate('Mix Balls')
             setLoading(false);
         }).catch(error => {
@@ -39,7 +39,13 @@ const SignInScreen = () => {
                 case 'UserNotConfirmedException':
                     return Alert.alert('Email unconfirmed', 'Do you need confirm account to ' + data.Email, [{
                         text: 'YES',
-                        onPress: () => navigation.navigate('Confirm Email', data.Email),
+                        onPress: async () => {
+                            await Auth.resendSignUp(data.Email).then(() => {
+                                navigation.navigate('Confirm Email', data.Email)
+                            }).catch(error => {
+                                Alert.alert('Error Confirm Email', error.message)
+                            })
+                        },
                         style: 'default',
                     },
                     {

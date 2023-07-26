@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native'
 import CustomInput from '../../components/CustomInput/CustomInput'
 import CustomButton from '../../components/CustomButton/CustomButton'
 import { useNavigation, useRoute } from '@react-navigation/native'
@@ -15,6 +15,7 @@ const ConfirmEmailScreen = () => {
         formState: { errors }
     } = useForm()
     const [loading, setLoading] = useState(false);
+    const [resend, setResend] = useState(false);
 
     const onConfirmPressed = async (data) => {
         if (loading) {
@@ -23,7 +24,8 @@ const ConfirmEmailScreen = () => {
         setLoading(true);
 
         await Auth.confirmSignUp(emailUser, data.Code).then(res => {
-            navigation.navigate('Mix Balls')
+            //navigation.navigate('Mix Balls')
+            navigation.navigate('Sign In')
             setLoading(false);
         }).catch(error => {
             //console.log('response error', error)
@@ -31,12 +33,24 @@ const ConfirmEmailScreen = () => {
             Alert.alert('Error Confirming', error.message)
         })
 
-
-
     }
 
-    const onResendCodePress = () => {
+    const onResendCodePress = async () => {
+        if (resend) {
+            return;
+        }
+        setResend(true);
 
+        await Auth.resendSignUp(emailUser).then(res => {
+            //navigation.navigate('Mix Balls')
+            //navigation.navigate('Sign In')
+            Alert.alert('Sent successfully!', 'if you don´t see the code on your email, please check spam')
+            setResend(false);
+        }).catch(error => {
+            //console.log('response error', error)
+            setResend(false);
+            Alert.alert('Error Resend Code', error.message)
+        })
     }
 
     const onSignInPress = () => {
@@ -58,7 +72,7 @@ const ConfirmEmailScreen = () => {
                 />
                 <CustomButton
                     onPress={onResendCodePress}
-                    text="Resend Code"
+                    text={resend ? "Sending code..." : "Resend Code"}
                     type="secondary"
                 />
                 <CustomButton
