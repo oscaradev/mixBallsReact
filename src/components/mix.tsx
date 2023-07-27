@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-    SafeAreaView, 
-    View, 
-    StyleSheet, 
+    SafeAreaView,
+    View,
+    StyleSheet,
     Text,
     TextInput,
     Modal,
-    Vibration
+    Vibration,
 } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { Colors } from "../styles/colores";
@@ -2137,9 +2137,9 @@ export default function Mix(): JSX.Element {
         setMovX(-30);
         setMovY(-30);
         setBolaSelect(index)
-        setBolaSelect2(-100+bolaSelect2)
-        setBolaSelect3(-100+bolaSelect3)
-        setBolaSelect4(-100+bolaSelect4)
+        setBolaSelect2(-100 + bolaSelect2)
+        setBolaSelect3(-100 + bolaSelect3)
+        setBolaSelect4(-100 + bolaSelect4)
     };
 
     //función para obtener la bola seleccionada mix2
@@ -2149,9 +2149,9 @@ export default function Mix(): JSX.Element {
         setMovX(-30);
         setMovY(-30);
         setBolaSelect2(index)
-        setBolaSelect(-100+bolaSelect)
-        setBolaSelect3(-100+bolaSelect3)
-        setBolaSelect4(-100+bolaSelect4)
+        setBolaSelect(-100 + bolaSelect)
+        setBolaSelect3(-100 + bolaSelect3)
+        setBolaSelect4(-100 + bolaSelect4)
     };
 
     //función para obtener la bola seleccionada mix3
@@ -2161,9 +2161,9 @@ export default function Mix(): JSX.Element {
         setMovX(-30);
         setMovY(-30);
         setBolaSelect3(index)
-        setBolaSelect2(-100+bolaSelect2)
-        setBolaSelect(-100+bolaSelect)
-        setBolaSelect4(-100+bolaSelect4)
+        setBolaSelect2(-100 + bolaSelect2)
+        setBolaSelect(-100 + bolaSelect)
+        setBolaSelect4(-100 + bolaSelect4)
     };
     //función para obtener la bola seleccionada mix2
     const selectBall4 = (index: number) => {
@@ -2172,9 +2172,9 @@ export default function Mix(): JSX.Element {
         setMovX(-30);
         setMovY(-30);
         setBolaSelect4(index)
-        setBolaSelect2(-100+bolaSelect2)
-        setBolaSelect3(-100+bolaSelect3)
-        setBolaSelect(-100+bolaSelect)
+        setBolaSelect2(-100 + bolaSelect2)
+        setBolaSelect3(-100 + bolaSelect3)
+        setBolaSelect(-100 + bolaSelect)
     };
     //función que interpreta que la bola ya no esta seleccionada
     const selectOutBall = () => {
@@ -2193,7 +2193,7 @@ export default function Mix(): JSX.Element {
             mix11[5] = mix_3
             setBola22(mix22)
             setBola11(mix11)
-            setBolaSelect(-100+bolaSelect)
+            setBolaSelect(-100 + bolaSelect)
         } else if (tamano === 25) {
             let mix11 = bola11
             let mix_14 = mix11[14]
@@ -2203,7 +2203,7 @@ export default function Mix(): JSX.Element {
             mix11[14] = mix_10
             setBola22(mix22)
             setBola11(mix11)
-            setBolaSelect(-100+bolaSelect)
+            setBolaSelect(-100 + bolaSelect)
         } else if (tamano === 49) {
             let mix11 = bola11
             let mix_27 = mix11[27]
@@ -2213,7 +2213,7 @@ export default function Mix(): JSX.Element {
             mix11[27] = mix_21
             setBola22(mix22)
             setBola11(mix11)
-            setBolaSelect(-100+bolaSelect)
+            setBolaSelect(-100 + bolaSelect)
         }
     };
     //Mix 1,Presionado Bola Inferior
@@ -2227,7 +2227,7 @@ export default function Mix(): JSX.Element {
             mix11[7] = mix_1
             setBola33(mix33)
             setBola11(mix11)
-            setBolaSelect(-100+bolaSelect)
+            setBolaSelect(-100 + bolaSelect)
         } else if (tamano === 25) {
             let mix11 = bola11
             let mix_22 = mix11[22]
@@ -2237,7 +2237,7 @@ export default function Mix(): JSX.Element {
             mix11[22] = mix_2
             setBola33(mix33)
             setBola11(mix11)
-            setBolaSelect(-100+bolaSelect)
+            setBolaSelect(-100 + bolaSelect)
         } else if (tamano === 49) {
             let mix11 = bola11
             let mix_45 = mix11[45]
@@ -2247,7 +2247,7 @@ export default function Mix(): JSX.Element {
             mix11[45] = mix_3
             setBola33(mix33)
             setBola11(mix11)
-            setBolaSelect(-100+bolaSelect)
+            setBolaSelect(-100 + bolaSelect)
         }
     };
     //Mix 2,Presionado Bola Izquierda
@@ -2261,7 +2261,7 @@ export default function Mix(): JSX.Element {
             mix11[5] = mix_3
             setBola22(mix22)
             setBola11(mix11)
-            setBolaSelect2(-100+bolaSelect2)
+            setBolaSelect2(-100 + bolaSelect2)
         } else if (tamano === 25) {
             let mix11 = bola11
             let mix_14 = mix11[14]
@@ -2271,7 +2271,7 @@ export default function Mix(): JSX.Element {
             mix11[14] = mix_10
             setBola22(mix22)
             setBola11(mix11)
-            setBolaSelect2(-100+bolaSelect2)
+            setBolaSelect2(-100 + bolaSelect2)
         } else if (tamano === 49) {
             let mix22 = bola22
             let mix_21 = mix22[21]
@@ -2281,7 +2281,7 @@ export default function Mix(): JSX.Element {
             mix11[27] = mix_21
             setBola22(mix22)
             setBola11(mix11)
-            setBolaSelect2(-100+bolaSelect2)
+            setBolaSelect2(-100 + bolaSelect2)
         }
     };
     //Mix 2,Presionado Bola Inferior
@@ -2295,7 +2295,7 @@ export default function Mix(): JSX.Element {
             mix22[7] = mix_1
             setBola22(mix22)
             setBola44(mix44)
-            setBolaSelect2(-100+bolaSelect2)
+            setBolaSelect2(-100 + bolaSelect2)
         } else if (tamano === 25) {
             let mix22 = bola22
             let mix_22 = mix22[22]
@@ -2305,7 +2305,7 @@ export default function Mix(): JSX.Element {
             mix22[22] = mix_2
             setBola22(mix22)
             setBola44(mix44)
-            setBolaSelect2(-100+bolaSelect2)
+            setBolaSelect2(-100 + bolaSelect2)
         } else if (tamano === 49) {
             let mix22 = bola22
             let mix_45 = mix22[45]
@@ -2315,7 +2315,7 @@ export default function Mix(): JSX.Element {
             mix22[45] = mix_3
             setBola22(mix22)
             setBola44(mix44)
-            setBolaSelect2(-100+bolaSelect2)
+            setBolaSelect2(-100 + bolaSelect2)
         }
     };
     //Mix 3,Presionado Bola Derecha
@@ -2329,7 +2329,7 @@ export default function Mix(): JSX.Element {
             mix33[5] = mix_3
             setBola44(mix44)
             setBola33(mix33)
-            setBolaSelect3(-100+bolaSelect3)
+            setBolaSelect3(-100 + bolaSelect3)
         } else if (tamano === 25) {
             let mix33 = bola33
             let mix_14 = mix33[14]
@@ -2339,7 +2339,7 @@ export default function Mix(): JSX.Element {
             mix33[14] = mix_10
             setBola44(mix44)
             setBola33(mix33)
-            setBolaSelect3(-100+bolaSelect3)
+            setBolaSelect3(-100 + bolaSelect3)
         } else if (tamano === 49) {
             let mix33 = bola33
             let mix_27 = mix33[27]
@@ -2349,7 +2349,7 @@ export default function Mix(): JSX.Element {
             mix33[27] = mix_21
             setBola44(mix44)
             setBola33(mix33)
-            setBolaSelect3(-100+bolaSelect3)
+            setBolaSelect3(-100 + bolaSelect3)
         }
     };
     //Mix 3,Presionado Bola Superior
@@ -2363,7 +2363,7 @@ export default function Mix(): JSX.Element {
             mix33[1] = mix_7
             setBola11(mix11)
             setBola33(mix33)
-            setBolaSelect3(-100+bolaSelect3)
+            setBolaSelect3(-100 + bolaSelect3)
         } else if (tamano === 25) {
             let mix33 = bola33
             let mix_3 = mix33[2]
@@ -2373,7 +2373,7 @@ export default function Mix(): JSX.Element {
             mix33[2] = mix_2
             setBola11(mix11)
             setBola33(mix33)
-            setBolaSelect3(-100+bolaSelect3)
+            setBolaSelect3(-100 + bolaSelect3)
         } else if (tamano === 49) {
             let mix11 = bola11
             let mix_45 = mix11[45]
@@ -2383,7 +2383,7 @@ export default function Mix(): JSX.Element {
             mix11[45] = mix_3
             setBola33(mix33)
             setBola11(mix11)
-            setBolaSelect3(-100+bolaSelect3)
+            setBolaSelect3(-100 + bolaSelect3)
         }
     };
     //Mix 4,Presionado Bola Izquierda
@@ -2397,7 +2397,7 @@ export default function Mix(): JSX.Element {
             mix44[3] = mix_5
             setBola33(mix33)
             setBola44(mix44)
-            setBolaSelect4(-100+bolaSelect4)
+            setBolaSelect4(-100 + bolaSelect4)
         } else if (tamano === 25) {
             let mix33 = bola33
             let mix_14 = mix33[14]
@@ -2407,7 +2407,7 @@ export default function Mix(): JSX.Element {
             mix44[10] = mix_14
             setBola33(mix33)
             setBola44(mix44)
-            setBolaSelect4(-100+bolaSelect4)
+            setBolaSelect4(-100 + bolaSelect4)
         } else if (tamano === 49) {
             let mix33 = bola33
             let mix_27 = mix33[27]
@@ -2417,7 +2417,7 @@ export default function Mix(): JSX.Element {
             mix44[21] = mix_27
             setBola33(mix33)
             setBola44(mix44)
-            setBolaSelect4(-100+bolaSelect4)
+            setBolaSelect4(-100 + bolaSelect4)
         }
     };
     //Mix 4,Presionado Bola Superior
@@ -2431,7 +2431,7 @@ export default function Mix(): JSX.Element {
             mix44[1] = mix_7
             setBola22(mix22)
             setBola44(mix44)
-            setBolaSelect4(-100+bolaSelect4)
+            setBolaSelect4(-100 + bolaSelect4)
         } else if (tamano === 25) {
             let mix22 = bola22
             let mix_22 = mix22[22]
@@ -2441,7 +2441,7 @@ export default function Mix(): JSX.Element {
             mix44[2] = mix_22
             setBola22(mix22)
             setBola44(mix44)
-            setBolaSelect4(-100+bolaSelect4)
+            setBolaSelect4(-100 + bolaSelect4)
         } else if (tamano === 49) {
             let mix22 = bola22
             let mix_45 = mix22[45]
@@ -2451,7 +2451,7 @@ export default function Mix(): JSX.Element {
             mix44[3] = mix_45
             setBola22(mix22)
             setBola44(mix44)
-            setBolaSelect4(-100+bolaSelect4)
+            setBolaSelect4(-100 + bolaSelect4)
         }
     };
 
@@ -2754,7 +2754,7 @@ export default function Mix(): JSX.Element {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.primary
+        backgroundColor: Colors.primary,
     },
     ViewContenedor: {
         //flex: 1,
@@ -2800,7 +2800,7 @@ const styles = StyleSheet.create({
         height: '40%',
         width: '43%',
         borderColor: 'blue',
-        backgroundColor:'#0FC5FF',
+        backgroundColor: '#0FC5FF',
         borderWidth: 2,
         borderRadius: 10,
         flexDirection: 'row',
@@ -2812,7 +2812,7 @@ const styles = StyleSheet.create({
         height: '40%',
         width: '43%',
         borderColor: 'red',
-        backgroundColor:'#FF9494',
+        backgroundColor: '#FF9494',
         borderWidth: 2,
         borderRadius: 10,
         flexDirection: 'row',
@@ -2824,7 +2824,7 @@ const styles = StyleSheet.create({
         height: '40%',
         width: '43%',
         borderColor: 'white',
-        backgroundColor:'#D3FABD',
+        backgroundColor: '#D3FABD',
         borderWidth: 2,
         borderRadius: 10,
         flexDirection: 'row',
@@ -2836,7 +2836,7 @@ const styles = StyleSheet.create({
         height: '40%',
         width: '43%',
         borderColor: 'yellow',
-        backgroundColor:'#D5DC8C',
+        backgroundColor: '#D5DC8C',
         borderWidth: 2,
         borderRadius: 10,
         flexDirection: 'row',

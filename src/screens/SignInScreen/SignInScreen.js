@@ -27,13 +27,11 @@ const SignInScreen = () => {
             return;
         }
         setLoading(true);
-        await Auth.signIn(data.Email, data.Password).then(res => {
-            //console.log('response res', res)
+        await Auth.signIn(data.Email, data.Password).then(() => {
             navigation.navigate('Mix Balls')
             setLoading(false);
         }).catch(error => {
             let codeRes = error.code
-            //console.log('response error', error.code)
             setLoading(false);
             switch (codeRes) {
                 case 'UserNotConfirmedException':
