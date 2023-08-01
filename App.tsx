@@ -1,32 +1,26 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  Modal,
-} from 'react-native';
-import "react-native-gesture-handler"
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity, Modal } from "react-native";
+import "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 //Creando Dependencias de Navegación entre componenetes
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 //Creando Componentes
-import Mix from './src/components/mix';
-import SignInScreen from './src/screens/SignInScreen/SignInScreen';
-import SignUpScreen from './src/screens/SignUpScreen/SignUpScreen';
-import ConfirmEmailScreen from './src/screens/ConfirmEmailScreen/ConfirmEmailScreen';
-import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen/ForgotPasswordScreen';
-import NewPasswordScreen from './src/screens/NewPasswordScreen/NewPasswordScreen';
-
+import Mix from "./src/components/mix";
+import SignInScreen from "./src/screens/SignInScreen/SignInScreen";
+import SignUpScreen from "./src/screens/SignUpScreen/SignUpScreen";
+import ConfirmEmailScreen from "./src/screens/ConfirmEmailScreen/ConfirmEmailScreen";
+import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen/ForgotPasswordScreen";
+import NewPasswordScreen from "./src/screens/NewPasswordScreen/NewPasswordScreen";
 //Importaciones relacionadas a traducciones del juego
-import { en, es, hi, zh, pt } from './src/utilidades/localizations';
-import { I18n } from 'i18n-js';
+import { en, es, hi, zh, pt } from "./src/utilidades/localizations";
+import { I18n } from "i18n-js";
 //Establecion comuncicación con AWS
-import { Amplify } from 'aws-amplify';
+import { Amplify } from "aws-amplify";
+import "@azure/core-asynciterator-polyfill";
 // import { withAuthenticator } from '@aws-amplify/ui-react';
-import { Auth } from 'aws-amplify'
-import awsExports from './src/aws-exports';
+import { Auth, Hub } from "aws-amplify";
+import awsExports from "./src/aws-exports";
 Amplify.configure(awsExports);
 
 function Mixx() {
@@ -42,82 +36,113 @@ const Stack = createNativeStackNavigator();
 //función para Logout
 const onSignOut = () => {
   Auth.signOut()
-    .then(() => { })
-    .catch(error => console.log('Error logging out: ', error));
+    .then(() => {})
+    .catch((error) => console.log("Error logging out: ", error));
 };
 
 export default function App(): JSX.Element {
   //Defino variable que me guardara las traducciones del juego
   const i18n = new I18n({ en, es, hi, zh, pt });
 
+  //defino variable que tendra usuario logueado
+  const [user, setUser] = React.useState(undefined);
   //Se verifica si hay usuario logueado
   React.useEffect(() => {
     checkUser();
-  }, [])
+  }, []);
 
-  const [user, setUser] = React.useState(undefined)
+  //Se inicializa Hub para escucha instantanea de eventos de cambios de sesion de usuarios
+  React.useEffect(() => {
+    const listener = (data: any) => {
+      if (data.payload.event === "signIn" || data.payload.event === "signOut") {
+        checkUser();
+      }
+    };
+    const hubListenerCancelToken = Hub.listen("auth", listener);
+    //Detiene la escucha del listener
+    return () => hubListenerCancelToken();
+  }, []);
+
   const checkUser = async () => {
-    await Auth.currentAuthenticatedUser().then((res) => {
-      setUser(res.attributes.name)
-    }).catch(() => {
-      setUser(undefined)
-    })
+    await Auth.currentAuthenticatedUser({ bypassCache: true })
+      .then((res) => {
+        setUser(res.attributes.name);
+      })
+      .catch(() => {
+        setUser(undefined);
+      });
     //console.log('useeer', authUser.attributes.name)
-  }
+  };
 
   //activa o desactiva modal de salir de sesion
   const [modalSesion, setModalSesion] = React.useState(false);
   return (
     <NavigationContainer>
       {/* <Stack.Navigator screenOptions={{ headerShown: false }}> */}
-      <View >
+      <View>
         <Modal
           animationType="slide"
           transparent={true}
           visible={modalSesion}
-          onRequestClose={() => setModalSesion(false)}>
+          onRequestClose={() => setModalSesion(false)}
+        >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>{i18n.t('cerrarSeM')} {user ? user : ''}?</Text>
+              <Text style={styles.modalText}>
+                {i18n.t("cerrarSeM")} {user ? user : ""}?
+              </Text>
               <TouchableOpacity
                 style={[styles.button, styles.buttonOpen]}
-                onPress={() => { onSignOut(); setModalSesion(false) }}>
-                <Text style={styles.textStyle}>{i18n.t('siM')}</Text>
+                onPress={() => {
+                  onSignOut();
+                  setModalSesion(false);
+                }}
+              >
+                <Text style={styles.textStyle}>{i18n.t("siM")}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.button, styles.buttonOpen]}
-                onPress={() => setModalSesion(false)}>
-                <Text style={styles.textStyle}>{i18n.t('noM')}</Text>
+                onPress={() => setModalSesion(false)}
+              >
+                <Text style={styles.textStyle}>{i18n.t("noM")}</Text>
               </TouchableOpacity>
             </View>
           </View>
         </Modal>
       </View>
       <Stack.Navigator>
-      <Stack.Screen name="Sign In" component={SignInScreen} />
-        <Stack.Screen
-          name="Mix Balls"
-          component={Mixx}
-          options={{
-            title: "",
-            headerTransparent: true,
-            headerRight: () => (
-              <View>
-                <TouchableOpacity
-                  onPress={() => setModalSesion(true)}
-                >
-                  {/* <Text name="logout" size={24} >{user1 ? user1.email : ''}</Text> */}
-                  <Text> {user ? user : ''}  </Text>
-                </TouchableOpacity>
-              </View>
-            )
-          }}
-        />
-      
-        <Stack.Screen name="Sign Up" component={SignUpScreen} />
-        <Stack.Screen name="Confirm Email" component={ConfirmEmailScreen} />
-        <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
-        <Stack.Screen name="Confirm New Password" component={NewPasswordScreen} />
+        {user ? (
+          <Stack.Screen
+            name="Mix Balls"
+            component={Mixx}
+            options={{
+              title: "",
+              headerTransparent: true,
+              headerRight: () => (
+                <View>
+                  <TouchableOpacity onPress={() => setModalSesion(true)}>
+                    {/* <Text name="logout" size={24} >{user1 ? user1.email : ''}</Text> */}
+                    <Text> {user != undefined ? user : ""} </Text>
+                  </TouchableOpacity>
+                </View>
+              ),
+            }}
+          />
+        ) : (
+          <>
+            <Stack.Screen name="Sign In" component={SignInScreen} />
+            <Stack.Screen name="Sign Up" component={SignUpScreen} />
+            <Stack.Screen name="Confirm Email" component={ConfirmEmailScreen} />
+            <Stack.Screen
+              name="Forgot Password"
+              component={ForgotPasswordScreen}
+            />
+            <Stack.Screen
+              name="Confirm New Password"
+              component={NewPasswordScreen}
+            />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -132,29 +157,29 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 10,
     marginBottom: 15,
-    width: 80
+    width: 80,
   },
   buttonOpen: {
-    backgroundColor: '#FFCE08',
+    backgroundColor: "#FFCE08",
   },
   modalText: {
     marginBottom: 15,
-    textAlign: 'center',
-    fontWeight: 'bold',
+    textAlign: "center",
+    fontWeight: "bold",
   },
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 22,
   },
   modalView: {
     margin: 45,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 20,
     padding: 20,
-    alignItems: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -164,8 +189,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   textStyle: {
-    color: 'white',
-    fontWeight: '900',
-    textAlign: 'center',
+    color: "white",
+    fontWeight: "900",
+    textAlign: "center",
   },
 });

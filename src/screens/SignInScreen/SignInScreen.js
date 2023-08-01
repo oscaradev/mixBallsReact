@@ -28,7 +28,7 @@ const SignInScreen = () => {
         }
         setLoading(true);
         await Auth.signIn(data.Email, data.Password).then(() => {
-            navigation.navigate('Mix Balls')
+            //navigation.navigate('Mix Balls')
             setLoading(false);
         }).catch(error => {
             let codeRes = error.code

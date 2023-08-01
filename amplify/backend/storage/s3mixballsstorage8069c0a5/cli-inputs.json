@@ -1,0 +1,11 @@
+{
+  "resourceName": "s3mixballsstorage8069c0a5",
+  "bucketName": "mixballs-storage-8069c0a5",
+  "policyUUID": "2266649c",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ]
+}
