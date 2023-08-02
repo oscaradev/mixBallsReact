@@ -16,6 +16,12 @@
           "resolutionStrategy": {
             "type": "AUTOMERGE"
           },
+          "entityName": "Partida"
+        },
+        {
+          "resolutionStrategy": {
+            "type": "AUTOMERGE"
+          },
           "entityName": "User"
         }
       ]

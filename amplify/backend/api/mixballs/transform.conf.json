@@ -7,6 +7,10 @@
             "ConflictDetection": "VERSION"
         },
         "models": {
+            "Partida": {
+                "ConflictHandler": "AUTOMERGE",
+                "ConflictDetection": "VERSION"
+            },
             "User": {
                 "ConflictHandler": "AUTOMERGE",
                 "ConflictDetection": "VERSION"

@@ -1,4 +1,37 @@
+type ControlJSON {
+  idJugador: ID!
+  nombreJugador: String!
+  puntajeMix1: Int
+  puntajeMix2: Int
+  puntajeMix3: Int
+  puntajeMix4: Int
+  horaActualizacion: AWSTime
+  ipJugador: AWSIPAddress
+  abandonado: Boolean
+  finalizado: Boolean
+  posicion: Int
+}
+
+type Partida @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  mix1: [AWSJSON!]
+  mix2: [AWSJSON!]
+  mix3: [AWSJSON!]
+  mix4: [AWSJSON!]
+  numJugadores: Int!
+  codPartida: String!
+  iniciado: Boolean!
+  finalizado: Boolean!
+  hora: AWSDateTime!
+  controlPartida: ControlJSON!
+  nombreUserCreador: String!
+  idUserCreador: String!
+  userID: ID! @index(name: "byUser")
+}
+
 type User @model @auth(rules: [{allow: private}]) {
   id: ID!
   name: String!
-} 
+  Partidas: [Partida] @hasMany(indexName: "byUser", fields: ["id"])
+}
+ 
