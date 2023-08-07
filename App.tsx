@@ -23,10 +23,11 @@ import { Auth, Hub } from "aws-amplify";
 import awsExports from "./src/aws-exports";
 Amplify.configure(awsExports);
 
-function Mixx() {
+// Función para llamar el componente de juego pirncipal con los datos de usuario
+function Mixx(user: any) {
   return (
     <GestureHandlerRootView style={styles.containerGesture}>
-      <Mix />
+      <Mix user={user} />
     </GestureHandlerRootView>
   );
 }
@@ -46,6 +47,8 @@ export default function App(): JSX.Element {
 
   //defino variable que tendra usuario logueado
   const [user, setUser] = React.useState(undefined);
+  const [nameUser, setnameUser] = React.useState(undefined);
+
   //Se verifica si hay usuario logueado
   React.useEffect(() => {
     checkUser();
@@ -66,10 +69,12 @@ export default function App(): JSX.Element {
   const checkUser = async () => {
     await Auth.currentAuthenticatedUser({ bypassCache: true })
       .then((res) => {
-        setUser(res.attributes.name);
+        setUser(res.attributes);
+        setnameUser(res.attributes.name);
       })
       .catch(() => {
         setUser(undefined);
+        setnameUser(undefined);
       });
     //console.log('useeer', authUser.attributes.name)
   };
@@ -89,7 +94,7 @@ export default function App(): JSX.Element {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>
-                {i18n.t("cerrarSeM")} {user ? user : ""}?
+                {i18n.t("cerrarSeM")} {nameUser ? nameUser : ""}?
               </Text>
               <TouchableOpacity
                 style={[styles.button, styles.buttonOpen]}
@@ -111,10 +116,10 @@ export default function App(): JSX.Element {
         </Modal>
       </View>
       <Stack.Navigator>
-        {user ? (
+        {nameUser ? (
           <Stack.Screen
             name="Mix Balls"
-            component={Mixx}
+            //component={()=>Mixx(user)}
             options={{
               title: "",
               headerTransparent: true,
@@ -122,12 +127,14 @@ export default function App(): JSX.Element {
                 <View>
                   <TouchableOpacity onPress={() => setModalSesion(true)}>
                     {/* <Text name="logout" size={24} >{user1 ? user1.email : ''}</Text> */}
-                    <Text> {user != undefined ? user : ""} </Text>
+                    <Text> {nameUser != undefined ? nameUser : ""} </Text>
                   </TouchableOpacity>
                 </View>
               ),
             }}
-          />
+          >
+            {(props) => <Mixx {...props} extraData={user} />}
+          </Stack.Screen>
         ) : (
           <>
             <Stack.Screen name="Sign In" component={SignInScreen} />

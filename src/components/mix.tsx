@@ -20,8 +20,8 @@ import { I18n } from "i18n-js";
 import { SelectList } from "react-native-dropdown-select-list";
 import RadioForm from "react-native-simple-radio-button";
 //Establecion comuncicación con AWS
-import { DataStore } from "aws-amplify";
-import { User } from "../models";
+// import { DataStore } from "aws-amplify";
+// import { User } from "../models";
 // import "@azure/core-asynciterator-polyfill";
 
 //se obtienen las dimensiones del dispositivo
@@ -33,7 +33,9 @@ const POS_ARRANQUE9 = revolver(9);
 const POS_ARRANQUE25 = revolver(25);
 const POS_ARRANQUE49 = revolver(49);
 
-export default function Mix(): JSX.Element {
+export default function Mix({user}:any): JSX.Element {
+
+  console.log('sdsds',user.extraData)
   //Defino variable que me guardara las traducciones del juego
   const i18n = new I18n({ en, es, hi, zh, pt });
 
@@ -2475,18 +2477,51 @@ export default function Mix(): JSX.Element {
   };
 
   //Probando la comunicación con el backend
-  React.useEffect(() => {
-    const dataQuery = async () => {
-      await DataStore.query(User)
-        .then((res) => {
-          //console.log("data store is", res);
-        })
-        .catch((error) => {
-          console.log("data error", error);
-        });
-    };
-    dataQuery();
-  }, []);
+  // React.useEffect(() => {
+  //   const dataQuery = async () => {
+  //     await DataStore.query(User)
+  //       .then((res) => {
+  //         //console.log("data store is", res);
+  //       })
+  //       .catch((error) => {
+  //         console.log("data error", error);
+  //       });
+  //   };
+  //   dataQuery();
+  // }, []);
+
+
+  //pruebas de guardado backend
+// const ControlJSON= {
+//     idJugador: ID!
+//     nombreJugador: String!
+//     puntajeMix1: Int
+//     puntajeMix2: Int
+//     puntajeMix3: Int
+//     puntajeMix4: Int
+//     horaActualizacion: AWSTime
+//     ipJugador: AWSIPAddress
+//     abandonado: Boolean
+//     finalizado: Boolean
+//     posicion: Int
+//   }
+  
+//   type Partida @model @auth(rules: [{allow: private}]) {
+//     id: ID!
+//     mix1: [AWSJSON!]
+//     mix2: [AWSJSON!]
+//     mix3: [AWSJSON!]
+//     mix4: [AWSJSON!]
+//     numJugadores: Int!
+//     codPartida: String!
+//     iniciado: Boolean!
+//     finalizado: Boolean!
+//     hora: AWSDateTime!
+//     controlPartida: ControlJSON!
+//     nombreUserCreador: String!
+//     idUserCreador: String!
+//     userID: ID! @index(name: "byUser")
+//   }
 
 
   return (
