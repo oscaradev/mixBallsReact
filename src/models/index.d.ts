@@ -1,8 +1,20 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
-import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
+import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
+
+type EagerMixJSON = {
+  readonly color: string;
+}
+
+type LazyMixJSON = {
+  readonly color: string;
+}
+
+export declare type MixJSON = LazyLoading extends LazyLoadingDisabled ? EagerMixJSON : LazyMixJSON
+
+export declare const MixJSON: (new (init: ModelInit<MixJSON>) => MixJSON)
 
 type EagerControlJSON = {
   readonly idJugador: string;
@@ -42,10 +54,10 @@ type EagerPartida = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly mix1?: string[] | null;
-  readonly mix2?: string[] | null;
-  readonly mix3?: string[] | null;
-  readonly mix4?: string[] | null;
+  readonly mix1?: MixJSON[] | null;
+  readonly mix2?: MixJSON[] | null;
+  readonly mix3?: MixJSON[] | null;
+  readonly mix4?: MixJSON[] | null;
   readonly numJugadores: number;
   readonly codPartida: string;
   readonly iniciado: boolean;
@@ -54,7 +66,6 @@ type EagerPartida = {
   readonly controlPartida: ControlJSON;
   readonly nombreUserCreador: string;
   readonly idUserCreador: string;
-  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -65,10 +76,10 @@ type LazyPartida = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly mix1?: string[] | null;
-  readonly mix2?: string[] | null;
-  readonly mix3?: string[] | null;
-  readonly mix4?: string[] | null;
+  readonly mix1?: MixJSON[] | null;
+  readonly mix2?: MixJSON[] | null;
+  readonly mix3?: MixJSON[] | null;
+  readonly mix4?: MixJSON[] | null;
   readonly numJugadores: number;
   readonly codPartida: string;
   readonly iniciado: boolean;
@@ -77,7 +88,6 @@ type LazyPartida = {
   readonly controlPartida: ControlJSON;
   readonly nombreUserCreador: string;
   readonly idUserCreador: string;
-  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -95,7 +105,6 @@ type EagerUser = {
   };
   readonly id: string;
   readonly name: string;
-  readonly Partidas?: (Partida | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -107,7 +116,6 @@ type LazyUser = {
   };
   readonly id: string;
   readonly name: string;
-  readonly Partidas: AsyncCollection<Partida>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

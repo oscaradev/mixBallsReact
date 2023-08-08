@@ -5,10 +5,22 @@ export const onCreatePartida = /* GraphQL */ `
   subscription OnCreatePartida($filter: ModelSubscriptionPartidaFilterInput) {
     onCreatePartida(filter: $filter) {
       id
-      mix1
-      mix2
-      mix3
-      mix4
+      mix1 {
+        color
+        __typename
+      }
+      mix2 {
+        color
+        __typename
+      }
+      mix3 {
+        color
+        __typename
+      }
+      mix4 {
+        color
+        __typename
+      }
       numJugadores
       codPartida
       iniciado
@@ -30,7 +42,6 @@ export const onCreatePartida = /* GraphQL */ `
       }
       nombreUserCreador
       idUserCreador
-      userID
       createdAt
       updatedAt
       _version
@@ -44,10 +55,22 @@ export const onUpdatePartida = /* GraphQL */ `
   subscription OnUpdatePartida($filter: ModelSubscriptionPartidaFilterInput) {
     onUpdatePartida(filter: $filter) {
       id
-      mix1
-      mix2
-      mix3
-      mix4
+      mix1 {
+        color
+        __typename
+      }
+      mix2 {
+        color
+        __typename
+      }
+      mix3 {
+        color
+        __typename
+      }
+      mix4 {
+        color
+        __typename
+      }
       numJugadores
       codPartida
       iniciado
@@ -69,7 +92,6 @@ export const onUpdatePartida = /* GraphQL */ `
       }
       nombreUserCreador
       idUserCreador
-      userID
       createdAt
       updatedAt
       _version
@@ -83,10 +105,22 @@ export const onDeletePartida = /* GraphQL */ `
   subscription OnDeletePartida($filter: ModelSubscriptionPartidaFilterInput) {
     onDeletePartida(filter: $filter) {
       id
-      mix1
-      mix2
-      mix3
-      mix4
+      mix1 {
+        color
+        __typename
+      }
+      mix2 {
+        color
+        __typename
+      }
+      mix3 {
+        color
+        __typename
+      }
+      mix4 {
+        color
+        __typename
+      }
       numJugadores
       codPartida
       iniciado
@@ -108,7 +142,6 @@ export const onDeletePartida = /* GraphQL */ `
       }
       nombreUserCreador
       idUserCreador
-      userID
       createdAt
       updatedAt
       _version
@@ -123,32 +156,6 @@ export const onCreateUser = /* GraphQL */ `
     onCreateUser(filter: $filter) {
       id
       name
-      Partidas {
-        items {
-          id
-          mix1
-          mix2
-          mix3
-          mix4
-          numJugadores
-          codPartida
-          iniciado
-          finalizado
-          hora
-          nombreUserCreador
-          idUserCreador
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          __typename
-        }
-        nextToken
-        startedAt
-        __typename
-      }
       createdAt
       updatedAt
       _version
@@ -163,32 +170,6 @@ export const onUpdateUser = /* GraphQL */ `
     onUpdateUser(filter: $filter) {
       id
       name
-      Partidas {
-        items {
-          id
-          mix1
-          mix2
-          mix3
-          mix4
-          numJugadores
-          codPartida
-          iniciado
-          finalizado
-          hora
-          nombreUserCreador
-          idUserCreador
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          __typename
-        }
-        nextToken
-        startedAt
-        __typename
-      }
       createdAt
       updatedAt
       _version
@@ -203,32 +184,6 @@ export const onDeleteUser = /* GraphQL */ `
     onDeleteUser(filter: $filter) {
       id
       name
-      Partidas {
-        items {
-          id
-          mix1
-          mix2
-          mix3
-          mix4
-          numJugadores
-          codPartida
-          iniciado
-          finalizado
-          hora
-          nombreUserCreador
-          idUserCreador
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          __typename
-        }
-        nextToken
-        startedAt
-        __typename
-      }
       createdAt
       updatedAt
       _version

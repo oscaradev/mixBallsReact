@@ -13,7 +13,9 @@ export const schema = {
                 "mix1": {
                     "name": "mix1",
                     "isArray": true,
-                    "type": "AWSJSON",
+                    "type": {
+                        "nonModel": "MixJSON"
+                    },
                     "isRequired": true,
                     "attributes": [],
                     "isArrayNullable": true
@@ -21,7 +23,9 @@ export const schema = {
                 "mix2": {
                     "name": "mix2",
                     "isArray": true,
-                    "type": "AWSJSON",
+                    "type": {
+                        "nonModel": "MixJSON"
+                    },
                     "isRequired": true,
                     "attributes": [],
                     "isArrayNullable": true
@@ -29,7 +33,9 @@ export const schema = {
                 "mix3": {
                     "name": "mix3",
                     "isArray": true,
-                    "type": "AWSJSON",
+                    "type": {
+                        "nonModel": "MixJSON"
+                    },
                     "isRequired": true,
                     "attributes": [],
                     "isArrayNullable": true
@@ -37,7 +43,9 @@ export const schema = {
                 "mix4": {
                     "name": "mix4",
                     "isArray": true,
-                    "type": "AWSJSON",
+                    "type": {
+                        "nonModel": "MixJSON"
+                    },
                     "isRequired": true,
                     "attributes": [],
                     "isArrayNullable": true
@@ -100,13 +108,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "userID": {
-                    "name": "userID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -130,15 +131,6 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byUser",
-                        "fields": [
-                            "userID"
-                        ]
-                    }
                 },
                 {
                     "type": "auth",
@@ -174,22 +166,6 @@ export const schema = {
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
-                },
-                "Partidas": {
-                    "name": "Partidas",
-                    "isArray": true,
-                    "type": {
-                        "model": "Partida"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "userID"
-                        ]
-                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -236,6 +212,18 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {
+        "MixJSON": {
+            "name": "MixJSON",
+            "fields": {
+                "color": {
+                    "name": "color",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        },
         "ControlJSON": {
             "name": "ControlJSON",
             "fields": {
@@ -320,5 +308,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "7cd76e35e1991df2d93141e2aaaa1e6f"
+    "version": "86d1050aa3f02230d6b7b631f3ab8e79"
 };

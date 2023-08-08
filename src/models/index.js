@@ -4,10 +4,11 @@ import { schema } from './schema';
 
 
 
-const { Partida, User, ControlJSON } = initSchema(schema);
+const { Partida, User, MixJSON, ControlJSON } = initSchema(schema);
 
 export {
   Partida,
   User,
+  MixJSON,
   ControlJSON
 };

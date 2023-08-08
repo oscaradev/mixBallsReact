@@ -7,6 +7,7 @@ import {
   TextInput,
   Modal,
   Vibration,
+  TouchableOpacity,
 } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { Colors } from "../styles/colores";
@@ -23,6 +24,8 @@ import RadioForm from "react-native-simple-radio-button";
 // import { DataStore } from "aws-amplify";
 // import { User } from "../models";
 // import "@azure/core-asynciterator-polyfill";
+import { API, graphqlOperation } from "aws-amplify";
+import { createPartida } from "../graphql/mutations";
 
 //se obtienen las dimensiones del dispositivo
 // const ventana = Dimensions.get("window");
@@ -33,9 +36,8 @@ const POS_ARRANQUE9 = revolver(9);
 const POS_ARRANQUE25 = revolver(25);
 const POS_ARRANQUE49 = revolver(49);
 
-export default function Mix({user}:any): JSX.Element {
-
-  console.log('sdsds',user.extraData)
+export default function Mix({ user }: any): JSX.Element {
+  //console.log('sdsds',user.extraData)
   //Defino variable que me guardara las traducciones del juego
   const i18n = new I18n({ en, es, hi, zh, pt });
 
@@ -2490,42 +2492,61 @@ export default function Mix({user}:any): JSX.Element {
   //   dataQuery();
   // }, []);
 
+  // pruebas de guardado backend
+  const ControlJSON = {
+    idJugador: user.extraData.sub,
+    nombreJugador: user.extraData.name,
+    puntajeMix1: 0,
+    puntajeMix2: 0,
+    puntajeMix3: 0,
+    puntajeMix4: 0,
+    horaActualizacion: undefined,
+    ipJugador: undefined,
+    abandonado: false,
+    finalizado: false,
+    posicion: 0,
+  };
 
-  //pruebas de guardado backend
-// const ControlJSON= {
-//     idJugador: ID!
-//     nombreJugador: String!
-//     puntajeMix1: Int
-//     puntajeMix2: Int
-//     puntajeMix3: Int
-//     puntajeMix4: Int
-//     horaActualizacion: AWSTime
-//     ipJugador: AWSIPAddress
-//     abandonado: Boolean
-//     finalizado: Boolean
-//     posicion: Int
-//   }
-  
-//   type Partida @model @auth(rules: [{allow: private}]) {
-//     id: ID!
-//     mix1: [AWSJSON!]
-//     mix2: [AWSJSON!]
-//     mix3: [AWSJSON!]
-//     mix4: [AWSJSON!]
-//     numJugadores: Int!
-//     codPartida: String!
-//     iniciado: Boolean!
-//     finalizado: Boolean!
-//     hora: AWSDateTime!
-//     controlPartida: ControlJSON!
-//     nombreUserCreador: String!
-//     idUserCreador: String!
-//     userID: ID! @index(name: "byUser")
-//   }
+  const Partida = {
+    //id: undefined,
+    mix1: bola11,
+    mix2: bola22,
+    mix3: bola33,
+    mix4: bola44,
+    numJugadores: 2,
+    codPartida: "prueba1",
+    iniciado: false,
+    finalizado: false,
+    hora: new Date(),
+    controlPartida: ControlJSON,
+    nombreUserCreador: user.extraData.name,
+    idUserCreador: user.extraData.sub,
+  };
 
+  const createPart = async () => {
+    //Se crea el usuario automaticamente en la base de datos
+    //console.log('entrooooo', bola11)
+    try {
+      //console.log('jsjdsjdsjdj',bola11)
+      await API.graphql(graphqlOperation(createPartida, { input: Partida }))
+      //.then(() => {})
+      // .catch((error) => {
+      //   console.log("error durante la creacion del usuario", error);
+      // });
+    } catch (error) {
+      console.log("error durante la creacion de partida", error);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
+
+      <View style={{top:100, left:40}}>
+        <TouchableOpacity onPress={createPart}>
+          <Text>ENVIAR INFORMACION</Text>
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.ViewContenedor}>
         <Modal
           animationType="slide"

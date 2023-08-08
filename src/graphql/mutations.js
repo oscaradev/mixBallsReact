@@ -8,10 +8,22 @@ export const createPartida = /* GraphQL */ `
   ) {
     createPartida(input: $input, condition: $condition) {
       id
-      mix1
-      mix2
-      mix3
-      mix4
+      mix1 {
+        color
+        __typename
+      }
+      mix2 {
+        color
+        __typename
+      }
+      mix3 {
+        color
+        __typename
+      }
+      mix4 {
+        color
+        __typename
+      }
       numJugadores
       codPartida
       iniciado
@@ -33,7 +45,6 @@ export const createPartida = /* GraphQL */ `
       }
       nombreUserCreador
       idUserCreador
-      userID
       createdAt
       updatedAt
       _version
@@ -50,10 +61,22 @@ export const updatePartida = /* GraphQL */ `
   ) {
     updatePartida(input: $input, condition: $condition) {
       id
-      mix1
-      mix2
-      mix3
-      mix4
+      mix1 {
+        color
+        __typename
+      }
+      mix2 {
+        color
+        __typename
+      }
+      mix3 {
+        color
+        __typename
+      }
+      mix4 {
+        color
+        __typename
+      }
       numJugadores
       codPartida
       iniciado
@@ -75,7 +98,6 @@ export const updatePartida = /* GraphQL */ `
       }
       nombreUserCreador
       idUserCreador
-      userID
       createdAt
       updatedAt
       _version
@@ -92,10 +114,22 @@ export const deletePartida = /* GraphQL */ `
   ) {
     deletePartida(input: $input, condition: $condition) {
       id
-      mix1
-      mix2
-      mix3
-      mix4
+      mix1 {
+        color
+        __typename
+      }
+      mix2 {
+        color
+        __typename
+      }
+      mix3 {
+        color
+        __typename
+      }
+      mix4 {
+        color
+        __typename
+      }
       numJugadores
       codPartida
       iniciado
@@ -117,7 +151,6 @@ export const deletePartida = /* GraphQL */ `
       }
       nombreUserCreador
       idUserCreador
-      userID
       createdAt
       updatedAt
       _version
@@ -135,32 +168,6 @@ export const createUser = /* GraphQL */ `
     createUser(input: $input, condition: $condition) {
       id
       name
-      Partidas {
-        items {
-          id
-          mix1
-          mix2
-          mix3
-          mix4
-          numJugadores
-          codPartida
-          iniciado
-          finalizado
-          hora
-          nombreUserCreador
-          idUserCreador
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          __typename
-        }
-        nextToken
-        startedAt
-        __typename
-      }
       createdAt
       updatedAt
       _version
@@ -178,32 +185,6 @@ export const updateUser = /* GraphQL */ `
     updateUser(input: $input, condition: $condition) {
       id
       name
-      Partidas {
-        items {
-          id
-          mix1
-          mix2
-          mix3
-          mix4
-          numJugadores
-          codPartida
-          iniciado
-          finalizado
-          hora
-          nombreUserCreador
-          idUserCreador
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          __typename
-        }
-        nextToken
-        startedAt
-        __typename
-      }
       createdAt
       updatedAt
       _version
@@ -221,32 +202,6 @@ export const deleteUser = /* GraphQL */ `
     deleteUser(input: $input, condition: $condition) {
       id
       name
-      Partidas {
-        items {
-          id
-          mix1
-          mix2
-          mix3
-          mix4
-          numJugadores
-          codPartida
-          iniciado
-          finalizado
-          hora
-          nombreUserCreador
-          idUserCreador
-          userID
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          __typename
-        }
-        nextToken
-        startedAt
-        __typename
-      }
       createdAt
       updatedAt
       _version

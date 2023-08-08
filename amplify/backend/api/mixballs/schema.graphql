@@ -1,3 +1,7 @@
+type MixJSON {
+  color: String!
+}
+
 type ControlJSON {
   idJugador: ID!
   nombreJugador: String!
@@ -14,10 +18,10 @@ type ControlJSON {
 
 type Partida @model @auth(rules: [{allow: private}]) {
   id: ID!
-  mix1: [AWSJSON!]
-  mix2: [AWSJSON!]
-  mix3: [AWSJSON!]
-  mix4: [AWSJSON!]
+  mix1: [MixJSON!]
+  mix2: [MixJSON!]
+  mix3: [MixJSON!]
+  mix4: [MixJSON!]
   numJugadores: Int!
   codPartida: String!
   iniciado: Boolean!
@@ -26,12 +30,10 @@ type Partida @model @auth(rules: [{allow: private}]) {
   controlPartida: ControlJSON!
   nombreUserCreador: String!
   idUserCreador: String!
-  userID: ID! @index(name: "byUser")
 }
 
 type User @model @auth(rules: [{allow: private}]) {
   id: ID!
   name: String!
-  Partidas: [Partida] @hasMany(indexName: "byUser", fields: ["id"])
 }
  
