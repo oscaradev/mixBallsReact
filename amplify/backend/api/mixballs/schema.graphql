@@ -27,7 +27,7 @@ type Partida @model @auth(rules: [{allow: private}]) {
   iniciado: Boolean!
   finalizado: Boolean!
   hora: AWSDateTime!
-  controlPartida: ControlJSON!
+  controlPartida: [ControlJSON!]
   nombreUserCreador: String!
   idUserCreador: String!
 }

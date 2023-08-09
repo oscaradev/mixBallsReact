@@ -8,6 +8,8 @@ import {
   Modal,
   Vibration,
   TouchableOpacity,
+  FlatList,
+  Animated,
 } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { Colors } from "../styles/colores";
@@ -26,6 +28,7 @@ import RadioForm from "react-native-simple-radio-button";
 // import "@azure/core-asynciterator-polyfill";
 import { API, graphqlOperation } from "aws-amplify";
 import { createPartida } from "../graphql/mutations";
+import { useAnimatedStyle } from "react-native-reanimated";
 
 //se obtienen las dimensiones del dispositivo
 // const ventana = Dimensions.get("window");
@@ -2493,19 +2496,47 @@ export default function Mix({ user }: any): JSX.Element {
   // }, []);
 
   // pruebas de guardado backend
-  const ControlJSON = {
-    idJugador: user.extraData.sub,
-    nombreJugador: user.extraData.name,
-    puntajeMix1: 0,
-    puntajeMix2: 0,
-    puntajeMix3: 0,
-    puntajeMix4: 0,
-    horaActualizacion: undefined,
-    ipJugador: undefined,
-    abandonado: false,
-    finalizado: false,
-    posicion: 0,
-  };
+  const ControlJSON = [
+    {
+      idJugador: user.extraData.sub,
+      nombreJugador: user.extraData.name,
+      puntajeMix1: 0,
+      puntajeMix2: 0,
+      puntajeMix3: 0,
+      puntajeMix4: 0,
+      horaActualizacion: undefined,
+      ipJugador: undefined,
+      abandonado: false,
+      finalizado: false,
+      posicion: 0,
+    },
+    {
+      idJugador: user.extraData.sub,
+      nombreJugador: "Luis",
+      puntajeMix1: 0,
+      puntajeMix2: 1,
+      puntajeMix3: 0,
+      puntajeMix4: 0,
+      horaActualizacion: undefined,
+      ipJugador: undefined,
+      abandonado: false,
+      finalizado: false,
+      posicion: 1,
+    },
+    {
+      idJugador: user.extraData.sub,
+      nombreJugador: "Felipe",
+      puntajeMix1: 0,
+      puntajeMix2: 1,
+      puntajeMix3: 0,
+      puntajeMix4: 0,
+      horaActualizacion: undefined,
+      ipJugador: undefined,
+      abandonado: false,
+      finalizado: false,
+      posicion: 1,
+    },
+  ];
 
   const Partida = {
     //id: undefined,
@@ -2528,7 +2559,7 @@ export default function Mix({ user }: any): JSX.Element {
     //console.log('entrooooo', bola11)
     try {
       //console.log('jsjdsjdsjdj',bola11)
-      await API.graphql(graphqlOperation(createPartida, { input: Partida }))
+      await API.graphql(graphqlOperation(createPartida, { input: Partida }));
       //.then(() => {})
       // .catch((error) => {
       //   console.log("error durante la creacion del usuario", error);
@@ -2538,13 +2569,44 @@ export default function Mix({ user }: any): JSX.Element {
     }
   };
 
+  //se guardar animación de los usarios del puntaje
+  const rStyle = useAnimatedStyle(() => {
+    return {
+      opacity: 1,
+    };
+  },[]);
+
   return (
     <SafeAreaView style={styles.container}>
-
-      <View style={{top:100, left:40}}>
+      <View style={{ top: 50 }}>
         <TouchableOpacity onPress={createPart}>
-          <Text>ENVIAR INFORMACION</Text>
+          <Text style={{ left: 20 }}>ENVIAR INFORMACION</Text>
         </TouchableOpacity>
+
+        {/* Construyendo la lista animada según las posiciones en el juego  */}
+        <FlatList
+          data={Partida.controlPartida}
+          style={{ height: "15%" }}
+          renderItem={(item) => {
+            return (
+              <Animated.View
+                style={[
+                  {
+                    height: 25,
+                    width: "90%",
+                    backgroundColor: "green",
+                    marginTop: 5,
+                    borderRadius: 15,
+                    alignSelf: "center",
+                  },
+                  rStyle,
+                ]}
+              >
+                <Text>{item.item.nombreJugador}</Text>
+              </Animated.View>
+            );
+          }}
+        />
       </View>
 
       <View style={styles.ViewContenedor}>

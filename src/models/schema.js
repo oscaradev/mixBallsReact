@@ -87,12 +87,13 @@ export const schema = {
                 },
                 "controlPartida": {
                     "name": "controlPartida",
-                    "isArray": false,
+                    "isArray": true,
                     "type": {
                         "nonModel": "ControlJSON"
                     },
                     "isRequired": true,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "nombreUserCreador": {
                     "name": "nombreUserCreador",
@@ -308,5 +309,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "86d1050aa3f02230d6b7b631f3ab8e79"
+    "version": "a1fdcb27ab1ddae8f9659e8bcf262b76"
 };

@@ -63,7 +63,7 @@ type EagerPartida = {
   readonly iniciado: boolean;
   readonly finalizado: boolean;
   readonly hora: string;
-  readonly controlPartida: ControlJSON;
+  readonly controlPartida?: ControlJSON[] | null;
   readonly nombreUserCreador: string;
   readonly idUserCreador: string;
   readonly createdAt?: string | null;
@@ -85,7 +85,7 @@ type LazyPartida = {
   readonly iniciado: boolean;
   readonly finalizado: boolean;
   readonly hora: string;
-  readonly controlPartida: ControlJSON;
+  readonly controlPartida?: ControlJSON[] | null;
   readonly nombreUserCreador: string;
   readonly idUserCreador: string;
   readonly createdAt?: string | null;
