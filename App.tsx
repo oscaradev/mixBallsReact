@@ -116,40 +116,31 @@ export default function App(): JSX.Element {
         </Modal>
       </View>
       <Stack.Navigator>
-        {nameUser ? (
-          <Stack.Screen
-            name="Mix Balls"
-            //component={()=>Mixx(user)}
-            options={{
-              title: "",
-              headerTransparent: true,
-              headerRight: () => (
-                <View>
-                  <TouchableOpacity onPress={() => setModalSesion(true)}>
-                    {/* <Text name="logout" size={24} >{user1 ? user1.email : ''}</Text> */}
-                    <Text> {nameUser != undefined ? nameUser : ""} </Text>
-                  </TouchableOpacity>
-                </View>
-              ),
-            }}
-          >
-            {(props) => <Mixx {...props} extraData={user} />}
-          </Stack.Screen>
-        ) : (
-          <>
-            <Stack.Screen name="Sign In" component={SignInScreen} />
-            <Stack.Screen name="Sign Up" component={SignUpScreen} />
-            <Stack.Screen name="Confirm Email" component={ConfirmEmailScreen} />
-            <Stack.Screen
-              name="Forgot Password"
-              component={ForgotPasswordScreen}
-            />
-            <Stack.Screen
-              name="Confirm New Password"
-              component={NewPasswordScreen}
-            />
-          </>
-        )}
+        <Stack.Screen
+          name="Mix Balls"
+          //component={Mixx}
+          options={{
+            title: "",
+            headerTransparent: true,
+            headerRight: () => (
+              <View>
+                <TouchableOpacity onPress={() => setModalSesion(true)}>
+                  <Text> {nameUser != undefined ? nameUser : ""} </Text>
+                </TouchableOpacity>
+              </View>
+            ),
+          }}
+        >
+          {(props:any) => <Mixx {...props} extraData={user} />}
+        </Stack.Screen>
+        <Stack.Screen name="Sign In" component={SignInScreen} />
+        <Stack.Screen name="Sign Up" component={SignUpScreen} />
+        <Stack.Screen name="Confirm Email" component={ConfirmEmailScreen} />
+        <Stack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
+        <Stack.Screen
+          name="Confirm New Password"
+          component={NewPasswordScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

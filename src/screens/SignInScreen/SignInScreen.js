@@ -57,10 +57,10 @@ const SignInScreen = () => {
               .catch((error) => {
                 console.log("error durante la creacion del usuario", error);
               });
+          } else if (res1.data.getUser) {
+            navigation.navigate("Mix Balls");
           }
         });
-
-        //navigation.navigate('Mix Balls')
         setLoading(false);
       })
       .catch((error) => {

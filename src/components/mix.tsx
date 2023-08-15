@@ -40,6 +40,7 @@ const POS_ARRANQUE9 = revolver(9);
 const POS_ARRANQUE25 = revolver(25);
 const POS_ARRANQUE49 = revolver(49);
 
+
 export default function Mix({ user }: any): JSX.Element {
   //console.log('sdsds',user.extraData)
   //Defino variable que me guardara las traducciones del juego
@@ -85,6 +86,8 @@ export default function Mix({ user }: any): JSX.Element {
       setNivel("");
       setPlay(2);
       setIniciar(false);
+      setidPartidaCreada(false)
+      setidPartida('')
     } catch (e) {
       console.log("entroooo con error", e);
     }
@@ -1852,8 +1855,8 @@ export default function Mix({ user }: any): JSX.Element {
   // pruebas de guardado backend
   const ControlJSON = [
     {
-      idJugador: user.extraData.sub,
-      nombreJugador: user.extraData.name,
+      idJugador: user.extraData ? user.extraData.sub : undefined,
+      nombreJugador: user.extraData ? user.extraData.name : undefined,
       puntajeMix1: 0,
       puntajeMix2: 0,
       puntajeMix3: 0,
@@ -1862,60 +1865,8 @@ export default function Mix({ user }: any): JSX.Element {
       ipJugador: undefined,
       abandonado: false,
       finalizado: false,
-      posicion: 1,
-    },
-    {
-      idJugador: user.extraData.sub,
-      nombreJugador: "Luis",
-      puntajeMix1: 0,
-      puntajeMix2: 1,
-      puntajeMix3: 0,
-      puntajeMix4: 0,
-      horaActualizacion: undefined,
-      ipJugador: undefined,
-      abandonado: false,
-      finalizado: false,
-      posicion: 2,
-    },
-    {
-      idJugador: user.extraData.sub,
-      nombreJugador: "Felipe",
-      puntajeMix1: 0,
-      puntajeMix2: 1,
-      puntajeMix3: 0,
-      puntajeMix4: 0,
-      horaActualizacion: undefined,
-      ipJugador: undefined,
-      abandonado: false,
-      finalizado: false,
-      posicion: 3,
-    },
-    {
-      idJugador: user.extraData.sub,
-      nombreJugador: "Carlos",
-      puntajeMix1: 0,
-      puntajeMix2: 1,
-      puntajeMix3: 0,
-      puntajeMix4: 0,
-      horaActualizacion: undefined,
-      ipJugador: undefined,
-      abandonado: false,
-      finalizado: false,
-      posicion: 4,
-    },
-    {
-      idJugador: user.extraData.sub,
-      nombreJugador: "Tomas",
-      puntajeMix1: 0,
-      puntajeMix2: 1,
-      puntajeMix3: 0,
-      puntajeMix4: 0,
-      horaActualizacion: undefined,
-      ipJugador: undefined,
-      abandonado: false,
-      finalizado: false,
-      posicion: 5,
-    },
+      posicion: 0,
+    }
   ];
 
   const Partida = {
@@ -1925,21 +1876,21 @@ export default function Mix({ user }: any): JSX.Element {
     mix3: bola33,
     mix4: bola44,
     numJugadores: 2,
-    codPartida: "prueba1",
+    codPartida: codigoRam(),
     iniciado: false,
     finalizado: false,
     hora: new Date(),
     controlPartida: ControlJSON,
-    nombreUserCreador: user.extraData.name,
-    idUserCreador: user.extraData.sub,
+    nombreUserCreador: user.extraData ? user.extraData.name : undefined,
+    idUserCreador: user.extraData ? user.extraData.sub : undefined,
   };
 
   const createPart = async () => {
     //Se crea el usuario automaticamente en la base de datos
-    //console.log('entrooooo', bola11)
+
     try {
       //console.log('jsjdsjdsjdj',bola11)
-      await API.graphql(graphqlOperation(createPartida, { input: Partida }));
+      return await API.graphql(graphqlOperation(createPartida, { input: Partida }));
       //.then(() => {})
       // .catch((error) => {
       //   console.log("error durante la creacion del usuario", error);
@@ -1956,60 +1907,67 @@ export default function Mix({ user }: any): JSX.Element {
     };
   }, []);
 
-  // const ref = React.useRef<FlatList>(null);
-  // const [index, setIndex] = React.useState(0);
 
-
+  //variables que guardan el codigo de partida creada y si la partida fue creada en base de datos
+  const [idPartida, setidPartida] = React.useState('');
+  const [partidaCreada, setidPartidaCreada] = React.useState(false);
 
   //para cargar el login en caso que no exista usuario logueado
   React.useEffect(() => {
-    if (play === 1 && user === null) {
-      setPlay(3);
-      return navigation.navigate("Sign Up");
+    if (play === 1 && !user.extraData) {
+      //setPlay(3);
+      return navigation.navigate("Sign In");
+    } else if (play === 1 && user.extraData && !partidaCreada) {
+      createPart().then((res:any)=>{
+          setidPartidaCreada(true)
+          setidPartida(res.data.createPartida.id)
+          console.log('la partida creada es', res.data.createPartida.id)
+      });
     }
+  
   }, [play]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ top: 70 }}>
-        {/* Construyendo la lista animada según las posiciones en el juego  */}
-        <Animated.FlatList
-          //ref={ref}
-          //initialNumToRender={index}
-          //initialScrollIndex={index}
-          data={Partida.controlPartida}
-          style={{ height: "15%" }}
-          renderItem={(item) => {
-            return (
-              <Animated.View
-                style={[
-                  {
-                    height: 25,
-                    width: "90%",
-                    backgroundColor: "green",
-                    marginTop: 5,
-                    borderRadius: 15,
-                    alignSelf: "center",
-                  },
-                  rStyle,
-                ]}
-              >
-                <Text style={{ paddingLeft: 8, paddingTop: 3 }}>
-                  {item.item.nombreJugador}
-                </Text>
-              </Animated.View>
-            );
-          }}
-        />
-        {/* <TouchableOpacity onPress={createPart}> */}
-        <TouchableOpacity
-          onPress={() => {
-            reiniciar();
-          }}
-        >
-          <Text style={{ left: 20 }}>ENVIAR INFORMACION</Text>
-        </TouchableOpacity>
-      </View>
+      {play === 1 ? (
+        <View style={{ top: 70 }}>
+          {/* Construyendo la lista animada según las posiciones en el juego  */}
+          <Animated.FlatList
+            data={Partida.controlPartida}
+            style={{ height: "15%" }}
+            renderItem={(item) => {
+              return (
+                <Animated.View
+                  style={[
+                    {
+                      height: 25,
+                      width: "90%",
+                      backgroundColor: "green",
+                      marginTop: 5,
+                      borderRadius: 15,
+                      alignSelf: "center",
+                    },
+                    rStyle,
+                  ]}
+                >
+                  <Text style={{ paddingLeft: 8, paddingTop: 3 }}>
+                    {item.item.nombreJugador}
+                  </Text>
+                </Animated.View>
+              );
+            }}
+          />
+        </View>
+      ) : undefined}
+
+      {/* <TouchableOpacity onPress={createPart}> */}
+      <TouchableOpacity
+        onPress={() => {
+          reiniciar();
+        }}
+      >
+        <Text style={{ left: 20, top: 90 }}>ENVIAR INFORMACION</Text>
+      </TouchableOpacity>
 
       <View style={styles.ViewContenedor}>
         <Modal
@@ -2490,4 +2448,25 @@ function revolver(bolas: number) {
 
   // console.log('Mix array bolas', blue, white, red, yellow)
   return arrayBolas;
+}
+
+//Función para generar codigo de juego
+function codigoRam() {
+  const time = new Date();
+  const codigoRam = Math.random();
+  if (codigoRam < 0.33) {
+      return (time.getHours() + '' + time.getUTCMinutes() + '' + time.getSeconds() + '' + time.getMilliseconds()).substring(0, 6) + '' + generarLetra();
+  } else if (codigoRam >= 0.33 && codigoRam < 0.66) {
+      return generarLetra() + '' + (time.getSeconds() + '' + time.getUTCMinutes() + '' + time.getHours() + '' + time.getMilliseconds()).substring(0, 6);
+  } else if (codigoRam >= 0.66) {
+      return (time.getUTCMinutes() + '' + time.getSeconds() + '' + time.getHours() + '' + time.getMilliseconds()).substring(0, 6) + '' + generarLetra();
+  } else {
+      return 'startw' + generarLetra();
+  }
+}
+
+function generarLetra() {
+  const characters = "abcdefghijklmnopqrstuvwxyz";
+  const result = characters.charAt(Math.floor(Math.random() * 26));
+  return result;
 }
