@@ -41,7 +41,7 @@ const POS_ARRANQUE25 = revolver(25);
 const POS_ARRANQUE49 = revolver(49);
 
 
-export default function Mix({ user }: any): JSX.Element {
+export default function Mix({ user }: any | null | undefined): JSX.Element {
   //console.log('sdsds',user.extraData)
   //Defino variable que me guardara las traducciones del juego
   const i18n = new I18n({ en, es, hi, zh, pt });
@@ -1855,8 +1855,10 @@ export default function Mix({ user }: any): JSX.Element {
   // pruebas de guardado backend
   const ControlJSON = [
     {
-      idJugador: user.extraData ? user.extraData.sub : undefined,
-      nombreJugador: user.extraData ? user.extraData.name : undefined,
+      //idJugador: user.extraData ? user.extraData.sub : undefined,
+      //nombreJugador: user.extraData ? user.extraData.name : undefined,
+      idJugador: undefined,
+      nombreJugador: "jugador",
       puntajeMix1: 0,
       puntajeMix2: 0,
       puntajeMix3: 0,
@@ -1881,8 +1883,10 @@ export default function Mix({ user }: any): JSX.Element {
     finalizado: false,
     hora: new Date(),
     controlPartida: ControlJSON,
-    nombreUserCreador: user.extraData ? user.extraData.name : undefined,
-    idUserCreador: user.extraData ? user.extraData.sub : undefined,
+    //nombreUserCreador: user.extraData ? user.extraData.name : undefined,
+    //idUserCreador: user.extraData ? user.extraData.sub : undefined,
+    nombreUserCreador: "Jugador",
+    idUserCreador: undefined,
   };
 
   const createPart = async () => {
@@ -1914,6 +1918,17 @@ export default function Mix({ user }: any): JSX.Element {
 
   //para cargar el login en caso que no exista usuario logueado
   React.useEffect(() => {
+    if (play === 1 && !partidaCreada) {
+      createPart().then((res: any) => {
+        setidPartidaCreada(true);
+        setidPartida(res.data.createPartida.id);
+        console.log("la partida creada es", res.data.createPartida.id);
+      });
+    }
+  }, [play]);
+
+  /*
+  React.useEffect(() => {
     if (play === 1 && !user.extraData) {
       //setPlay(3);
       return navigation.navigate("Sign In");
@@ -1926,7 +1941,7 @@ export default function Mix({ user }: any): JSX.Element {
     }
   
   }, [play]);
-
+*/
   return (
     <SafeAreaView style={styles.container}>
       {play === 1 ? (
@@ -2455,13 +2470,13 @@ function codigoRam() {
   const time = new Date();
   const codigoRam = Math.random();
   if (codigoRam < 0.33) {
-      return (time.getHours() + '' + time.getUTCMinutes() + '' + time.getSeconds() + '' + time.getMilliseconds()).substring(0, 6) + '' + generarLetra();
+    return (time.getHours() + '' + time.getUTCMinutes() + '' + time.getSeconds() + '' + time.getMilliseconds()).substring(0, 6) + '' + generarLetra();
   } else if (codigoRam >= 0.33 && codigoRam < 0.66) {
-      return generarLetra() + '' + (time.getSeconds() + '' + time.getUTCMinutes() + '' + time.getHours() + '' + time.getMilliseconds()).substring(0, 6);
+    return generarLetra() + '' + (time.getSeconds() + '' + time.getUTCMinutes() + '' + time.getHours() + '' + time.getMilliseconds()).substring(0, 6);
   } else if (codigoRam >= 0.66) {
-      return (time.getUTCMinutes() + '' + time.getSeconds() + '' + time.getHours() + '' + time.getMilliseconds()).substring(0, 6) + '' + generarLetra();
+    return (time.getUTCMinutes() + '' + time.getSeconds() + '' + time.getHours() + '' + time.getMilliseconds()).substring(0, 6) + '' + generarLetra();
   } else {
-      return 'startw' + generarLetra();
+    return 'startw' + generarLetra();
   }
 }
 
